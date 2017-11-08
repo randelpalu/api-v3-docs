@@ -1,3 +1,5 @@
+![Logo](assets/img/logo.png)
+
 # Introduction 
 
 Credy is a company that specializes on the quality lead generation. 
@@ -59,20 +61,20 @@ This method will create or update customer and return customer uuid.
 | address[city]                   | Required <br /> free text                                                                                                                           | City                                                       |
 | address[street]                 | Required <br /> free text                                                                                                                           | Street                                                     |
 | address[house_number]           | Required <br /> integer                                                                                                                             | House number                                               |
-| address[flat_number]            | Optional <br /> must match regex: /^[0-9]+[A-ZĄĆĘŁŃÓŚŹŻ]?$/u                                                                                        | Flat number                                                |
+| address[flat_number]            | Optional <br /> must match regex: `/^[0-9]+[A-ZĄĆĘŁŃÓŚŹŻ]?$/u`                                                                                        | Flat number                                                |
 | address[postal_index]           | Required <br /> format: #####                                                                                                                       | Postal index                                               |
 | lives_at_registered_address     | Optional <br /> boolean; defaults to true                                                                                                           | Is customer’s real address the same as registered address? |
 | secondary_address               | Required <br /> Object                                                                                                                              | Registered address of the customer                         |
 | secondary_address[city]         | Required <br /> free text                                                                                                                           | City                                                       |
 | secondary_address[street]       | Required <br /> free text                                                                                                                           | Street                                                     |
 | secondary_address[house_number] | Required <br /> integer                                                                                                                             | House number                                               |
-| secondary_address[flat_number]  | Optional <br /> must match regex: /^[0-9]+[A-ZĄĆĘŁŃÓŚŹŻ]?$/u                                                                                        | Flat number                                                |
+| secondary_address[flat_number]  | Optional <br /> must match regex: `/^[0-9]+[A-ZĄĆĘŁŃÓŚŹŻ]?$/u`                                                                                        | Flat number                                                |
 | secondary_address[postal_index] | Required <br /> format: #####                                                                                                                       | Postal index                                               |
 | employer_address                | Required when occupation in list: EMPLOYED_INDEFINITE_PERIOD, EMPLOYED_SPECIFIED_PERIOD, WRITTEN_CONTRACT_OR_ORDER                            | Employer’s address                                         |
 | employer_address[city]          | Required <br /> free text                                                                                                                           | City                                                       |
 | employer_address[street]        | Required <br /> free text                                                                                                                           | Street                                                     |
 | employer_address[house_number]  | Required <br /> integer                                                                                                                             | House number                                               |
-| employer_address[flat_number]   | Optional <br /> must match regex: /^[0-9]+[A-ZĄĆĘŁŃÓŚŹŻ]?$/u                                                                                        | Flat number                                                |
+| employer_address[flat_number]   | Optional <br /> must match regex: `/^[0-9]+[A-ZĄĆĘŁŃÓŚŹŻ]?$/u`                                                                                        | Flat number                                                |
 | employer_address[postal_index]  | Required <br /> format: #####                                                                                                                       | Postal index                                               |
 | remuneration_deadline           | Required when occupation != UNEMPLOYED; format: YYYY-MM-DD                                                                                    | Remuneration deadline                                      |
 | employed_since                  | Required when occupation in list EMPLOYED_INDEFINITE_PERIOD, EMPLOYED_SPECIFIED_PERIOD, WRITTEN_CONTRACT_OR_ORDER <br /> format: YYYY-MM-DD         | Employed since date                                        |
