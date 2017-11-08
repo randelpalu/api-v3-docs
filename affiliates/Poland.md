@@ -1,7 +1,7 @@
 # Introduction 
 
-Traffic Control is a company that specializes on the quality lead generation. 
-This document further describes how to integrate API to send leads to Traffic Control.
+Credy is a company that specializes on the quality lead generation. 
+This document further describes how to integrate API to send leads to Credy.
 Should you have any questions, please do not hesitate to contact the IT manager at [it@credy.eu](mailto:it@credy.eu).
 
 ## General information
@@ -24,7 +24,7 @@ Allowed deviation for timestamp is UTC +/- 60 seconds.
 
 *ex. sha1(timestamp + apiKey + secretKey)*
 
-Api key and secret key will be assigned to you by Traffic Control.
+Api key and secret key will be assigned to you by Credy.
 
 ## Lead registration flow
 
