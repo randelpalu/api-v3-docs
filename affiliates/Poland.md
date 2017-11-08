@@ -10,6 +10,8 @@ Production URL: [https://api.credy.eu/v3/](https://api.credy.eu/v3/)
 
 Staging URL: [http://api.staging.credy.eu/v3/](http://api.staging.credy.eu/v3/)
 
+## Signing requests
+
 Each request must be signed. Signature consists of api_key, timestamp and hash.
 
 Hash is a SHA1 hash of the concatenation of timestamp, api_key and secret_key.
