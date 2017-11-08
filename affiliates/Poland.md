@@ -10,6 +10,10 @@ Production URL: [https://api.credy.eu/v3/](https://api.credy.eu/v3/)
 
 Staging URL: [http://api.staging.credy.eu/v3/](http://api.staging.credy.eu/v3/)
 
+API supports post fields, XML and JSON.
+
+To get response error messages in polish, "Accept-Language" header’s value must be set to “pl”.
+
 ## Signing requests
 
 Each request must be signed. Signature consists of api_key, timestamp and hash.
@@ -21,10 +25,6 @@ Allowed deviation for timestamp is UTC +/- 60 seconds.
 *ex. sha1(timestamp + apiKey + secretKey)*
 
 Api key and secret key will be assigned to you by Traffic Control.
-
-API supports post fields, XML and JSON.
-
-To get response error messages in polish, "Accept-Language" header’s value must be set to “pl”.
 
 ## Lead registration flow
 
