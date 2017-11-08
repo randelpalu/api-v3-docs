@@ -84,7 +84,9 @@ This method will create or update customer and return customer uuid.
 | university_name                 | Required when occupation == STUDENT <br /> free text                                                                                                | University name                                            |
 | university_city                 | Required when occupation == STUDENT <br /> free text                                                                                                | university city                                            |
 | car                             | Required <br /> boolean <br /> defaults to false                                                                                                          | Does customer own a car?                                   |
+| bad_credit_history              | Required <br /> boolean <br /> defaults to false                                                                                                          | Does customer have bad credit history?                                  |
 | salary_to_personal_account      | Required <br /> boolean <br /> defaults to false                                                                                                          | Does customer receive salary on their bank account?        |
+| dependant_count                 | Required <br /> integer                                                                                                                   | Dependant count        |
 | signature                       | Required <br /> Object                                                                                                                              | Request signature                                          |
 | signature[timestamp]            | Required <br /> unix timestamp – must be UTC +/- 60 seconds                                                                                         | Timestamp when request is made                             |
 | signature[api_key]              | Required                                                                                                                                      | Api key                                                    |
@@ -305,18 +307,20 @@ Response:
 
 # Addendum A - ENUMs
 
-| marital_status |              |                           |
-|----------------|--------------|---------------------------|
+### marital_status
+
 | value          | English      | Polish                    |
+|----------------|--------------|---------------------------|
 | single         | Single       | Wolna/wolny               |
 | married        | Married      | Mężatka/żonaty            |
 | divorced       | Divorced     | Rozwiedziony/rozwiedziona |
 | with_partner   | With partner | W związku partnerskim     |
 | widow          | Widow        | Wdowa/wdowiec             |
 
-| education         |                   |                     |
-|-------------------|-------------------|---------------------|
+### education
+
 | value             | English           | Polish              |
+|-------------------|-------------------|---------------------|
 | NO_EDUCATION      | No education      | Brak                |
 | BASIC_SCHOOL      | Basic school      | Gimnazjalne         |
 | HIGH_SCHOOL       | High school       | Średnie             |
@@ -325,17 +329,19 @@ Response:
 | PHD               | Ph. D             | Wyższe doktorskie   |
 | INDUSTRIAL_SCHOOL | Industrial school | Zawodowe            |
 
-| housing_type              |                        |                                |
-|---------------------------|------------------------|--------------------------------|
+### housing_type
+
 | value                     | English                | Polish                         |
+|---------------------------|------------------------|--------------------------------|
 | RENTED_ROOM               | Rented room            | Wynajęty pokój                 |
 | RENTED_APARTMENT_OR_HOUSE | Rented apartment/house | Wynajęte mieszkanie lub dom    |
 | OWN_HOUSE_OR_APARTMENT    | Own apartment/house    | Właściciel domu lub mieszkania |
 | WITH_PARENTS              | Living with parents    | Mieszkający z rodzicami        |
 
-| occupation                 |                               |                                    |
-|----------------------------|-------------------------------|------------------------------------|
+### occupation
+
 | value                      | English                       | Polish                             |
+|----------------------------|-------------------------------|------------------------------------|
 | employed_indefinite_period | Employed indefinitely         | Umowa o pracę na czas nieokreślony |
 | employed_specified_period  | Employed for specified period | Umowa o pracę na czas określony    |
 | written_contract_or_order  | Written contract or order     | Umowa zlecenie/Umowa o dzieło      |
