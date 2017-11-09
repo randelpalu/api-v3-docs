@@ -214,11 +214,11 @@ Response:
 [
    {
       "field":"email",
-      "message":"Email no puede estar vacío."
+      "message":"Email is not valid."
    },
    {
       "field":"address.street",
-      "message":"Dirección no puede estar vacío."
+      "message":"Street is not valid."
    }
 ]
 ```
