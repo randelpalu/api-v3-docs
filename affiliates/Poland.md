@@ -533,3 +533,7 @@ Response:
 | farmer                     | Farmer                        | Rolnik                             |
 | unemployed                 | Unemployed                    | Bezrobotny                         |
 | other                      | Other                         | Inna                               |
+
+# Versions
+
+- 2017-11-09 - first publish
