@@ -105,7 +105,41 @@ This method will create or update customer and return customer uuid.
 
 Body:
 ```json
-# TODO
+{  
+   "business_registration_date":"1994-11-25",
+   "dependant_count":"1",
+   "education":"MASTER",
+   "employed_since":"2009-05-21",
+   "housing_type":"RENTED_APARTMENT_OR_HOUSE",
+   "id_card_number":"ATM052480",
+   "lives_at_registered_address":"1",
+   "marital_status":"MARRIED",
+   "monthly_expenses":"901",
+   "tax_id_number":"3309963272",
+   "address": {
+      "street":"Reymonta W\u0142adys\u0142awa Stanis\u0142awa",
+      "city":"G\u0142og\u00f3w",
+      "house_number":"94",
+      "postal_index":"92139"
+   },
+   "bank_account":"PL08398211145244305277071135",
+   "current_job_position":"Businessman",
+   "email":"adamski.andrzej@mailinator.com",
+   "employer":"Traffic Control",
+   "employer_phone":"881001660",
+   "first_name":"Rozalia",
+   "last_name":"Pawlak",
+   "neto_income":"1134",
+   "occupation":"ECONOMIC_ACTIVITY",
+   "personal_id":"73090303632",
+   "phone":"881040331",
+   "remuneration_deadline":"2017-11-19",
+   "signature":{  
+      "api_key":"poland",
+      "timestamp":1510256918,
+      "hash":"1f9158037d701039236cedc1b6efcd74bd0dc1cb"
+   }
+}
 ```
 
 **Successful response for /v3/customers**
@@ -114,7 +148,61 @@ Status code: 2xx
 
 Response:
 ```json
-# TODO
+{
+    "uuid": "c35c40b7-7fba-4dad-bc40-e81652c46c7c",
+    "first_name": "rozalia",
+    "last_name": "pawlak",
+    "email": "adamski.andrzej@mailinator.com",
+    "product": "PAYDAY",
+    "address_flat_number": "",
+    "employer_flat_number": "",
+    "secondaryAddress_flat_number": "",
+    "personal_id": "73090303632",
+    "phone": "+48881040331",
+    "carBrand": null,
+    "carModel": null,
+    "carYear": null,
+    "employer_street": "",
+    "employer_postal_index": "",
+    "employer_house_number": "",
+    "phone2": null,
+    "employer_phone": "+48881001660",
+    "dependant_count": "1",
+    "monthly_expenses": "901",
+    "neto_income": "1134",
+    "lives_at_registered_address": "1",
+    "phone_confirmed": 0,
+    "bad_credit_history": null,
+    "salary_to_personal_account": null,
+    "car": "NO",
+    "ruian": null,
+    "occupation": "ECONOMIC_ACTIVITY",
+    "marital_status": "MARRIED",
+    "housing_type": "RENTED_APARTMENT_OR_HOUSE",
+    "gender": "MALE",
+    "education": "MASTER",
+    "industry": "",
+    "remuneration_frequency": "",
+    "bank_account": "PL08398211145244305277071135",
+    "address_postal_index": "92139",
+    "birth_date": "1973-09-03",
+    "remuneration_deadline": "2017-11-19",
+    "employed_since": "2009-05-21",
+    "address_city": "Głogów",
+    "address_address": "Reymonta Władysława Stanisława",
+    "address_house_number": "94",
+    "secondaryAddress_city": "",
+    "secondaryAddress_address": "",
+    "secondaryAddress_house_number": "",
+    "secondaryAddress_postal_index": "",
+    "employer": "Traffic Control",
+    "current_job_position": "Businessman",
+    "employer_work_city": "",
+    "tax_id_number": "3309963272",
+    "id_card_number": "ATM052480",
+    "business_registration_date": "1994-11-25",
+    "employment_sector": ""
+}
 ```
 
 **Failed response for /v3/customers**
@@ -147,7 +235,42 @@ Response:
 
 Body:
 ```xml
-# TODO
+<?xml version="1.0" encoding="UTF-8" ?>
+<request>
+    <business_registration_date>1994-11-25</business_registration_date>
+    <dependant_count>1</dependant_count>
+    <education>MASTER</education>
+    <employed_since>2009-05-21</employed_since>
+    <housing_type>RENTED_APARTMENT_OR_HOUSE</housing_type>
+    <id_card_number>ATM052480</id_card_number>
+    <lives_at_registered_address>1</lives_at_registered_address>
+    <marital_status>MARRIED</marital_status>
+    <monthly_expenses>901</monthly_expenses>
+    <tax_id_number>3309963272</tax_id_number>
+    <address>
+        <street>Reymonta Władysława Stanisława</street>
+        <city>Głogów</city>
+        <house_number>94</house_number>
+        <postal_index>92139</postal_index>
+    </address>
+    <bank_account>PL08398211145244305277071135</bank_account>
+    <current_job_position>Businessman</current_job_position>
+    <email>adamski.andrzej@mailinator.com</email>
+    <employer>Traffic Control</employer>
+    <employer_phone>881001660</employer_phone>
+    <first_name>Rozalia</first_name>
+    <last_name>Pawlak</last_name>
+    <neto_income>1134</neto_income>
+    <occupation>ECONOMIC_ACTIVITY</occupation>
+    <personal_id>73090303632</personal_id>
+    <phone>881040331</phone>
+    <remuneration_deadline>2017-11-19</remuneration_deadline>
+    <signature>
+        <api_key>poland</api_key>
+        <timestamp>1510256918</timestamp>
+        <hash>1f9158037d701039236cedc1b6efcd74bd0dc1cb</hash>
+    </signature>
+</request>
 ```
 
 **Successful response for /v3/customers**
@@ -156,7 +279,62 @@ Status code: 2xx
 
 Response:
 ```xml
-# TODO
+<?xml version="1.0" encoding="UTF-8" ?>
+<response>
+	<uuid>c35c40b7-7fba-4dad-bc40-e81652c46c7c</uuid>
+	<first_name>rozalia</first_name>
+	<last_name>pawlak</last_name>
+	<email>adamski.andrzej@mailinator.com</email>
+	<product>PAYDAY</product>
+	<address_flat_number></address_flat_number>
+	<employer_flat_number></employer_flat_number>
+	<secondaryAddress_flat_number></secondaryAddress_flat_number>
+	<personal_id>73090303632</personal_id>
+	<phone>+48881040331</phone>
+	<carBrand />
+	<carModel />
+	<carYear />
+	<employer_street></employer_street>
+	<employer_postal_index></employer_postal_index>
+	<employer_house_number></employer_house_number>
+	<phone2 />
+	<employer_phone>+48881001660</employer_phone>
+	<dependant_count>1</dependant_count>
+	<monthly_expenses>901</monthly_expenses>
+	<neto_income>1134</neto_income>
+	<lives_at_registered_address>1</lives_at_registered_address>
+	<phone_confirmed>0</phone_confirmed>
+	<bad_credit_history />
+	<salary_to_personal_account />
+	<car>NO</car>
+	<ruian />
+	<occupation>ECONOMIC_ACTIVITY</occupation>
+	<marital_status>MARRIED</marital_status>
+	<housing_type>RENTED_APARTMENT_OR_HOUSE</housing_type>
+	<gender>MALE</gender>
+	<education>MASTER</education>
+	<industry></industry>
+	<remuneration_frequency></remuneration_frequency>
+	<bank_account>PL08398211145244305277071135</bank_account>
+	<address_postal_index>92139</address_postal_index>
+	<birth_date>1973-09-03</birth_date>
+	<remuneration_deadline>2017-11-19</remuneration_deadline>
+	<employed_since>2009-05-21</employed_since>
+	<address_city>Głogów</address_city>
+	<address_address>Reymonta Władysława Stanisława</address_address>
+	<address_house_number>94</address_house_number>
+	<secondaryAddress_city></secondaryAddress_city>
+	<secondaryAddress_address></secondaryAddress_address>
+	<secondaryAddress_house_number></secondaryAddress_house_number>
+	<secondaryAddress_postal_index></secondaryAddress_postal_index>
+	<employer>Traffic Control</employer>
+	<current_job_position>Businessman</current_job_position>
+	<employer_work_city></employer_work_city>
+	<tax_id_number>3309963272</tax_id_number>
+	<id_card_number>ATM052480</id_card_number>
+	<business_registration_date>1994-11-25</business_registration_date>
+	<employment_sector></employment_sector>
+</response>
 ```
 
 **Failed response for /v3/customers**
@@ -186,11 +364,11 @@ Creates lead for existing customer.
 
 | Field                | Validations                                | Description                                             |
 |----------------------|--------------------------------------------|---------------------------------------------------------|
-| loan_sum             | Required; Must be valid number             | Amount of credit requested by customer                  |
-| loan_period          | Required; Must be valid number             | Term for credit requested                               |
+| loan_sum             | Required <br /> Must be valid number       | Amount of credit requested by customer                  |
+| loan_period          | Required <br /> Must be valid number       | Term for credit requested                               |
 | ip_address           | Must be valid IP address                   | IP address of customer                                  |
-| aff_lead_id          |                                            | Your lead ID                                            |
-| signature            | Required; object; contains signature fields| request signature                                       |
+| aff_lead_id          | Optional <br /> free text                  | Your lead ID                                            |
+| signature            | Required <br /> object <br /> contains signature fields| request signature                                       |
 | signature[timestamp] | Required                                   | unix timestamp, must be UTC +/- 60 seconds              |
 | signature[api_key]   | Required                                   | api key                                                 |
 | signature[hash]      | Required                                   | sha1 concatenation of timestamp, api key and secret key |
@@ -198,7 +376,7 @@ Creates lead for existing customer.
 
 ### JSON examples for /v3/leads
 
-**POST /v3/leads?customer=bbf18703-1f8d-5c8a-a83b-9433f003807f**
+**POST /v3/leads?customer=c35c40b7-7fba-4dad-bc40-e81652c46c7c**
 
 | Headers      |                  |
 |--------------|------------------|
@@ -259,7 +437,7 @@ Response:
 | Accept       | application/xml  |
 
 
-**POST /v3/leads?customer=318d4a7b-b39e-58f2-a413-caefbe1615b7**
+**POST /v3/leads?customer=c35c40b7-7fba-4dad-bc40-e81652c46c7c**
 
 Body: 
 ```xml
