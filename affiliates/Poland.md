@@ -536,4 +536,4 @@ Response:
 
 # Versions
 
-- 2017-11-09 - first publish
+- 1.0 (2017-11-09): first publish
