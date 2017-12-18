@@ -48,7 +48,7 @@ This method will create or update customer and return customer uuid.
 | bank_account | Required<br> Must be valid CLABE | Bank account number of customer |
 | phone | Required<br>Must be valid phone number | Customer mobile phone number |
 | neto_income | Required | Neto income in MXN |
-| remuneration_deadline | Required Must be valid date | Remuneration deadline |
+| remuneration_deadline |Must be valid date<br> Required Required when occupation is one of following: <br>EMPLOYED_INDEFINITE_PERIOD<br>EMPLOYED_SPECIFIED_PERIOD<br> WRITTEN_CONTRACT_OR_ORDER | Remuneration deadline |
 | address | Required<br> Object | Contains registered address data |
 | address[city] | Required | City |
 | address[street] | Required | Street |
@@ -59,9 +59,9 @@ This method will create or update customer and return customer uuid.
 | address[county] | Required | Municipality |
 | address[district] | Required | Colony |
 | occupation | Required | Occupation type <br> For allowed values see _Appendix A_ |
-| employer_phone | Required<br>Must be valid phone number | Employers phone number |
-| employer | Required | Employer |
-| current_job_position | Required | Current job position |
+| employer_phone |Must be valid phone number<br> Required Required when occupation is one of following: <br>EMPLOYED_INDEFINITE_PERIOD<br>EMPLOYED_SPECIFIED_PERIOD<br> WRITTEN_CONTRACT_OR_ORDER | Employers phone number |
+| employer | Required Required when occupation is one of following:<br>EMPLOYED_INDEFINITE_PERIOD<br>EMPLOYED_SPECIFIED_PERIOD<br> WRITTEN_CONTRACT_OR_ORDER<br> | Employer |
+| current_job_position | Required Required when occupation is one of following:<br>EMPLOYED_INDEFINITE_PERIOD<br>EMPLOYED_SPECIFIED_PERIOD<br> WRITTEN_CONTRACT_OR_ORDER<br> | Current job position |
 | tax_id_number | Required<br> Must match regex: ` /^[A-Z]{1}[AEIOUX]{1}[A-Z]{2}[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Za-z0-9]{3}$/ ` | Customer RFC number |
 | nationality | Required | Customer nationality |
 | has_beneficiary | Required<br>Boolean | Does customer take a loan for himself/herself or not |
