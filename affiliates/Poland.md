@@ -62,20 +62,20 @@ This method will create or update customer and return customer uuid.
 | address[street]                 | Required <br /> free text                                                                                                                           | Street                                                     |
 | address[house_number]           | Required <br /> integer                                                                                                                             | House number                                               |
 | address[flat_number]            | Optional <br /> must match regex: `/^[0-9]+[A-ZĄĆĘŁŃÓŚŹŻ]?$/u`                                                                                        | Flat number                                                |
-| address[postal_index]           | Required <br /> format: #####                                                                                                                       | Postal index                                               |
+| address[postal_code]           | Required <br /> format: #####                                                                                                                       | Postal index                                               |
 | lives_at_registered_address     | Optional <br /> boolean; defaults to true                                                                                                           | Is customer’s real address the same as registered address? |
 | secondary_address               | Required <br /> Object                                                                                                                              | Registered address of the customer                         |
 | secondary_address[city]         | Required <br /> free text                                                                                                                           | City                                                       |
 | secondary_address[street]       | Required <br /> free text                                                                                                                           | Street                                                     |
 | secondary_address[house_number] | Required <br /> integer                                                                                                                             | House number                                               |
 | secondary_address[flat_number]  | Optional <br /> must match regex: `/^[0-9]+[A-ZĄĆĘŁŃÓŚŹŻ]?$/u`                                                                                        | Flat number                                                |
-| secondary_address[postal_index] | Required <br /> format: #####                                                                                                                       | Postal index                                               |
+| secondary_address[postal_code] | Required <br /> format: #####                                                                                                                       | Postal index                                               |
 | employer_address                | Required when occupation in list: EMPLOYED_INDEFINITE_PERIOD, EMPLOYED_SPECIFIED_PERIOD, WRITTEN_CONTRACT_OR_ORDER                            | Employer’s address                                         |
 | employer_address[city]          | Required <br /> free text                                                                                                                           | City                                                       |
 | employer_address[street]        | Required <br /> free text                                                                                                                           | Street                                                     |
 | employer_address[house_number]  | Required <br /> integer                                                                                                                             | House number                                               |
 | employer_address[flat_number]   | Optional <br /> must match regex: `/^[0-9]+[A-ZĄĆĘŁŃÓŚŹŻ]?$/u`                                                                                        | Flat number                                                |
-| employer_address[postal_index]  | Required <br /> format: #####                                                                                                                       | Postal index                                               |
+| employer_address[postal_code]  | Required <br /> format: #####                                                                                                                       | Postal index                                               |
 | remuneration_deadline           | Required when occupation != UNEMPLOYED; format: YYYY-MM-DD                                                                                    | Remuneration deadline                                      |
 | employed_since                  | Required when occupation in list EMPLOYED_INDEFINITE_PERIOD, EMPLOYED_SPECIFIED_PERIOD, WRITTEN_CONTRACT_OR_ORDER <br /> format: YYYY-MM-DD         | Employed since date                                        |
 | employer                        | Required when occupation in list EMPLOYED_INDEFINITE_PERIOD, EMPLOYED_SPECIFIED_PERIOD, WRITTEN_CONTRACT_OR_ORDER <br /> free text                  | Employer                                                   |
@@ -120,7 +120,7 @@ Body:
       "street":"Reymonta W\u0142adys\u0142awa Stanis\u0142awa",
       "city":"G\u0142og\u00f3w",
       "house_number":"94",
-      "postal_index":"92139"
+      "postal_code":"92139"
    },
    "bank_account":"PL08398211145244305277071135",
    "current_job_position":"Businessman",
@@ -251,7 +251,7 @@ Body:
         <street>Reymonta Władysława Stanisława</street>
         <city>Głogów</city>
         <house_number>94</house_number>
-        <postal_index>92139</postal_index>
+        <postal_code>92139</postal_code>
     </address>
     <bank_account>PL08398211145244305277071135</bank_account>
     <current_job_position>Businessman</current_job_position>
