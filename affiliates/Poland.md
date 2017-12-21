@@ -201,7 +201,25 @@ Response:
     "tax_id_number": "3309963272",
     "id_card_number": "ATM052480",
     "business_registration_date": "1994-11-25",
-    "employment_sector": ""
+    "employment_sector": "",
+    "address": {
+        "street":"Reymonta W\u0142adys\u0142awa Stanis\u0142awa",
+        "city":"G\u0142og\u00f3w",
+        "house_number":"94",
+        "postal_code":"92139"
+    },
+    "secondary_address": {
+        "street":"",
+        "city":"",
+        "house_number":"",
+        "postal_code":""
+    },
+    "employer_address": {
+        "street":"",
+        "city":"",
+        "house_number":"",
+        "postal_code":""
+    }
 }
 ```
 
@@ -334,6 +352,24 @@ Response:
 	<id_card_number>ATM052480</id_card_number>
 	<business_registration_date>1994-11-25</business_registration_date>
 	<employment_sector></employment_sector>
+    <address>
+        <street>Reymonta Władysława Stanisława</street>
+        <city>Głogów</city>
+        <house_number>94</house_number>
+        <postal_code>9213</postal_code>
+    </address>
+    <secondary_address>
+        <street></street>
+        <city></city>
+        <house_number></house_number>
+        <postal_code></postal_code>
+    </secondary_address>
+    <employer_address>
+        <street></street>
+        <city></city>
+        <house_number></house_number>
+        <postal_code></postal_code>
+    </employer_address>
 </response>
 ```
 
