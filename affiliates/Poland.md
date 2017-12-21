@@ -352,24 +352,24 @@ Response:
 	<id_card_number>ATM052480</id_card_number>
 	<business_registration_date>1994-11-25</business_registration_date>
 	<employment_sector></employment_sector>
-    <address>
-        <street>Reymonta Władysława Stanisława</street>
-        <city>Głogów</city>
-        <house_number>94</house_number>
-        <postal_code>9213</postal_code>
-    </address>
-    <secondary_address>
-        <street></street>
-        <city></city>
-        <house_number></house_number>
-        <postal_code></postal_code>
-    </secondary_address>
-    <employer_address>
-        <street></street>
-        <city></city>
-        <house_number></house_number>
-        <postal_code></postal_code>
-    </employer_address>
+        <address>
+            <street>Reymonta Władysława Stanisława</street>
+            <city>Głogów</city>
+            <house_number>94</house_number>
+            <postal_code>9213</postal_code>
+        </address>
+        <secondary_address>
+            <street></street>
+            <city></city>
+            <house_number></house_number>
+            <postal_code></postal_code>
+        </secondary_address>
+        <employer_address>
+            <street></street>
+            <city></city>
+            <house_number></house_number>
+            <postal_code></postal_code>
+        </employer_address>
 </response>
 ```
 
