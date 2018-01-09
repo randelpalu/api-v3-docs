@@ -1,7 +1,9 @@
+![Logo](../assets/img/logo.png?raw=true)
+
 # Introduction
 
-Traffic Control is a company that specializes on quality lead generation.
-This document further describes how to integrate API to send leads to Traffic Control.
+Credy is a company that specializes on the quality lead generation. 
+This document further describes how to integrate API to send leads to Credy.
 Should you have any questions, please do not hesitate to contact the IT manager at [it@credy.eu](mailto:it@credy.eu).
 
 ## General information
@@ -9,6 +11,12 @@ Should you have any questions, please do not hesitate to contact the IT manager 
 Production URL: [https://api.credy.eu/v3/](https://api.credy.eu/v3/)
 
 Staging URL: [http://api.staging.credy.eu/](http://api.staging.credy.eu/)
+
+API supports post fields, XML and JSON.
+
+To get response error messages in georgian, "Accept-Language" header’s value must be set to “ka”.
+
+## Signing requests
 
 Each request must be signed. Signature consists of api_key, timestamp and hash.
 
@@ -18,17 +26,13 @@ Allowed deviation for timestamp is UTC +/- 60 seconds.
 
 *ex. sha1(timestamp + apiKey + secretKey)*
 
-Api key and secret key will be assigned to you by Traffic Control.
-
-API supports post fields, XML and JSON.
-
-To get response error messages in georgian, "Accept-Language" header’s value must be set to “ka” or “ka-GE”.
+Api key and secret key will be assigned to you by Credy.
 
 ## Lead registration flow
 
 1. Request is sent to /v3/customers
 
-2. If request is successful, customer uuid must be stored
+2. If request is successful, customer uuid must be stored (uuid is a field in response)
 
 3. Request is sent to /v3/leads with previously stored customer uuid in query parameter "customer" *ex. /v3/leads?customer=a3ff7c20-e9e8-43a0-bfb7-71a5cf43b8d3*
 
@@ -40,17 +44,17 @@ This method will create or update customer and return customer uuid.
 
 | Field                           | Validations                                                                                                                                                                | Description                                                                                                                                                   |
 |---------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| first_name                      | Required Must match regex: /^[\p{Georgian}[:space:]-]+$/u                                                                                                                  | First name of customer                                                                                                                                        |
-| last_name                       | Required Must match regex: /^[\p{Georgian}[:space:]-]+$/u                                                                                                                  | Last name of customer                                                                                                                                         |
-| email                           | Required Must be valid email                                                                                                                                               | Email address                                                                                                                                                 |
-| personal_id                     | Required                                                                                                                                                                   | Personal ID of customer                                                                                                                                       |
-| phone                           | Required Must be valid georgian number                                                                                                                                     | Customer phone number                                                                                                                                         |
-| gender                          | Required For allowed values see Appendix A                                                                                                                                 | Gender                                                                                                                                                        |
-| birth_date                      | Required Must be valid date YYYY-mm-dd                                                                                                                                     | Birth date of customer                                                                                                                                        |
-| doc_type                        | Required For allowed values see Appendix A                                                                                                                                 | Document type Indicates which value will be sent in id_card_number field                                                                                      |
-| id_card_number                  | Required Must match regex In case of ID & passport: /^[0-9]{2}[A-Z]{2}[0-9]{5}$/ In case of old ID: /^[\p{Georgian}][0-9]{7}$/u                                            | Document number for document type sent in doc_type field                                                                                                      |
-| occupation                      | Required For allowed values see Appendix A                                                                                                                                 | Occupation type                                                                                                                                               |
-| neto_income                     | Required Must be valid number                                                                                                                                              | Neto income in GEL                                                                                                                                            |
+| first_name                      | Required<br /> Must match regex: /^[\p{Georgian}[:space:]-]+$/u                                                                                                                  | First name of customer                                                                                                                                        |
+| last_name                       | Required<br /> Must match regex: /^[\p{Georgian}[:space:]-]+$/u                                                                                                                  | Last name of customer                                                                                                                                         |
+| email                           | Required<br /> Must be valid email                                                                                                                                               | Email address                                                                                                                                                 |
+| personal_id                     | Required<br /> Must be valid                                                                                                                                                                   | Personal ID of customer                                                                                                                                       |
+| phone                           | Required<br /> Must be valid georgian number                                                                                                                                     | Customer phone number                                                                                                                                         |
+| gender                          | Required<br /> For allowed values see Appendix A                                                                                                                                 | Gender                                                                                                                                                        |
+| birth_date                      | Required<br /> Must be valid date YYYY-mm-dd                                                                                                                                     | Birth date of customer                                                                                                                                        |
+| doc_type                        | Required<br /> For allowed values see Appendix A                                                                                                                                 | Document type Indicates which value will be sent in id_card_number field                                                                                      |
+| id_card_number                  | Required<br /> Must match regex In case of ID & passport: /^[0-9]{2}[A-Z]{2}[0-9]{5}$/ In case of old ID: /^[\p{Georgian}][0-9]{7}$/u                                            | Document number for document type sent in doc_type field                                                                                                      |
+| occupation                      | Required<br /> For allowed values see Appendix A                                                                                                                                 | Occupation type                                                                                                                                               |
+| neto_income                     | Required<br /> Must be valid number                                                                                                                                              | Neto income in GEL                                                                                                                                            |
 | address[city]                   | Required                                                                                                                                                                   | City                                                                                                                                                          |
 | signature                       | Required, object contains signature fields                                                                                                                                 | request signature                                                                                                                                             |
 | signature[timestamp]            | Required                                                                                                                                                                   | unix timestamp, must be UTC +/- 60 seconds                                                                                                                    |
