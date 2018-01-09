@@ -1,7 +1,9 @@
-# Introduction
+![Logo](../assets/img/logo.png?raw=true)
 
-Traffic Control is a company that specializes on the quality lead generation.
-This document further describes how to integrate API to send leads to Traffic Control.
+# Introduction 
+
+Credy is a company that specializes on the quality lead generation. 
+This document further describes how to integrate API to send leads to Credy.
 Should you have any questions, please do not hesitate to contact the IT manager at [it@credy.eu](mailto:it@credy.eu).
 
 ## General information
@@ -9,6 +11,12 @@ Should you have any questions, please do not hesitate to contact the IT manager 
 Production URL: [https://api.credy.eu/v3/](https://api.credy.eu/v3/)
 
 Staging URL: [http://api.staging.credy.eu/v3/](http://api.staging.credy.eu/v3/)
+
+API supports post fields, XML and JSON.
+
+To get response error messages in spain, "Accept-Language" header’s value must be set to “es”.
+
+## Signing requests
 
 Each request must be signed. Signature consists of api_key, timestamp and hash.
 
@@ -18,11 +26,7 @@ Allowed deviation for timestamp is UTC +/- 60 seconds.
 
 *ex. sha1(timestamp + apiKey + secretKey)*
 
-Api key and secret key will be assigned to you by Traffic Control.
-
-API supports post fields, XML and JSON.
-
-To get response error messages in spanish, "Accept-Language" header’s value must be set to “es” or “es-MX”.
+Api key and secret key will be assigned to you by Credy.
 
 ## Lead registration flow
 
