@@ -601,4 +601,6 @@ Free text</td>
   </tr>
 </table>
 
+# Versions
 
+- 1.0 (2018-02-15): first publish
