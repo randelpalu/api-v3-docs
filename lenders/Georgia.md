@@ -36,210 +36,53 @@ API supports post fields and JSON.
 
 This method will send application data. It consists of lead and customer.
 
-<table>
-  <tr>
-    <td>Field</td>
-    <td>Validations</td>
-    <td>Description</td>
-  </tr>
-  <tr>
-    <td>lead</td>
-    <td>Required, object</td>
-    <td>Contains lead data</td>
-  </tr>
-  <tr>
-    <td>loan_sum</td>
-    <td>Required
-float
-</td>
-    <td>loan amount</td>
-  </tr>
-  <tr>
-    <td>loan_period</td>
-    <td>Required
-integer</td>
-    <td>loan term</td>
-  </tr>
-  <tr>
-    <td>ip_address</td>
-    <td>Required</td>
-    <td>IP address of customer</td>
-  </tr>
-  <tr>
-    <td>uuid</td>
-    <td>Required</td>
-    <td>lead UUID in TC system</td>
-  </tr>
-  <tr>
-    <td>customer</td>
-    <td>Required, object</td>
-    <td>Contains customer data</td>
-  </tr>
-  <tr>
-    <td>customer[first_name]</td>
-    <td>Required</td>
-    <td>first name</td>
-  </tr>
-  <tr>
-    <td>customer[last_name]</td>
-    <td>Required</td>
-    <td>last name</td>
-  </tr>
-  <tr>
-    <td>customer[email]</td>
-    <td>Required</td>
-    <td>email</td>
-  </tr>
-  <tr>
-    <td>customer[personal_id]</td>
-    <td>Required</td>
-    <td>PESEL</td>
-  </tr>
-  <tr>
-    <td>customer[phone]</td>
-    <td>Required
-</td>
-    <td>phone number</td>
-  </tr>
-  <tr>
-    <td>customer[gender]</td>
-    <td>Required
-For possible values please see Addendum A</td>
-    <td>gender</td>
-  </tr>
-  <tr>
-    <td>customer[birth_date]</td>
-    <td>Required
-format: YYYY-MM-DD</td>
-    <td>birth date</td>
-  </tr>
-  <tr>
-    <td>customer[id_card_number]</td>
-    <td>Required</td>
-    <td>Id card number</td>
-  </tr>
-  <tr>
-    <td>customer[address]</td>
-    <td>Required, object</td>
-    <td>Actual address of customer</td>
-  </tr>
-  <tr>
-    <td>customer[address][city]</td>
-    <td>Required</td>
-    <td>city</td>
-  </tr>
-  <tr>
-    <td>customer[address][street]</td>
-    <td>Required</td>
-    <td>street</td>
-  </tr>
-  <tr>
-    <td>customer[address][house_number]</td>
-    <td>Required</td>
-    <td>house number with optional extension</td>
-  </tr>
-  <tr>
-    <td>customer[address][flat_number]</td>
-    <td>Optional</td>
-    <td>flat number</td>
-  </tr>
-  <tr>
-    <td>customer[address][postal_index]</td>
-    <td>Required</td>
-    <td>postal code</td>
-  </tr>
-  <tr>
-    <td>customer[lives_at_registered_address]</td>
-    <td>Optional
-
-boolean
-if lives_at_registered_address == false, secondary address fields are required
-
-defaults to false</td>
-    <td>indicates if customer lives on registered address or not</td>
-  </tr>
-  <tr>
-    <td>customer[secondary_address]</td>
-    <td>Object, required if lives_at_registered_address = false</td>
-    <td>Legal address of customer</td>
-  </tr>
-  <tr>
-    <td>customer[secondary_address][city]</td>
-    <td>Required when lives_at_registered_address = false</td>
-    <td>city of secondary address
-</td>
-  </tr>
-  <tr>
-    <td>customer[secondary_address][street]</td>
-    <td>Required when lives_at_registered_address = false</td>
-    <td>street of secondary address
-</td>
-  </tr>
-  <tr>
-    <td>customer[secondary_address][house_number]</td>
-    <td>Required when lives_at_registered_address = false</td>
-    <td>secondary address house number with optional extension
-</td>
-  </tr>
-  <tr>
-    <td>customer[secondary_address][flat_number]</td>
-    <td>Optional</td>
-    <td>secondary address flat number</td>
-  </tr>
-  <tr>
-    <td>customer[secondary_address][postal_index]</td>
-    <td>Required when lives_at_registered_address = false</td>
-    <td>postal code of secondary address</td>
-  </tr>
-  <tr>
-    <td>customer[occupation]</td>
-    <td>Required
-For possible values please see Addendum A</td>
-    <td>occupation</td>
-  </tr>
-  <tr>
-    <td>customer[neto_income]</td>
-    <td>Required</td>
-    <td>neto income in Zloty
-</td>
-  </tr>
-  <tr>
-    <td>customer[employer]</td>
-    <td>Required when occupation in list: 
-
-EMPLOYED_INDEFINITE_PERIOD
-EMPLOYED_SPECIFIED_PERIOD
-WRITTEN_CONTRACT_OR_ORDER</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>customer[password]</td>
-    <td>Required</td>
-    <td>generated random string</td>
-  </tr>
-  <tr>
-    <td>signature</td>
-    <td>Required, object
-
-contains signature fields</td>
-    <td>request signature</td>
-  </tr>
-  <tr>
-    <td>signature[timestamp]</td>
-    <td>Required</td>
-    <td>unix timestamp, must be UTC +/- 60 seconds </td>
-  </tr>
-  <tr>
-    <td>signature[api_key]</td>
-    <td>Required</td>
-    <td>api key</td>
-  </tr>
-  <tr>
-    <td>signature[hash]</td>
-    <td>Required</td>
-    <td>sha1 concatenation of timestamp, api key and secret key</td>
-  </tr>
-</table>
+| Field                                                                                  | Validations                                             | Description                                             |
+|----------------------------------------------------------------------------------------|---------------------------------------------------------|---------------------------------------------------------|
+| lead                                                                                   | Required, object                                        | Contains lead data                                      |
+| loan_sum                                                                               | Required float                                          | loan amount                                             |
+| loan_period                                                                            | Required integer                                        | loan term                                               |
+| ip_address                                                                             | Required                                                | IP address of customer                                  |
+| uuid                                                                                   | Required                                                | lead UUID in TC system                                  |
+| customer                                                                               | Required, object                                        | Contains customer data                                  |
+| customer[first_name]                                                                   | Required                                                | first name                                              |
+| customer[last_name]                                                                    | Required                                                | last name                                               |
+| customer[email]                                                                        | Required                                                | email                                                   |
+| customer[personal_id]                                                                  | Required                                                | PESEL                                                   |
+| customer[phone]                                                                        | Required                                                | phone number                                            |
+| customer[gender]                                                                       | Required For possible values please see Addendum A      | gender                                                  |
+| customer[birth_date]                                                                   | Required format: YYYY-MM-DD                             | birth date                                              |
+| customer[id_card_number]                                                               | Required                                                | Id card number                                          |
+| customer[address]                                                                      | Required, object                                        | Actual address of customer                              |
+| customer[address][city]                                                                | Required                                                | city                                                    |
+| customer[address][street]                                                              | Required                                                | street                                                  |
+| customer[address][house_number]                                                        | Required                                                | house number with optional extension                    |
+| customer[address][flat_number]                                                         | Optional                                                | flat number                                             |
+| customer[address][postal_index]                                                        | Required                                                | postal code                                             |
+| customer[lives_at_registered_address]                                                  | Optional                                                |                                                         |
+| boolean if lives_at_registered_address == false, secondary address fields are required |                                                         |                                                         |
+|                                                                                        |                                                         |                                                         |
+| defaults to false                                                                      |                                                         |                                                         |
+|                                                                                        |                                                         |                                                         |
+| indicates if customer lives on registered address or not                               |                                                         |                                                         |
+| customer[secondary_address]                                                            | Object, required if lives_at_registered_address = false | Legal address of customer                               |
+| customer[secondary_address][city]                                                      | Required when lives_at_registered_address = false       | city of secondary address                               |
+| customer[secondary_address][street]                                                    | Required when lives_at_registered_address = false       | street of secondary address                             |
+| customer[secondary_address][house_number]                                              | Required when lives_at_registered_address = false       | secondary address house number with optional extension  |
+| customer[secondary_address][flat_number]                                               | Optional                                                | secondary address flat number                           |
+| customer[secondary_address][postal_index]                                              | Required when lives_at_registered_address = false       | postal code of secondary address                        |
+| customer[occupation]                                                                   | Required For possible values please see Addendum A      | occupation                                              |
+| customer[neto_income]                                                                  | Required                                                | neto income in Zloty                                    |
+| customer[employer]                                                                     | Required when occupation in list:                       |                                                         |
+| EMPLOYED_INDEFINITE_PERIOD EMPLOYED_SPECIFIED_PERIOD WRITTEN_CONTRACT_OR_ORDER         |                                                         |                                                         |
+|                                                                                        |                                                         |                                                         |
+| customer[password]                                                                     | Required                                                | generated random string                                 |
+| signature                                                                              | Required, object                                        |                                                         |
+| contains signature fields                                                              |                                                         |                                                         |
+|                                                                                        |                                                         |                                                         |
+| request signature                                                                      |                                                         |                                                         |
+| signature[timestamp]                                                                   | Required                                                | unix timestamp, must be UTC +/- 60 seconds              |
+| signature[api_key]                                                                     | Required                                                | api key                                                 |
+| signature[hash]                                                                        | Required                                                | sha1 concatenation of timestamp, api key and secret key |
 
 
 ### JSON examples for /receiveLead method
@@ -330,56 +173,19 @@ For all possible responses please see [Expected responses for receiveLead & chec
 
 Optional method. This method is used to verify pin code.
 
-<table>
-  <tr>
-    <td>Field</td>
-    <td>Validations</td>
-    <td>Description</td>
-  </tr>
-  <tr>
-    <td>pin</td>
-    <td>Required</td>
-    <td>pin code</td>
-  </tr>
-  <tr>
-    <td>phone</td>
-    <td>Required</td>
-    <td>phone number</td>
-  </tr>
-  <tr>
-    <td>uuid</td>
-    <td>Required
-UUID</td>
-    <td>unique identifier of loan application in TC system</td>
-  </tr>
-  <tr>
-    <td>external_lead_id</td>
-    <td>Optional</td>
-    <td>if external_lead_id was provided in /receiveLead response, it will be sent back here</td>
-  </tr>
-  <tr>
-    <td>signature</td>
-    <td>Required, object
-
-contains signature fields</td>
-    <td>request signature</td>
-  </tr>
-  <tr>
-    <td>signature[timestamp]</td>
-    <td>Required</td>
-    <td>unix timestamp, must be UTC +/- 60 seconds </td>
-  </tr>
-  <tr>
-    <td>signature[api_key]</td>
-    <td>Required</td>
-    <td>api key</td>
-  </tr>
-  <tr>
-    <td>signature[hash]</td>
-    <td>Required</td>
-    <td>sha1 concatenation of timestamp, api key and secret key</td>
-  </tr>
-</table>
+| Field                     | Validations      | Description                                                                          |
+|---------------------------|------------------|--------------------------------------------------------------------------------------|
+| pin                       | Required         | pin code                                                                             |
+| phone                     | Required         | phone number                                                                         |
+| uuid                      | Required UUID    | unique identifier of loan application in TC system                                   |
+| external_lead_id          | Optional         | if external_lead_id was provided in /receiveLead response, it will be sent back here |
+| signature                 | Required, object |                                                                                      |
+| contains signature fields |                  |                                                                                      |
+|                           |                  |                                                                                      |
+| request signature         |                  |                                                                                      |
+| signature[timestamp]      | Required         | unix timestamp, must be UTC +/- 60 seconds                                           |
+| signature[api_key]        | Required         | api key                                                                              |
+| signature[hash]           | Required         | sha1 concatenation of timestamp, api key and secret key                              |
 
 
 ### JSON examples for /checkPin method
@@ -454,152 +260,50 @@ For all possible responses please see [Expected responses for receiveLead & chec
 
 Expected responses have following fields.
 
-<table>
-  <tr>
-    <td>Field</td>
-    <td>Validations</td>
-    <td>Description</td>
-  </tr>
-  <tr>
-    <td>status</td>
-    <td>Required
-For possible values please see Addendum B</td>
-    <td>application status</td>
-  </tr>
-  <tr>
-    <td>reason</td>
-    <td>Required when status == invalid_params
-Free text</td>
-    <td>additional explanation to status field</td>
-  </tr>
-  <tr>
-    <td>external_lead_id</td>
-    <td>Optional</td>
-    <td>application identifier in your system</td>
-  </tr>
-  <tr>
-    <td>landing_page_uri</td>
-    <td>Optional</td>
-    <td>landing page url, should be filled when redirection to your page is necessary</td>
-  </tr>
-  <tr>
-    <td>password</td>
-    <td>Optional</td>
-    <td>if password is generated in your system and TC needs to show it to customer</td>
-  </tr>
-</table>
+| Field            | Validations                                        | Description                                                                   |
+|------------------|----------------------------------------------------|-------------------------------------------------------------------------------|
+| status           | Required For possible values please see Addendum B | application status                                                            |
+| reason           | Required when status == invalid_params Free text   | additional explanation to status field                                        |
+| external_lead_id | Optional                                           | application identifier in your system                                         |
+| landing_page_uri | Optional                                           | landing page url, should be filled when redirection to your page is necessary |
+| password         | Optional                                           | if password is generated in your system and TC needs to show it to customer   |
 
 
 # Addendum A - Request ENUMs
 
-<table>
-  <tr>
-    <td>gender</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>value</td>
-    <td>description</td>
-  </tr>
-  <tr>
-    <td>MALE</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>FEMALE</td>
-    <td></td>
-  </tr>
-</table>
+| gender |             |
+|--------|-------------|
+| value  | description |
+| MALE   |             |
+| FEMALE |             |
 
 
-<table>
-  <tr>
-    <td>occupation</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>value</td>
-    <td>description</td>
-  </tr>
-  <tr>
-    <td>EMPLOYED_INDEFINITE_PERIOD</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>EMPLOYED_SPECIFIED_PERIOD</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>WRITTEN_CONTRACT_OR_ORDER</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>ECONOMIC_ACTIVITY</td>
-    <td>own business</td>
-  </tr>
-  <tr>
-    <td>UNEMPLOYED</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>STUDENT</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>PENSIONER1</td>
-    <td>pensioner</td>
-  </tr>
-  <tr>
-    <td>OTHER</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>MATERNITY_LEAVE</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>BENEFITS</td>
-    <td></td>
-  </tr>
-</table>
+| occupation                 |              |
+|----------------------------|--------------|
+| value                      | description  |
+| EMPLOYED_INDEFINITE_PERIOD |              |
+| EMPLOYED_SPECIFIED_PERIOD  |              |
+| WRITTEN_CONTRACT_OR_ORDER  |              |
+| ECONOMIC_ACTIVITY          | own business |
+| UNEMPLOYED                 |              |
+| STUDENT                    |              |
+| PENSIONER1                 | pensioner    |
+| OTHER                      |              |
+| MATERNITY_LEAVE            |              |
+| BENEFITS                   |              |
 
 
 # Addendum B - Response ENUMs
 
-<table>
-  <tr>
-    <td>status (used in responses)</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>value</td>
-    <td>description</td>
-  </tr>
-  <tr>
-    <td>accepted</td>
-    <td>loan application is accepted by api</td>
-  </tr>
-  <tr>
-    <td>duplicate</td>
-    <td>customer already exists in the system</td>
-  </tr>
-  <tr>
-    <td>invalid_params</td>
-    <td>request contains ivalid parameters</td>
-  </tr>
-  <tr>
-    <td>rejected</td>
-    <td>application rejected</td>
-  </tr>
-  <tr>
-    <td>pin_verify</td>
-    <td>pin code is sent to customer, TC system should verify pin with /checkPin method</td>
-  </tr>
-  <tr>
-    <td>pin_invalid (only for /checkPin method)</td>
-    <td>indicates that pin code is invalid and customer must be asked to try again</td>
-  </tr>
-</table>
+| status (used in responses)              |                                                                                 |
+|-----------------------------------------|---------------------------------------------------------------------------------|
+| value                                   | description                                                                     |
+| accepted                                | loan application is accepted by api                                             |
+| duplicate                               | customer already exists in the system                                           |
+| invalid_params                          | request contains ivalid parameters                                              |
+| rejected                                | application rejected                                                            |
+| pin_verify                              | pin code is sent to customer, TC system should verify pin with /checkPin method |
+| pin_invalid (only for /checkPin method) | indicates that pin code is invalid and customer must be asked to try again      |
 
 # Versions
 
