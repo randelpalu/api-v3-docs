@@ -324,7 +324,7 @@ Body:
 ```
 
 
-For all possible responses please see [Expected responses for receiveLead & checkPin methods](#heading=h.jsqt2ygd7gkf)
+For all possible responses please see [Expected responses for receiveLead & checkPin methods](#expected-responses-for-receivelead--checkpin-methods)
 
 ### POST /checkPin
 
@@ -448,7 +448,7 @@ Body:
 }
 ```
 
-For all possible responses please see [Expected responses for receiveLead & checkPin methods](#heading=h.jsqt2ygd7gkf)
+For all possible responses please see [Expected responses for receiveLead & checkPin methods](#expected-responses-for-receivelead--checkpin-methods)
 
 ### Expected responses for receiveLead & checkPin methods
 
