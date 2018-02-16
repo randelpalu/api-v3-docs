@@ -38,12 +38,12 @@ This method will send application data. It consists of lead and customer.
 
 | Field                                                                                  | Validations                                             | Description                                             |
 |----------------------------------------------------------------------------------------|---------------------------------------------------------|---------------------------------------------------------|
-| lead                                                                                   | Required, object                                        | Contains lead data                                      |
-| loan_sum                                                                               | Required float                                          | loan amount                                             |
-| loan_period                                                                            | Required integer                                        | loan term                                               |
-| ip_address                                                                             | Required                                                | IP address of customer                                  |
-| uuid                                                                                   | Required                                                | lead UUID in TC system                                  |
-| customer                                                                               | Required, object                                        | Contains customer data                                  |
+| **lead**                                                                                   | Required, object                                        | **Contains lead data**                                      |
+| lead[loan_sum]                                                                               | **Required float**                                          | loan amount                                             |
+| lead[loan_period]                                                                            | Required integer                                        | loan term                                               |
+| lead[ip_address]                                                                             | Required                                                | IP address of customer                                  |
+| lead[uuid]                                                                                   | Required                                                | lead UUID in TC system                                  |
+| **customer**                                                                               | **Required, object**                                        | **Contains customer data**                                  |
 | customer[first_name]                                                                   | Required                                                | first name                                              |
 | customer[last_name]                                                                    | Required                                                | last name                                               |
 | customer[email]                                                                        | Required                                                | email                                                   |
@@ -52,19 +52,14 @@ This method will send application data. It consists of lead and customer.
 | customer[gender]                                                                       | Required For possible values please see Addendum A      | gender                                                  |
 | customer[birth_date]                                                                   | Required format: YYYY-MM-DD                             | birth date                                              |
 | customer[id_card_number]                                                               | Required                                                | Id card number                                          |
-| customer[address]                                                                      | Required, object                                        | Actual address of customer                              |
+| **customer[address]**                                                                      | **Required, object**                                        | **Actual address of customer**                              |
 | customer[address][city]                                                                | Required                                                | city                                                    |
 | customer[address][street]                                                              | Required                                                | street                                                  |
 | customer[address][house_number]                                                        | Required                                                | house number with optional extension                    |
 | customer[address][flat_number]                                                         | Optional                                                | flat number                                             |
 | customer[address][postal_index]                                                        | Required                                                | postal code                                             |
-| customer[lives_at_registered_address]                                                  | Optional                                                |                                                         |
-| boolean if lives_at_registered_address == false, secondary address fields are required |                                                         |                                                         |
-|                                                                                        |                                                         |                                                         |
-| defaults to false                                                                      |                                                         |                                                         |
-|                                                                                        |                                                         |                                                         |
-| indicates if customer lives on registered address or not                               |                                                         |                                                         |
-| customer[secondary_address]                                                            | Object, required if lives_at_registered_address = false | Legal address of customer                               |
+| customer[lives_at_registered_address]                                                  | Optional <br />  boolean if lives_at_registered_address == false, secondary address fields are required <br />defaults to false |                       indicates if customer lives on registered address or not   |
+| **customer[secondary_address]**                                                            | **Object, required if lives_at_registered_address = false** | **Legal address of customer**                               |
 | customer[secondary_address][city]                                                      | Required when lives_at_registered_address = false       | city of secondary address                               |
 | customer[secondary_address][street]                                                    | Required when lives_at_registered_address = false       | street of secondary address                             |
 | customer[secondary_address][house_number]                                              | Required when lives_at_registered_address = false       | secondary address house number with optional extension  |
@@ -72,14 +67,10 @@ This method will send application data. It consists of lead and customer.
 | customer[secondary_address][postal_index]                                              | Required when lives_at_registered_address = false       | postal code of secondary address                        |
 | customer[occupation]                                                                   | Required For possible values please see Addendum A      | occupation                                              |
 | customer[neto_income]                                                                  | Required                                                | neto income in Zloty                                    |
-| customer[employer]                                                                     | Required when occupation in list:                       |                                                         |
-| EMPLOYED_INDEFINITE_PERIOD EMPLOYED_SPECIFIED_PERIOD WRITTEN_CONTRACT_OR_ORDER         |                                                         |                                                         |
-|                                                                                        |                                                         |                                                         |
+| customer[employer]                                                                     | Required when occupation in list: <br />EMPLOYED_INDEFINITE_PERIOD <br />EMPLOYED_SPECIFIED_PERIOD <br /> WRITTEN_CONTRACT_OR_ORDER                      |                                                         |
+
 | customer[password]                                                                     | Required                                                | generated random string                                 |
-| signature                                                                              | Required, object                                        |                                                         |
-| contains signature fields                                                              |                                                         |                                                         |
-|                                                                                        |                                                         |                                                         |
-| request signature                                                                      |                                                         |                                                         |
+| **signature**                                                                              | **Required, object**                                        |       **request signature**             |
 | signature[timestamp]                                                                   | Required                                                | unix timestamp, must be UTC +/- 60 seconds              |
 | signature[api_key]                                                                     | Required                                                | api key                                                 |
 | signature[hash]                                                                        | Required                                                | sha1 concatenation of timestamp, api key and secret key |
@@ -179,10 +170,8 @@ Optional method. This method is used to verify pin code.
 | phone                     | Required         | phone number                                                                         |
 | uuid                      | Required UUID    | unique identifier of loan application in TC system                                   |
 | external_lead_id          | Optional         | if external_lead_id was provided in /receiveLead response, it will be sent back here |
-| signature                 | Required, object |                                                                                      |
-| contains signature fields |                  |                                                                                      |
-|                           |                  |                                                                                      |
-| request signature         |                  |                                                                                      |
+| **signature**                 | **Required, object** |  **request signature**                                                                                    |
+| 
 | signature[timestamp]      | Required         | unix timestamp, must be UTC +/- 60 seconds                                           |
 | signature[api_key]        | Required         | api key                                                                              |
 | signature[hash]           | Required         | sha1 concatenation of timestamp, api key and secret key                              |
