@@ -68,9 +68,8 @@ This method will send application data. It consists of lead and customer.
 | customer[occupation]                                                                   | Required For possible values please see Addendum A      | occupation                                              |
 | customer[neto_income]                                                                  | Required                                                | neto income in Zloty                                    |
 | customer[employer]                                                                     | Required when occupation in list: <br />EMPLOYED_INDEFINITE_PERIOD <br />EMPLOYED_SPECIFIED_PERIOD <br /> WRITTEN_CONTRACT_OR_ORDER                      |                                                         |
-
 | customer[password]                                                                     | Required                                                | generated random string                                 |
-| **signature**                                                                              | **Required, object**                                        |       **request signature**             |
+| **signature**  | **Required, object**   |   **request signature**      |
 | signature[timestamp]                                                                   | Required                                                | unix timestamp, must be UTC +/- 60 seconds              |
 | signature[api_key]                                                                     | Required                                                | api key                                                 |
 | signature[hash]                                                                        | Required                                                | sha1 concatenation of timestamp, api key and secret key |
@@ -171,7 +170,6 @@ Optional method. This method is used to verify pin code.
 | uuid                      | Required UUID    | unique identifier of loan application in TC system                                   |
 | external_lead_id          | Optional         | if external_lead_id was provided in /receiveLead response, it will be sent back here |
 | **signature**                 | **Required, object** |  **request signature**                                                                                    |
-| 
 | signature[timestamp]      | Required         | unix timestamp, must be UTC +/- 60 seconds                                           |
 | signature[api_key]        | Required         | api key                                                                              |
 | signature[hash]           | Required         | sha1 concatenation of timestamp, api key and secret key                              |
