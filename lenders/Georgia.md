@@ -38,8 +38,8 @@ This method will send application data. It consists of lead and customer.
 
 | Field                                                                                  | Validations                                             | Description                                             |
 |----------------------------------------------------------------------------------------|---------------------------------------------------------|---------------------------------------------------------|
-| **lead**                                                                                   | Required, object                                        | **Contains lead data**                                      |
-| lead[loan_sum]                                                                               | **Required float**                                          | loan amount                                             |
+| **lead**                                                                                   | **Required, object**                                        | **Contains lead data**                                      |
+| lead[loan_sum]                                                                               | Required float                                          | loan amount                                             |
 | lead[loan_period]                                                                            | Required integer                                        | loan term                                               |
 | lead[ip_address]                                                                             | Required                                                | IP address of customer                                  |
 | lead[uuid]                                                                                   | Required                                                | lead UUID in TC system                                  |
