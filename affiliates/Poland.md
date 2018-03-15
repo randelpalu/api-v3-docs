@@ -85,7 +85,7 @@ This method will create or update customer and return customer uuid.
 | business_registration_date      | Required when occupation == ECONOMIC_ACTIVITY <br /> format: YYYY-MM-DD                                                                             | Business registration date                                 |
 | university_name                 | Required when occupation == STUDENT <br /> free text                                                                                                | University name                                            |
 | university_city                 | Required when occupation == STUDENT <br /> free text                                                                                                | university city                                            |
-| car                             | Required <br /> boolean <br /> defaults to false                                                                                                          | Does customer own a car?                                   |
+| car                             | Required <br /> for allowed values see [Addendum A](#addendum-a---enums) <br />                                                                                                          | Does customer own a car?                                   |
 | bad_credit_history              | Required <br /> boolean <br /> defaults to false                                                                                                          | Does customer have bad credit history?                                  |
 | salary_to_personal_account      | Required <br /> boolean <br /> defaults to false                                                                                                          | Does customer receive salary on their bank account?        |
 | dependant_count                 | Required <br /> integer                                                                                                                   | Dependant count        |
@@ -569,8 +569,15 @@ Response:
 | farmer                     | Farmer                        | Rolnik                             |
 | unemployed                 | Unemployed                    | Bezrobotny                         |
 | other                      | Other                         | Inna                               |
+### car
+
+| value | English | Polish |
+|-------|---------|--------|
+| YES   | Yes     | Tak    |
+| NO    | No      | Nie    |
 
 # Versions
 
 - 1.0 (2017-11-09): first publish
 - 1.0.1 (2017-12-22): fixed address fields
+- 1.0.2 (2018-03-15): fix car field boolean -> enum
