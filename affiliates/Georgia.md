@@ -417,16 +417,17 @@ Response:
 
 # Appendix A - ENUMs
 
-| gender |         |            |
-|--------|---------|------------|
+### gender
+
 | value  | English | Georgian   |
+|--------|---------|------------|
 | MALE   | Male    | მამრობითი  |
 | FEMALE | Female  | მდედრობითი |
 
+### occupation
 
-| occupation                 |                                   |                                 |
-|----------------------------|-----------------------------------|---------------------------------|
 | value                      | English                           | Georgian                        |
+|----------------------------|-----------------------------------|---------------------------------|
 | EMPLOYED_INDEFINITE_PERIOD | Employed: indefinite time         | დასაქმებული განუსაზღვრელი ვადით |
 | EMPLOYED_SPECIFIED_PERIOD  | Employed: specified time          | დასაქმებული განსაზღვრული ვადით  |
 | WRITTEN_CONTRACT_OR_ORDER  | Written contract or order         | ხელშეკრულების საფუძველზე        |
@@ -438,25 +439,26 @@ Response:
 | BENEFITS                   | Benefits                          | სოციალური დახმარება             |
 | OTHER                      | Other                             | სხვა                            |
 
+### doc_type
 
-| doc_type |             |                         |
-|----------|-------------|-------------------------|
 | value    | English     | Georgian                |
+|----------|-------------|-------------------------|
 | ID       | ID card     | ID ბარათი               |
 | PASSPORT | Passport    | პასპორტი                |
 | ID_OLD   | Old ID card | ძველი პირადობის მოწმობა |
 
+### housing_type
 
-| housing_types             |                           |                         |
-|---------------------------|---------------------------|-------------------------|
 | value                     | English                   | Georgian                |
+|---------------------------|---------------------------|-------------------------|
 | RENTED_ROOM               | Rented room               | დაქირავებული ოთახი      |
 | RENTED_APARTMENT_OR_HOUSE | Rented apartment or house | ქირით                   |
 | OWN_HOUSE_OR_APARTMENT    | Own house or appartment   | საკუთარი სახლი ან ბინა  |
 | WITH_PARENTS              | With parents              | მშობლებთან ერთად        |
 
-| car   |         |
-|-------|---------|
+### car
+
 | value | English |
+|-------|---------|
 | YES   | Yes     |
 | NO    | No      |
