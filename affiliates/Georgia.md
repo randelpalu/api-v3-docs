@@ -462,3 +462,8 @@ Response:
 |-------|---------|
 | YES   | Yes     |
 | NO    | No      |
+
+# Versions
+
+- 1.0 (2017-12-18): first publish
+- 1.0.1 (2018-03-29): fixed address fields
