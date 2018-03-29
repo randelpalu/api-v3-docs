@@ -349,7 +349,15 @@ Response:
 
 Status code: 422
 
-Response: [{"field":"loan_sum","message":"Loan Sum cannot be blank."}]
+Response:
+```json
+[
+    {
+        "field": "loan_sum",
+        "message": "Loan Sum cannot be blank."
+    }
+]
+```
 
 ### XML examples for /v3/leads
 
