@@ -165,16 +165,16 @@ Status code: 422
 Response:
 ```json
 [
-	{
-		"field": "occupation",
-		"message": "Occupation is invalid."
-	},
-	{
-		"field": "address.city",
-		"message": [
-			"City cannot be blank."
-		]
-	}
+    {
+        "field": "occupation",
+        "message": "Occupation is invalid."
+    },
+    {
+        "field": "address.city",
+        "message": [
+            "City cannot be blank."
+        ]
+    }
 ]
 ```
 ### XML examples for /v3/customers
@@ -336,12 +336,12 @@ Status code: 2xx
 Response:
 ```json
 {
-	"loan_sum": "250.00",
-	"loan_period": "30",
-	"uuid": "76171735-1c22-5564-8438-fb597523fdeb",
-	"status": "UNDER_INVESTIGATION",
-	"date_created": "2017-01-04 08:33:09",
-	"product": "PAYDAY"
+    "loan_sum": "250.00",
+    "loan_period": "30",
+    "uuid": "76171735-1c22-5564-8438-fb597523fdeb",
+    "status": "UNDER_INVESTIGATION",
+    "date_created": "2017-01-04 08:33:09",
+    "product": "PAYDAY"
 }
 ```
 
@@ -365,14 +365,14 @@ Body:
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <request>
-	<loan_sum>50</loan_sum>
-	<loan_period>1</loan_period>
-	<ip_address>127.0.0.1</ip_address>
-	<signature>
-		<api_key>6acc49b6-540c-512f-b1b8-7e1a9eb7d7a5</api_key>
-		<timestamp>1465310979</timestamp>
-		<hash>051d1de34995444d44ab344e62e5775727f10f36</hash>
-	</signature>
+    <loan_sum>50</loan_sum>
+    <loan_period>1</loan_period>
+    <ip_address>127.0.0.1</ip_address>
+    <signature>
+        <api_key>6acc49b6-540c-512f-b1b8-7e1a9eb7d7a5</api_key>
+        <timestamp>1465310979</timestamp>
+        <hash>051d1de34995444d44ab344e62e5775727f10f36</hash>
+    </signature>
 </request>
 ```
 
