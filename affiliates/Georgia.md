@@ -10,11 +10,11 @@ Should you have any questions, please do not hesitate to contact the IT manager 
 
 Production URL: [https://api.credy.eu/v3/](https://api.credy.eu/v3/)
 
-Staging URL: [http://api.staging.credy.eu/](http://api.staging.credy.eu/)
+Staging URL: [http://api.staging.credy.eu/v3/](http://api.staging.credy.eu/v3/)
 
 API supports post fields, XML and JSON.
 
-To get response error messages in georgian, "Accept-Language" header’s value must be set to “ka”.
+To get response error messages in georgian, "Accept-Language" header’s value must be set to "ka".
 
 ## Signing requests
 
