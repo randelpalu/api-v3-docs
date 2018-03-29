@@ -60,7 +60,7 @@ This method will create or update customer and return customer uuid.
 | address[house_number]           | Required<br /> Must match regex: /^\d+[\p{Georgian}]{0,1}$/u                                                                                                               | House number                                                                                                                                                  |
 | address[flat_number]            | Must be integer                                                                                                                                                            | Flat numver                                                                                                                                                   |
 | address[postal_code]            | Required<br /> Must match regex: /^\d{4}$/                                                                                                                                 | Postal code                                                                                                                                                   |
-| lives_at_registered_address     | Boolean                                                                                                                                                                    | Postal code                                                                                                                                                   |
+| lives_at_registered_address     | Boolean                                                                                                                                                                    | Does customer live at his/her registered address                                                                                                              |
 | secondary_address[city]         | Required when lives_at_registered_address is false                                                                                                                         | City                                                                                                                                                          |
 | secondary_address[street]       | Required when lives_at_registered_address is false<br /> Minimum length 3 characters                                                                                       | Street                                                                                                                                                        |
 | secondary_address[house_number] | Required when lives_at_registered_address is false<br /> Must match regex: /^\d+[\p{Georgian}]{0,1}$/u                                                                     | House number                                                                                                                                                  |
@@ -85,25 +85,37 @@ This method will create or update customer and return customer uuid.
 Body:
 ```json
 {
-	"first_name": "ლენა",
+    "first_name": "ლენა",
     "last_name": "ჯინჭარაძე",
-	"personal_id": "27349091294",
-	"phone": "+995 557 993 306",
-	"email": "inga33@mailinator.com",
-	"id_card_number": "ბ5115476",
-	"doc_type": "ID_OLD",
-	"birth_date": "1993-08-01",
-	"address": {
-		"city": "ქ. ნინოწმინდა"
-	},
-	"gender": "MALE",
-	"occupation": "WRITTEN_CONTRACT_OR_ORDER",
-	"neto_income": 2363,
-	"signature": {
-		"timestamp": 1483535066,
-		"api_key": "georgia",
-		"hash": "c0ee12c730fae90ecfe1d76af8a874d9667d143b"
-	}
+    "personal_id": "09033964901",
+    "phone": "+995 557 993 306",
+    "email": "inga33@mailinator.com",
+    "id_card_number": "ბ5115476",
+    "doc_type": "ID_OLD",
+    "birth_date": "1993-08-01",
+    "address": {
+        "city": "ქ. ფოთი",
+        "street": "ხუციშვილი ჩიხი",
+        "house_number": "22ნ",
+        "flat_number":"18",
+        "postal_code": "7185"
+    },
+    "secondary_address": {
+        "city": "ქალაქი ცხინვალი",
+        "street": "კუპატაძე გზატკეცილი",
+        "house_number": "361",
+        "postal_code": "5297"
+    },
+    "car": "YES",
+    "gender": "MALE",
+    "occupation": "WRITTEN_CONTRACT_OR_ORDER",
+    "neto_income": 2363,
+    "lives_at_registered_address": false,
+    "signature": {
+        "timestamp": 1483535066,
+        "api_key": "georgia",
+        "hash": "c0ee12c730fae90ecfe1d76af8a874d9667d143b"
+    }
 }
 ```
 
@@ -114,22 +126,35 @@ Status code: 2xx
 Response:
 ```json
 {
-  "uuid": "bbf18703-1f8d-5c8a-a83b-9433f003807f",
-  "product": "PAYDAY",
-  "first_name": "ლენა",
-  "last_name": "ჯინჭარაძე",
-  "email": "inga33@mailinator.com",
-  "personal_id": "27349091294",
-  "phone": "+995 557 99 33 06",
-  "neto_income": "2363",
-  "occupation": "WRITTEN_CONTRACT_OR_ORDER",
-  "gender": "MALE",
-  "birth_date": "1993-08-01",
-  "id_card_number": "ბ5115476",
-  "doc_type": "ID_OLD",
-  "address": {
-    "city": "ქ. ნინოწმინდა"
-  }
+    "uuid": "f549599b-9ea0-402d-9524-a07707a7da17",
+    "first_name": "ლენა",
+    "last_name": "ჯინჭარაძე",
+    "email": "inga33@mailinator.com",
+    "product": "PAYDAY",
+    "personal_id": "09033964901",
+    "phone": "+995557993306",
+    "neto_income": 2363,
+    "lives_at_registered_address": false,
+    "car": "YES",
+    "occupation": "WRITTEN_CONTRACT_OR_ORDER",
+    "gender": "MALE",
+    "birth_date": "1993-08-01",
+    "id_card_number": "ბ5115476",
+    "doc_type": "ID_OLD",
+    "address": {
+        "city": "ქ. ფოთი",
+        "street": "ხუციშვილი ჩიხი",
+        "house_number": "22ნ",
+        "flat_number": "18",
+        "postal_code": "7185"
+    },
+    "secondary_address": {
+        "city": "ქალაქი ცხინვალი",
+        "street": "კუპატაძე გზატკეცილი",
+        "house_number": "361",
+        "flat_number": null,
+        "postal_code": "5297"
+    }
 }
 ```
 
@@ -166,25 +191,37 @@ Body:
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <request>
-	<first_name>პაატა</first_name>
-    <last_name>ხაჩიძე</last_name>
-	<personal_id>36992701341</personal_id>
-	<phone>+995 557 214 294</phone>
-	<email>elza.kiria@mailinator.com</email>
-	<id_card_number>99WW07405</id_card_number>
-	<doc_type>ID</doc_type>
-	<birth_date>1973-12-06</birth_date>
-	<address>
-		<city>ქალაქი თეთრიწყარო</city>
-	</address>
-	<gender>MALE</gender>
-	<occupation>EMPLOYED_SPECIFIED_PERIOD</occupation>
-	<neto_income>3480</neto_income>
-	<signature>
-		<timestamp>1483540192</timestamp>
-		<api_key>6acc49b6-540c-512f-b1b8-7e1a9eb7d7a5</api_key>
-		<hash>c67ce38ea69a8a19fee7399673cc63bbc968ebf0</hash>
-	</signature>
+    <first_name>ლენა</first_name>
+    <last_name>ჯინჭარაძე</last_name>
+    <personal_id>09033964901</personal_id>
+    <phone>+995 557 993 306</phone>
+    <email>inga33@mailinator.com</email>
+    <id_card_number>ბ5115476</id_card_number>
+    <doc_type>ID_OLD</doc_type>
+    <birth_date>1993-08-01</birth_date>
+    <address>
+        <city>ქ. ფოთი</city>
+        <street>ხუციშვილი ჩიხი</street>
+        <house_number>22ნ</house_number>
+        <flat_number>18</flat_number>
+        <postal_code>7185</postal_code>
+    </address>
+    <secondary_address>
+        <city>ქალაქი ცხინვალი</city>
+        <street>კუპატაძე გზატკეცილი</street>
+        <house_number>361</house_number>
+        <postal_code>5297</postal_code>
+    </secondary_address>
+    <car>YES</car>
+    <gender>MALE</gender>
+    <occupation>WRITTEN_CONTRACT_OR_ORDER</occupation>
+    <neto_income>2363</neto_income>
+    <lives_at_registered_address> 0</lives_at_registered_address>
+    <signature>
+        <timestamp>1483535066</timestamp>
+        <api_key>georgia</api_key>
+        <hash>c0ee12c730fae90ecfe1d76af8a874d9667d143</hash>
+    </signature>
 </request>
 ```
 
@@ -196,21 +233,35 @@ Response:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <response>
-    <uuid>318d4a7b-b39e-58f2-a413-caefbe1615b7</uuid>
-    <first_name>პაატა</first_name>
-    <last_name>ხაჩიძე</last_name>
-    <email>elza.kiria@mailinator.com</email>
-    <personal_id>36992701341</personal_id>
-    <phone>+995 557 21 42 94</phone>
-    <neto_income>3480</neto_income>
-    <occupation>EMPLOYED_SPECIFIED_PERIOD</occupation>
+    <uuid>f549599b-9ea0-402d-9524-a07707a7da17</uuid>
+    <first_name>ლენა</first_name>
+    <last_name>ჯინჭარაძე</last_name>
+    <email>inga33@mailinator.com</email>
+    <product>PAYDAY</product>
+    <personal_id>09033964901</personal_id>
+    <phone>+995557993306</phone>
+    <neto_income>2363</neto_income>
+    <lives_at_registered_address>0</lives_at_registered_address>
+    <car>YES</car>
+    <occupation>WRITTEN_CONTRACT_OR_ORDER</occupation>
     <gender>MALE</gender>
-    <birth_date>1973-12-06</birth_date>
-    <id_card_number>99WW07405</id_card_number>
-    <doc_type>ID</doc_type>
+    <birth_date>1993-08-01</birth_date>
+    <id_card_number>ბ5115476</id_card_number>
+    <doc_type>ID_OLD</doc_type>
     <address>
-        <city>ქალაქი თეთრიწყარო</city>
+        <city>ქ. ფოთი</city>
+        <street>ხუციშვილი ჩიხი</street>
+        <house_number>22ნ</house_number>
+        <flat_number>18</flat_number>
+        <postal_code>7185</postal_code>
     </address>
+    <secondary_address>
+        <city>ქალაქი ცხინვალი</city>
+        <street>კუპატაძე გზატკეცილი</street>
+        <house_number>361</house_number>
+        <flat_number></flat_number>
+        <postal_code>5297</postal_code>
+    </secondary_address>
 </response>
 ```
 
@@ -395,3 +446,9 @@ Response:
 | RENTED_APARTMENT_OR_HOUSE | Rented apartment or house | ქირით                   |
 | OWN_HOUSE_OR_APARTMENT    | Own house or appartment   | საკუთარი სახლი ან ბინა  |
 | WITH_PARENTS              | With parents              | მშობლებთან ერთად        |
+
+| car   |         |
+|-------|---------|
+| value | English |
+| YES   | Yes     |
+| NO    | No      |
