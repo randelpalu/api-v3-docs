@@ -467,7 +467,7 @@ BUYING_ELECTRONICS | Electronics | Articulos Electronicos |
 CREATE_CREDIT_HISTORY | To build credit history | Crear historial crediticio |
 SCHOOL_EXPENSES | School | Escuela |
 UNFORESEEN_EXPENSE | Unexpected spendings | Gastos inesperados |
-MEDICAL_EXPENSES | Medial | Medial ?? |
+MEDICAL_EXPENSES | Medical expenses | Gastos médicos |
 MAINTENANCE_OR_REPAIR_OF_HOUSE | House repair | Reparaciones del hogar |
 PAY_ANOTHER_LOAN | To pay another loan | Pagar otro préstamos |
 PAYMENT_OF_SERVICES | To pay for services | Pagar servicios |
