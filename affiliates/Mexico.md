@@ -47,8 +47,8 @@ This method will create or update customer and return customer uuid.
 | first_name | Required | First name of customer |
 | last_name | Required | Faternal last name of customer |
 | second_last_name | Required | Maternal last name of customer |
-| personal_id | Required<br> Must match regex: Addendum B - Personal ID regex | Personal ID of customer |
-| tax_id_number | Required<br> Must match regex: ` /^[A-Z]{1}[AEIOUX]{1}[A-Z]{2}[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Za-z0-9]{3}$/ ` | Customer RFC number |
+| personal_id | Required<br> Must match regex listed in: [Addendum B](#addendum-b---regexps) | Personal ID of customer |
+| tax_id_number | Required<br> Must match regex listed in: [Addendum B](#addendum-b---regexps) | Customer RFC number |
 | bank_account | Required<br> Must be valid CLABE | Bank account number of customer |
 | email | Required | Email address |
 | phone | Required<br>Must be valid phone number | Customer mobile phone number |
@@ -475,8 +475,16 @@ FOR_MY_BUSINESS | For private busness | Para Negocio personal |
 TRAVEL | Travelling | Viajar |
 OTHER | Other | Otro |
 
-# Addendum B - Personal ID regex
+# Addendum B - Regexps
+
+Personal ID:
 
 ```regexp
 `/^[A-Z]{1}[AEIOUX]{1}[A-Z]{2}[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM]{1}(AS|BC|BS|CC|CS|CH|CL|CM|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[B-DF-HJ-NP-TV-Z]{3}[0-9A-Z]{1}[0-9]{1}$/`
+```
+
+Tax ID number:
+
+```regexp
+/^[A-Z]{1}[AEIOUX]{1}[A-Z]{2}[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Za-z0-9]{3}$/
 ```
