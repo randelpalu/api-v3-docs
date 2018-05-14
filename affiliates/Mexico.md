@@ -14,7 +14,7 @@ Staging URL: [http://api.staging.credy.eu/v3/](http://api.staging.credy.eu/v3/)
 
 API supports post fields, XML and JSON.
 
-To get response error messages in spain, "Accept-Language" header’s value must be set to “es”.
+To get response error messages in spain, "Accept-Language" header’s value must be set to according ISO code. Ex: “es” or “es-MX“.
 
 ## Signing requests
 
@@ -47,31 +47,31 @@ This method will create or update customer and return customer uuid.
 | first_name | Required | First name of customer |
 | last_name | Required | Faternal last name of customer |
 | second_last_name | Required | Maternal last name of customer |
-| email | Required | Email address |
 | personal_id | Required<br> Must match regex: ` /^[A-Z]{1}[AEIOUX]{1}[A-Z]{2}[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM]{1}(AS|BC|BS|CC|CS|CH|CL|CM|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[B-DF-HJ-NP-TV-Z]{3}[0-9A-Z]{1}[0-9]{1}$/ ` | Personal ID of customer |
+| tax_id_number | Required<br> Must match regex: ` /^[A-Z]{1}[AEIOUX]{1}[A-Z]{2}[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Za-z0-9]{3}$/ ` | Customer RFC number |
 | bank_account | Required<br> Must be valid CLABE | Bank account number of customer |
+| email | Required | Email address |
 | phone | Required<br>Must be valid phone number | Customer mobile phone number |
-| neto_income | Required | Neto income in MXN |
-| remuneration_deadline |Must be valid date<br> Required when occupation is one of following: <br>EMPLOYED_INDEFINITE_PERIOD<br>EMPLOYED_SPECIFIED_PERIOD<br> WRITTEN_CONTRACT_OR_ORDER | Remuneration deadline |
+| phone2 | Required<br>Must be valid phone number | Customer landline phone number |
 | address | Required<br> Object | Contains registered address data |
+| address[postal_code] | Required<br> Must match regex: ` /^\d{5}$/ `  | Postal code |
+| address[region] | Required | State |
+| address[county] | Required | County/Municipality |
 | address[city] | Required | City |
+| address[district] | Required | District/Colony |
 | address[street] | Required | Street |
 | address[house_number] | Required | House number |
 | address[flat_number] | Optional | Flat number |
-| address[postal_code] | Required<br> Must match regex: ` /^\d{5}$/ `  | Postal code |
-| address[region] | Required | State |
-| address[county] | Required | Municipality |
-| address[district] | Required | Colony |
-| occupation | Required | Occupation type <br> For allowed values see _Appendix A_ |
-| employer_phone |Must be valid phone number<br> Required when occupation is one of following: <br>EMPLOYED_INDEFINITE_PERIOD<br>EMPLOYED_SPECIFIED_PERIOD<br> WRITTEN_CONTRACT_OR_ORDER | Employers phone number |
+| neto_income | Required | Neto income in MXN |
+| occupation | Required | Occupation type <br> For allowed values see [Addendum A](#addendum-a---enums) |
 | employer | Required when occupation is one of following:<br>EMPLOYED_INDEFINITE_PERIOD<br>EMPLOYED_SPECIFIED_PERIOD<br> WRITTEN_CONTRACT_OR_ORDER<br> | Employer |
+| employer_phone |Must be valid phone number<br> Required when occupation is one of following: <br>EMPLOYED_INDEFINITE_PERIOD<br>EMPLOYED_SPECIFIED_PERIOD<br> WRITTEN_CONTRACT_OR_ORDER | Employers phone number |
+| employed_since |Must be valid date<br> Required when occupation is one of following: <br>EMPLOYED_INDEFINITE_PERIOD<br>EMPLOYED_SPECIFIED_PERIOD<br> WRITTEN_CONTRACT_OR_ORDER | Employed since date |
+| employment_place | Required when occupation is one of following: <br>EMPLOYED_INDEFINITE_PERIOD<br>EMPLOYED_SPECIFIED_PERIOD<br> WRITTEN_CONTRACT_OR_ORDER <br><br> For possible values see [Addendum A](#addendum-a---enums) | Employment place |
 | current_job_position | Required when occupation is one of following:<br>EMPLOYED_INDEFINITE_PERIOD<br>EMPLOYED_SPECIFIED_PERIOD<br> WRITTEN_CONTRACT_OR_ORDER<br> | Current job position |
-| tax_id_number | Required<br> Must match regex: ` /^[A-Z]{1}[AEIOUX]{1}[A-Z]{2}[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Za-z0-9]{3}$/ ` | Customer RFC number |
-| nationality | Required | Customer nationality |
-| has_beneficiary | Required<br>Boolean | Does customer take a loan for himself/herself or not |
-| has_carloan | Required<br>Boolean | Does customer have a car loan |
-| has_mortgage | Required<br>Boolean | Does customer have a mortgage loan |
 | credit_card_verification | Optional <br> Must match regex: ` /^\d{4}$/ ` | Last 4 digits of credit card number, if customer has credit card number |
+| has_mortgage | Required<br>Boolean | Does customer have a mortgage loan |
+| has_carloan | Required<br>Boolean | Does customer have a car loan |
 | signature | Required <br> Object | request signature |
 | signature[timestamp] | Required <br> unix timestamp<br> must be UTC +/- 60 seconds | unix timestamp, must be UTC +/- 60 seconds |
 | signature[api_key] | Required | api key |
@@ -94,9 +94,10 @@ Body:
    "second_last_name":"Pacana",
    "email":"miranda.doedoe@mailinator.com",
    "personal_id":"AEDK661027HNEGLLT9",
-   "remuneration_deadline": "2017-01-08",
+   "employed_since": "2017-01-08",
    "bank_account":"141807225454240832",
    "phone":"01 449 329 1020",
+   "phone2":"01 449 581 5915",
    "neto_income":960,
    "address":{
       "city":"Doe Doestad",
@@ -111,13 +112,12 @@ Body:
    "occupation":"WRITTEN_CONTRACT_OR_ORDER",
    "employer_phone":"687 493 9638",
    "tax_id_number":"AAMC160222CNX",
-   "nationality":"Alemania",
-   "has_beneficiary":false,
    "has_carloan":true,
    "has_mortgage":true,
    "credit_card_verification":3368,
    "employer":"Doe Doe-Doe Doe",
    "current_job_position":"Gas Plant Operator",
+   "employment_place":"HOME",
    "signature":{
       "timestamp":1491466495,
       "api_key":"mexico",
@@ -140,21 +140,21 @@ Response:
    "email":"miranda.doedoe@mailinator.com",
    "personal_id":"AEDK661027HNEGLLT9",
    "phone":"+524493291020",
+   "phone2":"+524493291020",
    "employer_phone":"+526874939638",
    "neto_income":"960",
    "lives_at_registered_address":1,
    "occupation":"WRITTEN_CONTRACT_OR_ORDER",
    "bank_account":"141807225454240832",
-   "remuneration_deadline": "2017-01-08",
+   "employed_since": "2017-01-08",
    "employer":"Doe Doe-Doe Doe",
    "current_job_position":"Gas Plant Operator",
    "second_last_name":"Pacana",
    "tax_id_number":"AAMC160222CNX",
-   "nationality":"Alemania",
-   "has_beneficiary":"0",
    "has_carloan":"1",
    "has_mortgage":"1",
    "credit_card_verification":3368,
+   "employment_place":"HOME",
    "address":{
       "region":"Quintana Roo",
       "county":"test",
@@ -207,8 +207,9 @@ Body:
     <personal_id>AEDK661027HNEGLLT9</personal_id>
     <bank_account>141807225454240832</bank_account>
     <phone>01 449 329 1020</phone>
+    <phone2>01 449 581 5915</phone>
     <neto_income>60</neto_income>
-    <remuneration_deadline>2017-01-08</remuneration_deadline>
+    <employed_since>2017-01-08</employed_since>
     <address>
         <city>Doe Doestad</city>
         <street>Escarlata Haven</street>
@@ -222,13 +223,12 @@ Body:
     <occupation>WRITTEN_CONTRACT_OR_ORDER</occupation>
     <employer_phone>687 493 9638</employer_phone>
     <tax_id_number>AAMC160222CNX</tax_id_number>
-    <nationality>Alemania</nationality>
-    <has_beneficiary>0</has_beneficiary>
     <has_carloan>1</has_carloan>
     <has_mortgage>1</has_mortgage>
     <credit_card_verification>6368</credit_card_verification>
     <employer>Doe Doe-Doe Doe</employer>
     <current_job_position>Gas Plant Operator</current_job_position>
+    <employment_place>HOME</employment_place>
     <signature>
         <timestamp>491466495</timestamp>
         <api_key>mexico</api_key>
@@ -252,17 +252,16 @@ Response:
     <email>miranda.doedoe@mailinator.com</email>
     <personal_id>AEDK661027HNEGLLT9</personal_id>
     <phone>+524493291020</phone>
+    <phone2>+524493291020</phone2>
     <employer_phone>+526874939638</employer_phone>
     <neto_income>60</neto_income>
-    <remuneration_deadline>2017-01-08</remuneration_deadline>
+    <employed_since>2017-01-08</employed_since>
     <occupation>WRITTEN_CONTRACT_OR_ORDER</occupation>
     <bank_account>141807225454240832</bank_account>
     <employer>Doe Doe-Doe Doe</employer>
     <current_job_position>Gas Plant Operator</current_job_position>
     <second_last_name>Pacana</second_last_name>
     <tax_id_number>AAMC160222CNX</tax_id_number>
-    <nationality>Alemania</nationality>
-    <has_beneficiary>0</has_beneficiary>
     <has_carloan>1</has_carloan>
     <has_mortgage>1</has_mortgage>
     <credit_card_verification>6368</credit_card_verification>
@@ -309,6 +308,7 @@ Creates lead for existing customer.
 | loan_sum             | Required Must be valid number              | Amount of credit requested by customer                  |
 | loan_period          | Required Must be valid number              | Term for credit requested                               |
 | ip_address           | Must be valid IP address                   | IP address of customer                                  |
+| notes                | Required, for possible values see [Addendum A](#addendum-a---enums)                   | Reason for the loan                                  |
 | aff_lead_id          |                                            | Your lead ID                                            |
 | signature            | Required, object contains signature fields | request signature                                       |
 | signature[timestamp] | Required                                   | unix timestamp, must be UTC +/- 60 seconds              |
@@ -333,6 +333,7 @@ Body:
     "loan_sum": "50",
     "loan_period": "1",
     "ip_address": "127.0.0.1",
+    "notes":"SCHOOL_EXPENSES",
     "signature": {
         "api_key": "6acc49b6-540c-512f-b1b8-7e1a9eb7d7a5",
         "timestamp": 1465310979,
@@ -350,6 +351,7 @@ Response:
 {
 	"loan_sum": "250.00",
 	"loan_period": "30",
+	"notes":"SCHOOL_EXPENSES",
 	"uuid": "76171735-1c22-5564-8438-fb597523fdeb",
 	"status": "UNDER_INVESTIGATION",
 	"date_created": "2017-01-04 08:33:09",
@@ -388,6 +390,7 @@ Body:
 	<loan_sum>50</loan_sum>
 	<loan_period>1</loan_period>
 	<ip_address>127.0.0.1</ip_address>
+	<notes>SCHOOL_EXPENSES</notes>
 	<signature>
 		<api_key>6acc49b6-540c-512f-b1b8-7e1a9eb7d7a5</api_key>
 		<timestamp>1465310979</timestamp>
@@ -427,19 +430,47 @@ Response:
 </response>
 ```
 
-# Appendix A - ENUMs
+# Addendum A - ENUMs
 
 | occupation                 |                                   |                                 |
 |----------------------------|-----------------------------------|---------------------------------|
-| value                      | English                           | Spanish                     |
-EMPLOYED_INDEFINITE_PERIOD | Employed: indefinite time | Empleado por periodo indefinido |
+| value                      | English                           | Mexican                     |
 EMPLOYED_SPECIFIED_PERIOD | Employed: specified time | Empleado por periodo especifico |
+EMPLOYED_INDEFINITE_PERIOD | Employed: indefinite time | Empleado por periodo indefinido |
 WRITTEN_CONTRACT_OR_ORDER | Written contract or order | Contrato u orden escrita |
+SELF_EMPLOYED | Self employed (does not own business) | Autoempleado |
 PENSIONER1 | Pensioner | Pensionado |
 STUDENT | Student | Estudiante |
 UNEMPLOYED | Unemployed | Desempleado |
-SELF_EMPLOYED | Self employed (does not own business) | Autoempleado |
-FARMER | Farmer | Campesino |
 FREELANCER | Freelancer | Freelancer |
 OWN_BUSINESS | Own business (economic activity) | Negocio propio |
+MATERNITY_LEAVE | Maternity leave | Ama de casa |
+
+
+| employment_place                 |                                   |                                 |
+|----------------------------|-----------------------------------|---------------------------------|
+| value                      | English                           | Mexican                     |
+OFFICE | Office | Oficina |
+FACTORY | Factory | Fábrica |
+HOME | Home | Hogar |
+STREET_STALL | Street stall | Puesto callejero |
+DOOR_TO_DOOR | Door to door | Puerta a puerta |
+ON_THE_STREET | On the street | En la calle |
+FIXED_PREMISES | Fixed premises | Lugar fijo |
+
+
+| notes                 |                                   |                                 |
+|----------------------------|-----------------------------------|---------------------------------|
+| value                      | English                           | Mexican                     |
+PURCHASE_OF_FOOD | Food | Alimentos |
+BUYING_ELECTRONICS | Electronics | Articulos Electronicos |
+CREATE_CREDIT_HISTORY | To build credit history | Crear historial crediticio |
+SCHOOL_EXPENSES | School | Escuela |
+UNFORESEEN_EXPENSE | Unexpected spendings | Gastos inesperados |
+MEDICAL_EXPENSES | Medial | Medial ?? |
+MAINTENANCE_OR_REPAIR_OF_HOUSE | House repair | Reparaciones del hogar |
+PAY_ANOTHER_LOAN | To pay another loan | Pagar otro préstamos |
+PAYMENT_OF_SERVICES | To pay for services | Pagar servicios |
+FOR_MY_BUSINESS | For private busness | Para Negocio personal |
+TRAVEL | Travelling | Viajar |
 OTHER | Other | Otro |
