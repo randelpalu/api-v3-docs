@@ -699,3 +699,4 @@ Tax ID number:
 # Versions
 
 - 1.0 (2018-05-14): first publish
+- 1.1 (2018-06-21): add `nationality` field
