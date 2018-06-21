@@ -72,6 +72,7 @@ This method will create or update customer and return customer uuid.
 | credit_card_verification | Optional <br> Must match regex: ` /^\d{4}$/ ` | Last 4 digits of credit card number, if customer has credit card number |
 | has_mortgage | Required<br>Boolean | Does customer have a mortgage loan |
 | has_carloan | Required<br>Boolean | Does customer have a car loan |
+| nationality | Required <br><br> For possible values see [Addendum A](#addendum-a---enums) | Customer nationality | 
 | signature | Required <br> Object | request signature |
 | signature[timestamp] | Required <br> unix timestamp<br> must be UTC +/- 60 seconds | unix timestamp, must be UTC +/- 60 seconds |
 | signature[api_key] | Required | api key |
@@ -118,6 +119,7 @@ Body:
    "employer":"Doe Doe-Doe Doe",
    "current_job_position":"Gas Plant Operator",
    "employment_place":"HOME",
+   "nationality":"Afganistán",
    "signature":{
       "timestamp":1491466495,
       "api_key":"mexico",
@@ -155,6 +157,7 @@ Response:
    "has_mortgage":"1",
    "credit_card_verification":3368,
    "employment_place":"HOME",
+   "nationality":"Afganistán",
    "address":{
       "region":"Quintana Roo",
       "county":"test",
@@ -229,6 +232,7 @@ Body:
     <employer>Doe Doe-Doe Doe</employer>
     <current_job_position>Gas Plant Operator</current_job_position>
     <employment_place>HOME</employment_place>
+    <nationality>Afganistán</nationality>
     <signature>
         <timestamp>491466495</timestamp>
         <api_key>mexico</api_key>
@@ -265,6 +269,7 @@ Response:
     <has_carloan>1</has_carloan>
     <has_mortgage>1</has_mortgage>
     <credit_card_verification>6368</credit_card_verification>
+    <nationality>Afganistán</nationality>
     <address>
         <region>Quintana Roo</region>
         <county>test</county>
@@ -474,6 +479,208 @@ PAYMENT_OF_SERVICES | To pay for services | Pagar servicios |
 FOR_MY_BUSINESS | For private busness | Para Negocio personal |
 TRAVEL | Travelling | Viajar |
 OTHER | Other | Otro |
+
+| nationality | | |
+|----------------------------------|-----------------------------------|----------------------------------|
+| value                            | English                           | Mexican                          |
+| Afganistán                       | Afghanistan                       | Afganistán                       |
+| Albania                          | Albania                           | Albania                          |
+| Alemania                         | Germany                           | Alemania                         |
+| Andorra                          | Andorra                           | Andorra                          |
+| Angola                           | Angola                            | Angola                           |
+| Anguila                          | Eel                               | Anguila                          |
+| Antigua y Barbuda                | Old and bearded                   | Antigua y Barbuda                |
+| Arabia Saudita                   | Saudi Arabia                      | Arabia Saudita                   |
+| Argelia                          | Algeria                           | Argelia                          |
+| Argentina                        | Argentina                         | Argentina                        |
+| Armenia                          | Armenia                           | Armenia                          |
+| Australia                        | Australia                         | Australia                        |
+| Austria                          | Austria                           | Austria                          |
+| Azerbaiyán                       | Azerbaijan                        | Azerbaiyán                       |
+| Bahamas                          | Bahamas                           | Bahamas                          |
+| Baréin                           | Bahrain                           | Baréin                           |
+| Bangladés                        | Bangladesh                        | Bangladés                        |
+| Barbados                         | Barbados                          | Barbados                         |
+| Bélgica                          | Belgium                           | Bélgica                          |
+| Belice                           | Belize                            | Belice                           |
+| Benín                            | Benin                             | Benín                            |
+| Bielorrusia                      | Belarus                           | Bielorrusia                      |
+| Birmania                         | Burma                             | Birmania                         |
+| Bolivia                          | Bolivia                           | Bolivia                          |
+| Bosnia y Herzegovina             | Bosnia and Herzegovina            | Bosnia y Herzegovina             |
+| Botsuana                         | Botswana                          | Botsuana                         |
+| Brasil                           | Brazil                            | Brasil                           |
+| Brunéi                           | Brunei                            | Brunéi                           |
+| Bulgaria                         | Bulgaria                          | Bulgaria                         |
+| Burkina Faso                     | Burkina Faso                      | Burkina Faso                     |
+| Burundi                          | Burundi                           | Burundi                          |
+| Bután                            | Bhutan                            | Bután                            |
+| Cabo Verde                       | Cape Verde                        | Cabo Verde                       |
+| Camboya                          | Cambodia                          | Camboya                          |
+| Camerún                          | Cameroon                          | Camerún                          |
+| Canadá                           | Glen                              | Canadá                           |
+| Catar                            | Taste                             | Catar                            |
+| Centroafricana, República        | Central African Republic          | Centroafricana, República        |
+| Chad                             | Chad                              | Chad                             |
+| Checa, República                 | Czech Republic                    | Checa, República                 |
+| Chile                            | Chile                             | Chile                            |
+| China                            | China                             | China                            |
+| Chipre                           | Cyprus                            | Chipre                           |
+| Colombia                         | Colombia                          | Colombia                         |
+| Comoras                          | Comoros                           | Comoras                          |
+| Congo, República del             | Congo, Republic of                | Congo, República del             |
+| Congo, República Democrática del | Congo, Democratic Republic of the | Congo, República Democrática del |
+| Corea del Norte                  | North Korea                       | Corea del Norte                  |
+| Corea del Sur                    | South Korea                       | Corea del Sur                    |
+| Costa de Marfil                  | Ivory Coast                       | Costa de Marfil                  |
+| Costa Rica                       | Costa Rica                        | Costa Rica                       |
+| Croacia                          | Croatia                           | Croacia                          |
+| Cuba                             | Cuba                              | Cuba                             |
+| Dinamarca                        | Denmark                           | Dinamarca                        |
+| Dominica                         | Dominica                          | Dominica                         |
+| Dominicana, República            | Dominican Republic                | Dominicana, República            |
+| Ecuador                          | Ecuador                           | Ecuador                          |
+| Egipto                           | Egypt                             | Egipto                           |
+| El Salvador                      | The Savior                        | El Salvador                      |
+| Emiratos Árabes Unidos           | United Arab Emirates              | Emiratos Árabes Unidos           |
+| Eritrea                          | Eritrea                           | Eritrea                          |
+| Eslovaquia                       | Slovakia                          | Eslovaquia                       |
+| Eslovenia                        | Slovenia                          | Eslovenia                        |
+| España                           | Spain                             | España                           |
+| Estados Unidos                   | U.S                               | Estados Unidos                   |
+| Estonia                          | Estonia                           | Estonia                          |
+| Etiopía                          | Ethiopia                          | Etiopía                          |
+| Filipinas                        | Philippines                       | Filipinas                        |
+| Finlandia                        | Finland                           | Finlandia                        |
+| Fiyi                             | Fiji                              | Fiyi                             |
+| Francia                          | France                            | Francia                          |
+| Gabón                            | Gabon                             | Gabón                            |
+| Gambia                           | Gambia                            | Gambia                           |
+| Georgia                          | Georgia                           | Georgia                          |
+| Ghana                            | Ghana                             | Ghana                            |
+| Granada                          | Pomegranate                       | Granada                          |
+| Grecia                           | Greece                            | Grecia                           |
+| Guatemala                        | Guatemala                         | Guatemala                        |
+| Guinea                           | Guinea                            | Guinea                           |
+| Guinea-Bisáu                     | Guinea-Bissau                     | Guinea-Bisáu                     |
+| Guinea Ecuatorial                | Equatorial Guinea                 | Guinea Ecuatorial                |
+| Guyana                           | Guyana                            | Guyana                           |
+| Haití                            | Haiti                             | Haití                            |
+| Honduras                         | Honduras                          | Honduras                         |
+| Hungría                          | Hungary                           | Hungría                          |
+| India                            | India                             | India                            |
+| Indonesia                        | Indonesia                         | Indonesia                        |
+| Irak                             | Iraq                              | Irak                             |
+| Irán                             | Iran                              | Irán                             |
+| Irlanda                          | Ireland                           | Irlanda                          |
+| Islandia                         | Iceland                           | Islandia                         |
+| Israel                           | Israel                            | Israel                           |
+| Italia                           | Italy                             | Italia                           |
+| Jamaica                          | Jamaica                           | Jamaica                          |
+| Japón                            | Japan                             | Japón                            |
+| Jordania                         | Jordan                            | Jordania                         |
+| Kazajistán                       | Kazakhstan                        | Kazajistán                       |
+| Kenia                            | Kenya                             | Kenia                            |
+| Kirguistán                       | Kyrgyzstan                        | Kirguistán                       |
+| Kiribati                         | Kiribati                          | Kiribati                         |
+| Kuwait                           | Kuwait                            | Kuwait                           |
+| Laos                             | Laos                              | Laos                             |
+| Lesoto                           | Lesotho                           | Lesoto                           |
+| Letonia                          | Latvia                            | Letonia                          |
+| Líbano                           | Lebanon                           | Líbano                           |
+| Liberia                          | Liberia                           | Liberia                          |
+| Libia                            | Libya                             | Libia                            |
+| Liechtenstein                    | Liechtenstein                     | Liechtenstein                    |
+| Lituania                         | Lithuania                         | Lituania                         |
+| Luxemburgo                       | Luxembourg                        | Luxemburgo                       |
+| Macedonia                        | Macedonia                         | Macedonia                        |
+| Madagascar                       | Madagascar                        | Madagascar                       |
+| Malasia                          | Malaysia                          | Malasia                          |
+| Malaui                           | Malawi                            | Malaui                           |
+| Maldivas                         | Maldives                          | Maldivas                         |
+| Malí                             | Mali                              | Malí                             |
+| Malta                            | malt                              | Malta                            |
+| Marruecos                        | Morocco                           | Marruecos                        |
+| Marshall, Islas                  | Marshall, Islands                 | Marshall, Islas                  |
+| Mauricio                         | Mauricio                          | Mauricio                         |
+| Mauritania                       | Mauritania                        | Mauritania                       |
+| México                           | Mexico                            | México                           |
+| Micronesia                       | Micronesia                        | Micronesia                       |
+| Moldavia                         | Moldova                           | Moldavia                         |
+| Mónaco                           | Monaco                            | Mónaco                           |
+| Mongolia                         | Mongolia                          | Mongolia                         |
+| Montenegro                       | Montenegro                        | Montenegro                       |
+| Mozambique                       | Mozambique                        | Mozambique                       |
+| Namibia                          | Namibia                           | Namibia                          |
+| Nauru                            | Nauru                             | Nauru                            |
+| Nepal                            | Nepal                             | Nepal                            |
+| Nicaragua                        | Nicaragua                         | Nicaragua                        |
+| Níger                            | Niger                             | Níger                            |
+| Nigeria                          | Nigeria                           | Nigeria                          |
+| Noruega                          | Norway                            | Noruega                          |
+| Nueva Zelanda                    | New Zealand                       | Nueva Zelanda                    |
+| Omán                             | Oman                              | Omán                             |
+| Países Bajos                     | Netherlands                       | Países Bajos                     |
+| Pakistán                         | Pakistan                          | Pakistán                         |
+| Palaos                           | Palau                             | Palaos                           |
+| Palestina                        | Palestine                         | Palestina                        |
+| Panamá                           | Panama                            | Panamá                           |
+| Papúa Nueva Guinea               | Papua New Guinea                  | Papúa Nueva Guinea               |
+| Paraguay                         | Paraguay                          | Paraguay                         |
+| Perú                             | Peru                              | Perú                             |
+| Polonia                          | Poland                            | Polonia                          |
+| Portugal                         | Portugal                          | Portugal                         |
+| Puerto Rico                      | Puerto Rico                       | Puerto Rico                      |
+| Reino Unido                      | United Kingdom                    | Reino Unido                      |
+| Ruanda                           | Rwanda                            | Ruanda                           |
+| Rumania                          | Romania                           | Rumania                          |
+| Rusia                            | Russia                            | Rusia                            |
+| Salomón, Islas                   | Solomon, Islands                  | Salomón, Islas                   |
+| Samoa                            | Samoa                             | Samoa                            |
+| San Cristóbal y Nieves           | Saint Kitts and Nevis             | San Cristóbal y Nieves           |
+| San Marino                       | San Marino                        | San Marino                       |
+| San Vicente y las Granadinas     | St. Vincent and the Grenadines    | San Vicente y las Granadinas     |
+| Santa Lucía                      | St. lucia                         | Santa Lucía                      |
+| Santo Tomé y Príncipe            | Sao Tome and Principe             | Santo Tomé y Príncipe            |
+| Senegal                          | Senegal                           | Senegal                          |
+| Serbia                           | Serbia                            | Serbia                           |
+| Seychelles                       | Seychelles                        | Seychelles                       |
+| Sierra Leona                     | Sierra Leone                      | Sierra Leona                     |
+| Singapur                         | Singapore                         | Singapur                         |
+| Siria                            | Syria                             | Siria                            |
+| Somalia                          | Somalia                           | Somalia                          |
+| Sri Lanka                        | Sri Lanka                         | Sri Lanka                        |
+| Suazilandia                      | Swaziland                         | Suazilandia                      |
+| Sudáfrica                        | South Africa                      | Sudáfrica                        |
+| Sudán                            | Sudan                             | Sudán                            |
+| Sudán del Sur                    | South Sudan                       | Sudán del Sur                    |
+| Suecia                           | Sweden                            | Suecia                           |
+| Suiza                            | Switzerland                       | Suiza                            |
+| Surinam                          | Surinam                           | Surinam                          |
+| Tailandia                        | Thailand                          | Tailandia                        |
+| Taiwán                           | Taiwan                            | Taiwán                           |
+| Tanzania                         | Tanzania                          | Tanzania                         |
+| Tayikistán                       | Tajikistan                        | Tayikistán                       |
+| Timor Oriental                   | East Timor                        | Timor Oriental                   |
+| Togo                             | Togo                              | Togo                             |
+| Tonga                            | Tonga                             | Tonga                            |
+| Trinidad y Tobago                | Trinidad and Tobago               | Trinidad y Tobago                |
+| Túnez                            | Tunisia                           | Túnez                            |
+| Turkmenistán                     | Turkmenistan                      | Turkmenistán                     |
+| Turquía                          | Turkey                            | Turquía                          |
+| Tuvalu                           | Tuvalu                            | Tuvalu                           |
+| Ucrania                          | Ukraine                           | Ucrania                          |
+| Uganda                           | Uganda                            | Uganda                           |
+| Uruguay                          | Uruguay                           | Uruguay                          |
+| Uzbekistán                       | Uzbekistan                        | Uzbekistán                       |
+| Vanuatu                          | Vanuatu                           | Vanuatu                          |
+| Vaticano, Ciudad del             | Vatican, City of                  | Vaticano, Ciudad del             |
+| Venezuela                        | Venezuela                         | Venezuela                        |
+| Vietnam                          | Vietnam                           | Vietnam                          |
+| Yemen                            | Yemen                             | Yemen                            |
+| Yibuti                           | Djibouti                          | Yibuti                           |
+| Zambia                           | Zambia                            | Zambia                           |
+| Zimbabue                         | Zimbabwe                          | Zimbabue                         |
 
 # Addendum B - Regexps
 
