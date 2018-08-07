@@ -94,7 +94,7 @@ This method will create or update customer and return customer uuid.
 | signature[api_key]              | Required                                                                                                                                      | Api key                                                    |
 | signature[hash]                 | Required                                                                                                                                      | A sha1 concatenation of timestamp, api key and secret key  |
 | agreements.terms_of_service     | Required <br /> Integer [1 - Yes, 0 - No]                                                                                                           | Does customer agree with terms of service?                 |
-| agreements.data_proccessing_policy | Required <br /> Integer [1 - Yes, 0 - No]                                                                                                        | Does customer agree with data processingpolicy             |         
+| agreements.data_proccessing_policy | Required <br /> Integer [1 - Yes, 0 - No]                                                                                                        | Does customer agree with data processing policy             |         
 
 
 ### JSON examples for /v3/customers
