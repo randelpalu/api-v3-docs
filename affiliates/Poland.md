@@ -93,6 +93,9 @@ This method will create or update customer and return customer uuid.
 | signature[timestamp]            | Required <br /> unix timestamp – must be UTC +/- 60 seconds                                                                                         | Timestamp when request is made                             |
 | signature[api_key]              | Required                                                                                                                                      | Api key                                                    |
 | signature[hash]                 | Required                                                                                                                                      | A sha1 concatenation of timestamp, api key and secret key  |
+| agreements.terms_of_service     | Required <br /> Integer [1 - Yes, 0 - No]                                                                                                           | Does customer agree with terms of service?                 |
+| agreements.data_proccessing_policy | Required <br /> Integer [1 - Yes, 0 - No]                                                                                                        | Does customer agree with data processing policy             |         
+
 
 ### JSON examples for /v3/customers
 
@@ -138,7 +141,9 @@ Body:
       "api_key":"poland",
       "timestamp":1510256918,
       "hash":"1f9158037d701039236cedc1b6efcd74bd0dc1cb"
-   }
+   },
+   "agreements.terms_of_service":"1",
+   "agreements.data_proccessing_policy":"1"
 }
 ```
 
@@ -288,6 +293,8 @@ Body:
         <timestamp>1510256918</timestamp>
         <hash>1f9158037d701039236cedc1b6efcd74bd0dc1cb</hash>
     </signature>
+    <agreements.terms_of_service>1</agreements.terms_of_service>
+    <agreements.data_proccessing_policy>1</agreements.data_proccessing_policy>
 </request>
 ```
 
