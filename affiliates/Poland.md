@@ -141,7 +141,7 @@ Body:
       "api_key":"poland",
       "timestamp":1510256918,
       "hash":"1f9158037d701039236cedc1b6efcd74bd0dc1cb"
-   }
+   },
    "agreements":{
       "terms_of_service":"1",
       "data_proccessing_policy":"1"
