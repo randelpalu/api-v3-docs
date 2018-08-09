@@ -296,8 +296,8 @@ Body:
         <hash>1f9158037d701039236cedc1b6efcd74bd0dc1cb</hash>
     </signature>
     <agreements>
-        <terms_of_service>true</terms_of_service>
-        <data_proccessing_policy>true</data_proccessing_policy>
+        <terms_of_service>1</terms_of_service>
+        <data_proccessing_policy>1</data_proccessing_policy>
     </agreements>
 </request>
 ```
