@@ -162,12 +162,12 @@
           },
           "city" : {
             "type" : "string",
-            "example" : "Sukabumi",
+            "example" : "Katowice",
             "description" : "Format: /^[\\wĄĆĘŁŃÓŚŹŻąćęłńóśźż\\s-]+$/u"
           },
           "street" : {
             "type" : "string",
-            "example" : "Halim",
+            "example" : "Szarych Szeregów",
             "description" : "Format: /^[\\wĄĆĘŁŃÓŚŹŻąćęłńóśźż\\s-\\/.]+$/u"
           },
           "house_number" : {
@@ -193,12 +193,12 @@
           },
           "city" : {
             "type" : "string",
-            "example" : "Sukabumi",
+            "example" : "Katowice",
             "description" : "Format: /^[\\wĄĆĘŁŃÓŚŹŻąćęłńóśźż\\s-]+$/u"
           },
           "street" : {
             "type" : "string",
-            "example" : "Halim",
+            "example" : "Szarych Szeregów",
             "description" : "Format: /^[\\wĄĆĘŁŃÓŚŹŻąćęłńóśźż\\s-\\/.]+$/u"
           },
           "house_number" : {
@@ -251,7 +251,7 @@
       },
       "Customer" : {
         "type" : "object",
-        "required" : [ "first_name", "last_name", "password", "personal_id", "id_card_number", "marital_status", "bank_account", "education", "car", "email", "phone", "address", "lives_at_registered_address", "contact_person_address", "housing_type", "occupation", "tax_id_number", "contact_person_first_name", "contact_person_last_name", "contact_person_phone", "neto_income", "bank_name", "agreements", "signature" ],
+        "required" : [ "first_name", "last_name", "password", "personal_id", "id_card_number", "marital_status", "bank_account", "education", "car", "email", "phone", "address", "lives_at_registered_address", "contact_person_address", "housing_type", "occupation", "neto_income", "monthly_expenses", "employer_address", "agreements", "signature" ],
         "properties" : {
           "first_name" : {
             "type" : "string",
@@ -321,49 +321,65 @@
             "enum" : [ "EMPLOYED_INDEFINITE_PERIOD", "EMPLOYED_SPECIFIED_PERIOD", "WRITTEN_CONTRACT_OR_ORDER", "ECONOMIC_ACTIVITY", "STUDENT", "MATERNITY_LEAVE", "PENSIONER1", "BENEFITS", "FARMER", "UNEMPLOYED", "OTHER" ],
             "example" : "WRITTEN_CONTRACT_OR_ORDER"
           },
-          "employer_address" : {
-            "$ref" : "#/components/schemas/ContactAddress",
-            "description" : "required when `occupation` is in:\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- WRITTEN_CONTRACT_OR_ORDER\n- MILITARY_POLICE\n"
-          },
-          "tax_id_number" : {
-            "type" : "string"
-          },
-          "employee_id" : {
-            "type" : "string",
-            "description" : "required when `occupation` is in:\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- WRITTEN_CONTRACT_OR_ORDER\n- MILITARY_POLICE\n"
-          },
-          "employer" : {
-            "type" : "string",
-            "description" : "required when `occupation` is in:\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- WRITTEN_CONTRACT_OR_ORDER\n- MILITARY_POLICE\n"
-          },
-          "current_job_position" : {
-            "type" : "string",
-            "description" : "required when `occupation` is in:\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- WRITTEN_CONTRACT_OR_ORDER\n- MILITARY_POLICE        \n",
-            "enum" : [ "CONTRACT", "STAFF", "SUPERVISOR", "JUNIOR_MANAGEMENT", "MIDDLE_MANAGEMENT", "SENIOR_MANAGEMENT" ]
-          },
-          "contact_person_address" : {
-            "$ref" : "#/components/schemas/ContactAddress"
-          },
-          "contact_person_first_name" : {
-            "type" : "string",
-            "example" : "Intan"
-          },
-          "contact_person_last_name" : {
-            "type" : "string",
-            "example" : "Nuraini"
-          },
-          "contact_person_phone" : {
-            "type" : "string",
-            "example" : "+62 482 2386 4967"
-          },
           "neto_income" : {
             "type" : "integer",
             "format" : "int32",
             "example" : 1500
           },
-          "bank_name" : {
+          "monthly_expenses" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 900
+          },
+          "employer_address" : {
+            "$ref" : "#/components/schemas/ContactAddress",
+            "description" : "required when `occupation` is in:\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- WRITTEN_CONTRACT_OR_ORDER\n"
+          },
+          "remuneration_deadline" : {
             "type" : "string",
-            "example" : "PD Adriansyah"
+            "example" : "yyyy-mm-dd",
+            "description" : "required when `occupation` is not in  :\n- UNEMPLOYED\n"
+          },
+          "employed_since" : {
+            "type" : "string",
+            "example" : "yyyy-mm-dd",
+            "description" : "required when `occupation` is in:\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- WRITTEN_CONTRACT_OR_ORDER\n"
+          },
+          "employer" : {
+            "type" : "string",
+            "description" : "required when `occupation` is in:\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- WRITTEN_CONTRACT_OR_ORDER\n"
+          },
+          "current_job_position" : {
+            "type" : "string",
+            "description" : "required when `occupation` is in:\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- WRITTEN_CONTRACT_OR_ORDER\n"
+          },
+          "employer_phone" : {
+            "type" : "string",
+            "example" : "+48 881 058 855",
+            "description" : "required when `occupation` is in:\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- WRITTEN_CONTRACT_OR_ORDER\n"
+          },
+          "salary_to_personal_account" : {
+            "type" : "boolean",
+            "example" : true,
+            "description" : "required when `occupation` is not in  :\n- UNEMPLOYED\n"
+          },
+          "tax_id_number" : {
+            "type" : "string",
+            "example" : 4170710091,
+            "description" : "Format: /^[0-9]{10}$/, required when `occupation` is in:\n- ECONOMIC_ACTIVITY\n"
+          },
+          "business_registration_date" : {
+            "type" : "string",
+            "example" : "yyyy-mm-dd",
+            "description" : "required when `occupation` is in:\n- ECONOMIC_ACTIVITY\n"
+          },
+          "university_name" : {
+            "type" : "string",
+            "description" : "required when `occupation` is in:\n- OCCUPATION_STUDENT\n"
+          },
+          "university_city" : {
+            "type" : "string",
+            "description" : "required when `occupation` is in:\n- OCCUPATION_STUDENT\n"
           },
           "agreements" : {
             "$ref" : "#/components/schemas/Agreements"
