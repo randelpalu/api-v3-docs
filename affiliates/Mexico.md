@@ -72,7 +72,7 @@ This method will create or update customer and return customer uuid.
 | credit_card_verification | Optional <br> Must match regex: ` /^\d{4}$/ ` | Last 4 digits of credit card number, if customer has credit card number |
 | has_mortgage | Required<br>Boolean | Does customer have a mortgage loan |
 | has_carloan | Required<br>Boolean | Does customer have a car loan |
-| nationality | Required <br><br> ISO-3 country code | Customer nationality | 
+| nationality | Required <br><br> ISO 3166-1 alpha-2 country code | Customer nationality | 
 | signature | Required <br> Object | request signature |
 | signature[timestamp] | Required <br> unix timestamp<br> must be UTC +/- 60 seconds | unix timestamp, must be UTC +/- 60 seconds |
 | signature[api_key] | Required | api key |
@@ -119,7 +119,7 @@ Body:
    "employer":"Doe Doe-Doe Doe",
    "current_job_position":"Gas Plant Operator",
    "employment_place":"HOME",
-   "nationality":"MEX",
+   "nationality":"MX",
    "signature":{
       "timestamp":1491466495,
       "api_key":"mexico",
@@ -157,7 +157,7 @@ Response:
    "has_mortgage":"1",
    "credit_card_verification":3368,
    "employment_place":"HOME",
-   "nationality":"MEX",
+   "nationality":"MX",
    "address":{
       "region":"Quintana Roo",
       "county":"test",
@@ -232,7 +232,7 @@ Body:
     <employer>Doe Doe-Doe Doe</employer>
     <current_job_position>Gas Plant Operator</current_job_position>
     <employment_place>HOME</employment_place>
-    <nationality>MEX</nationality>
+    <nationality>MX</nationality>
     <signature>
         <timestamp>491466495</timestamp>
         <api_key>mexico</api_key>
@@ -269,7 +269,7 @@ Response:
     <has_carloan>1</has_carloan>
     <has_mortgage>1</has_mortgage>
     <credit_card_verification>6368</credit_card_verification>
-    <nationality>MEX</nationality>
+    <nationality>MX</nationality>
     <address>
         <region>Quintana Roo</region>
         <county>test</county>
@@ -500,3 +500,4 @@ Tax ID number:
 - 1.0 (2018-05-14): first publish
 - 1.1 (2018-06-21): add `nationality` field
 - 1.2 (2018-11-19): nationality field expects ISO-3 code
+- 1.3 (2018-11-20): nationality is ISO 3166-1 alpha-2
