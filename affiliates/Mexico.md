@@ -49,7 +49,7 @@ This method will create or update customer and return customer uuid.
 | second_last_name | Required | Maternal last name of customer |
 | personal_id | Required<br> Must match regex listed in: [Addendum B](#addendum-b---regexps) | Personal ID of customer |
 | tax_id_number | Required<br> Must match regex listed in: [Addendum B](#addendum-b---regexps) | Customer RFC number |
-| bank_account | Required<br> Must be valid CLABE | Bank account number of customer |
+| bank_account | Must be valid CLABE | Bank account number of customer |
 | email | Required | Email address |
 | phone | Required<br>Must be valid phone number | Customer mobile phone number |
 | phone2 | Required<br>Must be valid phone number | Customer landline phone number |
