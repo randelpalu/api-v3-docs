@@ -1,0 +1,557 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "Indonesia docs",
+    "version" : "3.0.5",
+    "contact" : {
+      "email" : "it@credy.eu"
+    },
+    "description" : "# Introduction \n\nCredy is a company that specializes on the quality lead generation. \\\nThis document further describes how to integrate API to send leads to Credy.\\\nIf you have any questions, please do not hesitate to contact the IT manager at [it@credy.eu](mailto:it@credy.eu).\n\n## General information\n\nProduction URL: [https://api.credy.eu/v3/](https://api.credy.eu/v3/)\n\nStaging URL: [http://api.staging.credy.eu/v3/](http://api.staging.credy.eu/v3/)\n\nAPI supports post fields, XML and JSON.\n\nTo get response error messages in Indonesian, \"Accept-Language\" header’s value must be set to according ISO code. Ex: `id` or `id-ID`.\n\n## Signing requests\nEach request must be signed. Signature consists of api_key, timestamp and hash.\n\nHash is a SHA1 hash of the concatenation of timestamp, api_key and secret_key.\n\nAllowed deviation for timestamp is UTC +/- 60 seconds.\n\n*ex. sha1(timestamp + apiKey + secretKey)*\n\nApi key and secret key will be assigned to you by Credy.\n\n## Lead registration flow\n\n1. Request is sent to /v3/customers\n\n2. If request is successful, customer uuid must be stored\n\n3. Request is sent to /v3/leads with previously stored customer uuid in query parameter \"customer\" *ex. /v3/leads?customer=a3ff7c20-e9e8-43a0-bfb7-71a5cf43b8d3*    \n"
+  },
+  "servers" : [ {
+    "url" : "http://api.staging.credy.eu/v3",
+    "description" : "Staging server"
+  }, {
+    "url" : "https://api.credy.eu/v3",
+    "description" : "Production server"
+  } ],
+  "paths" : {
+    "/customers" : {
+      "post" : {
+        "description" : "Register customer",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/AcceptLanguageHeader"
+        } ],
+        "requestBody" : {
+          "description" : "Customer info",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Customer"
+              }
+            },
+            "application/xml" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Customer"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "$ref" : "#/components/responses/CustomerSuccess"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/Unauthorized"
+          },
+          "422" : {
+            "$ref" : "#/components/responses/ValidationError"
+          }
+        }
+      }
+    },
+    "/leads" : {
+      "post" : {
+        "description" : "Register lead",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/AcceptLanguageHeader"
+        }, {
+          "$ref" : "#/components/parameters/CustomerUuid"
+        } ],
+        "requestBody" : {
+          "description" : "Lead info",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Lead"
+              }
+            },
+            "application/xml" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Lead"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "$ref" : "#/components/responses/LeadSuccess"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/Unauthorized"
+          },
+          "422" : {
+            "$ref" : "#/components/responses/ValidationError"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "responses" : {
+      "CustomerSuccess" : {
+        "description" : "Customer is registered",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/CustomerResponse"
+            }
+          },
+          "application/xml" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/CustomerResponse"
+            }
+          }
+        }
+      },
+      "LeadSuccess" : {
+        "description" : "",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/LeadResponse"
+            }
+          },
+          "application/xml" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/LeadResponse"
+            }
+          }
+        }
+      },
+      "ValidationError" : {
+        "description" : "Validation error",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/ValidationErrors"
+            }
+          },
+          "application/xml" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/ValidationErrors"
+            }
+          }
+        }
+      },
+      "Unauthorized" : {
+        "description" : "Unauthorized",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/UnauthorizedResponse"
+            }
+          },
+          "application/xml" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/UnauthorizedResponse"
+            }
+          }
+        }
+      }
+    },
+    "schemas" : {
+      "PrimaryAddress" : {
+        "type" : "object",
+        "required" : [ "city", "street", "house_number", "postal_code", "village", "province", "district", "rt", "rw" ],
+        "properties" : {
+          "city" : {
+            "type" : "string",
+            "example" : "Sukabumi"
+          },
+          "street" : {
+            "type" : "string",
+            "example" : "Halim"
+          },
+          "house_number" : {
+            "type" : "string",
+            "example" : "11"
+          },
+          "postal_code" : {
+            "type" : "string",
+            "description" : "Format: /^[0-9]{5}$/",
+            "example" : "67008"
+          },
+          "village" : {
+            "type" : "string",
+            "example" : "Riau"
+          },
+          "province" : {
+            "type" : "string",
+            "example" : "Papua Barat"
+          },
+          "district" : {
+            "type" : "string",
+            "example" : "Banda"
+          },
+          "rt" : {
+            "type" : "string",
+            "example" : "022"
+          },
+          "rw" : {
+            "type" : "string",
+            "example" : "001"
+          }
+        }
+      },
+      "ContactAddress" : {
+        "type" : "object",
+        "required" : [ "city", "street", "house_number", "postal_code" ],
+        "properties" : {
+          "city" : {
+            "type" : "string",
+            "example" : "Sukabumi"
+          },
+          "street" : {
+            "type" : "string",
+            "example" : "Halim"
+          },
+          "house_number" : {
+            "type" : "string",
+            "example" : "11"
+          },
+          "postal_code" : {
+            "type" : "string",
+            "description" : "Format: /^[0-9]{5}$/",
+            "example" : "67008"
+          }
+        }
+      },
+      "Signature" : {
+        "type" : "object",
+        "required" : [ "timestamp", "api_key", "hash" ],
+        "properties" : {
+          "timestamp" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "unix timestamp, must be UTC +/- 60 seconds",
+            "example" : 1529480561
+          },
+          "api_key" : {
+            "type" : "string",
+            "description" : "API key",
+            "example" : "22194038-bbf6-4be2-a5d5-d54e617e1297"
+          },
+          "hash" : {
+            "type" : "string",
+            "description" : "sha1 concatenation of timestamp, api key and secret key",
+            "example" : "051d1de34995444d44ab344e62e5775727f10f36"
+          }
+        }
+      },
+      "Customer" : {
+        "type" : "object",
+        "required" : [ "first_name", "last_name", "email", "phone", "personal_id", "mother_first_name", "mother_last_name", "religion", "nationality", "marital_status", "dependant_count", "education", "housing_type", "monthly_expenses", "monthly_utility_expenses", "address", "lives_at_registered_address", "tax_id_number", "contact_person_address", "contact_person_first_name", "contact_person_last_name", "contact_person_phone", "occupation", "neto_income", "bank_name", "bank_account", "signature" ],
+        "properties" : {
+          "first_name" : {
+            "type" : "string",
+            "example" : "Maman"
+          },
+          "last_name" : {
+            "type" : "string",
+            "example" : "Hardiansyah"
+          },
+          "email" : {
+            "type" : "string",
+            "example" : "juli.sitompul@yahoo.com"
+          },
+          "phone" : {
+            "type" : "string",
+            "example" : "+62 482 3233 1837"
+          },
+          "phone2" : {
+            "type" : "string",
+            "example" : "+62 482 4228 7732"
+          },
+          "personal_id" : {
+            "type" : "string",
+            "example" : "5628704907916941"
+          },
+          "spouse_personal_id" : {
+            "type" : "string",
+            "description" : "required when `marital_status` is MARRIED",
+            "example" : "3260510907913571"
+          },
+          "spouse_first_name" : {
+            "type" : "string",
+            "description" : "required when `marital_status` is MARRIED",
+            "example" : "Baktiadi"
+          },
+          "spouse_last_name" : {
+            "type" : "string",
+            "description" : "required when `marital_status` is MARRIED",
+            "example" : "Pertiwi"
+          },
+          "spouse_split_agreement" : {
+            "type" : "boolean",
+            "description" : "required when `marital_status` is DIVORCED",
+            "example" : true
+          },
+          "mother_first_name" : {
+            "type" : "string",
+            "example" : "Gina"
+          },
+          "mother_last_name" : {
+            "type" : "string",
+            "example" : "Prasetyo"
+          },
+          "religion" : {
+            "type" : "string",
+            "enum" : [ "BUDDHA", "CHRISTIAN", "CATHOLIC", "MUSLIM", "HINDU", "OTHER" ],
+            "example" : "BUDDHA"
+          },
+          "nationality" : {
+            "type" : "string",
+            "example" : "Taiwan"
+          },
+          "marital_status" : {
+            "type" : "string",
+            "enum" : [ "SINGLE", "DIVORCED", "MARRIED", "WITH_PARTNER", "WIDOW" ],
+            "example" : "MARRIED"
+          },
+          "dependant_count" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 2
+          },
+          "education" : {
+            "type" : "string",
+            "enum" : [ "NO_EDUCATION", "BASIC_SCHOOL", "HIGH_SCHOOL", "INDUSTRIAL_SCHOOL", "BACHELOR", "MASTER", "PHD" ],
+            "example" : "HIGH_SCHOOL"
+          },
+          "housing_type" : {
+            "type" : "string",
+            "enum" : [ "RENTED_ROOM", "RENTED_APARTMENT", "RENTED_HOUSE", "OWN_APARTMENT", "OWN_HOUSE", "WITH_PARENTS" ],
+            "example" : "OWN_HOUSE"
+          },
+          "monthly_expenses" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 300
+          },
+          "monthly_utility_expenses" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 200
+          },
+          "address" : {
+            "$ref" : "#/components/schemas/PrimaryAddress"
+          },
+          "lives_at_registered_address" : {
+            "type" : "boolean"
+          },
+          "secondary_address" : {
+            "$ref" : "#/components/schemas/PrimaryAddress",
+            "description" : "required when `lives_at_registered_address` is false"
+          },
+          "employer_address" : {
+            "$ref" : "#/components/schemas/ContactAddress",
+            "description" : "required when `occupation` is in:\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- WRITTEN_CONTRACT_OR_ORDER\n- MILITARY_POLICE\n"
+          },
+          "tax_id_number" : {
+            "type" : "string"
+          },
+          "employee_id" : {
+            "type" : "string",
+            "description" : "required when `occupation` is in:\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- WRITTEN_CONTRACT_OR_ORDER\n- MILITARY_POLICE\n"
+          },
+          "employer" : {
+            "type" : "string",
+            "description" : "required when `occupation` is in:\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- WRITTEN_CONTRACT_OR_ORDER\n- MILITARY_POLICE\n"
+          },
+          "current_job_position" : {
+            "type" : "string",
+            "description" : "required when `occupation` is in:\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- WRITTEN_CONTRACT_OR_ORDER\n- MILITARY_POLICE        \n",
+            "enum" : [ "CONTRACT", "STAFF", "SUPERVISOR", "JUNIOR_MANAGEMENT", "MIDDLE_MANAGEMENT", "SENIOR_MANAGEMENT" ]
+          },
+          "contact_person_address" : {
+            "$ref" : "#/components/schemas/ContactAddress"
+          },
+          "contact_person_first_name" : {
+            "type" : "string",
+            "example" : "Intan"
+          },
+          "contact_person_last_name" : {
+            "type" : "string",
+            "example" : "Nuraini"
+          },
+          "contact_person_phone" : {
+            "type" : "string",
+            "example" : "+62 482 2386 4967"
+          },
+          "occupation" : {
+            "type" : "string",
+            "enum" : [ "EMPLOYED_INDEFINITE_PERIOD", "EMPLOYED_SPECIFIED_PERIOD", "WRITTEN_CONTRACT_OR_ORDER", "MILITARY_POLICE", "ECONOMIC_ACTIVITY", "UNEMPLOYED", "STUDENT", "PENSIONER1", "OTHER" ]
+          },
+          "neto_income" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 1500
+          },
+          "bank_name" : {
+            "type" : "string",
+            "example" : "PD Adriansyah"
+          },
+          "bank_account" : {
+            "type" : "string",
+            "example" : "713628383809668961473395297260"
+          },
+          "signature" : {
+            "$ref" : "#/components/schemas/Signature"
+          }
+        },
+        "xml" : {
+          "name" : "request"
+        }
+      },
+      "Lead" : {
+        "type" : "object",
+        "required" : [ "loan_sum", "loan_period", "ip_address", "loan_purpose", "signature" ],
+        "properties" : {
+          "loan_sum" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "Amount of credit requested by customer",
+            "example" : 4000
+          },
+          "loan_period" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "Term for credit requested",
+            "example" : 30
+          },
+          "ip_address" : {
+            "type" : "string",
+            "description" : "IP address of customer",
+            "example" : "192.168.0.255"
+          },
+          "loan_purpose" : {
+            "type" : "string",
+            "example" : "Wedding"
+          },
+          "signature" : {
+            "$ref" : "#/components/schemas/Signature"
+          }
+        },
+        "xml" : {
+          "name" : "request"
+        }
+      },
+      "ValidationErrors" : {
+        "type" : "array",
+        "items" : {
+          "type" : "object",
+          "properties" : {
+            "field" : {
+              "type" : "string",
+              "example" : "email"
+            },
+            "message" : {
+              "type" : "string",
+              "example" : "Email address is invalid"
+            }
+          }
+        },
+        "xml" : {
+          "name" : "response"
+        }
+      },
+      "CustomerResponse" : {
+        "allOf" : [ {
+          "type" : "object",
+          "properties" : {
+            "uuid" : {
+              "type" : "string",
+              "example" : "b3345507-8298-4bd1-843a-6a968e593f00"
+            }
+          }
+        }, {
+          "$ref" : "#/components/schemas/Customer"
+        } ],
+        "xml" : {
+          "name" : "response"
+        }
+      },
+      "LeadResponse" : {
+        "type" : "object",
+        "properties" : {
+          "uuid" : {
+            "type" : "string",
+            "example" : "b3345507-8298-4bd1-843a-6a968e593f00"
+          },
+          "loan_sum" : {
+            "type" : "string",
+            "example" : "250.00"
+          },
+          "loan_period" : {
+            "type" : "string",
+            "example" : "30"
+          },
+          "status" : {
+            "type" : "string",
+            "example" : "UNDER_INVESTIGATION"
+          },
+          "date_created" : {
+            "type" : "string",
+            "example" : "2017-01-04 08:33:09"
+          },
+          "product" : {
+            "type" : "string",
+            "example" : "PAYDAY"
+          }
+        },
+        "xml" : {
+          "name" : "response"
+        }
+      },
+      "UnauthorizedResponse" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "example" : "Unauthorized"
+          },
+          "message" : {
+            "type" : "string",
+            "example" : "Your request was made with invalid credentials."
+          },
+          "code" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 0
+          },
+          "status" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 401
+          }
+        },
+        "xml" : {
+          "name" : "response"
+        }
+      }
+    },
+    "parameters" : {
+      "AcceptLanguageHeader" : {
+        "name" : "Accept-Language",
+        "in" : "header",
+        "schema" : {
+          "format" : "string"
+        },
+        "required" : false,
+        "description" : "To get response error messages in Indonesian, header’s value must be set to according ISO code. Ex: `id` or `id-ID`.",
+        "example" : "id-ID"
+      },
+      "CustomerUuid" : {
+        "name" : "customer",
+        "in" : "query",
+        "schema" : {
+          "format" : "string"
+        },
+        "required" : true,
+        "description" : "Customer uuid from `/customers` response",
+        "example" : "df0f997b-72ae-480a-88a8-4bd73ee89dae"
+      }
+    }
+  }
+}
