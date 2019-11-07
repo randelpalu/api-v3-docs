@@ -45,6 +45,7 @@ This method will create or update customer and return customer uuid.
 | Field | Validations | Description |
 | ----- | ----------- | ----------- |
 | first_name | Required | First name of customer |
+| second_first_name | Optional | Second first name of customer |
 | last_name | Required | Faternal last name of customer |
 | second_last_name | Required | Maternal last name of customer |
 | personal_id | Required<br> Must match regex listed in: [Addendum B](#addendum-b---regexps) | Personal ID of customer |
@@ -52,27 +53,36 @@ This method will create or update customer and return customer uuid.
 | bank_account | Required<br> Must be valid CLABE | Bank account number of customer |
 | email | Required | Email address |
 | phone | Required<br>Must be valid phone number | Customer mobile phone number |
+| phone_plan | Required<br>PREPAID or CONTRACT | Customer phone plan |
 | phone2 | Required<br>Must be valid phone number | Customer landline phone number |
+| birth_date | Required<br>Format: yyyy-mm-dd | Customer birth date |
+| gender  | Required<br>MALE or FEMALE | Customer gender |
+| marital_status | Required<br> Must match regex listed in: [Addendum B](#addendum-b---regexps) | Customer Marital status | 
 | address | Required<br> Object | Contains registered address data |
 | address[postal_code] | Required<br> Must match regex: ` /^\d{5}$/ `  | Postal code |
 | address[region] | Required | State |
 | address[county] | Required | County/Municipality |
 | address[city] | Required | City |
-| address[district] | Required | District/Colony |
+| address[district] | Required | District |
+| address[colony] | Required | Colony |
 | address[street] | Required | Street |
-| address[house_number] | Required | House number |
+| address[house_number] | Required when product is CAR | House number |
 | address[flat_number] | Optional | Flat number |
 | neto_income | Required | Neto income in MXN |
+| monthly_expenses | Required | Monthly expenses in MXN |
+| housing_type | Requred<br>Must match regex listed in: [Addendum B](#addendum-b---regexps) | Customer houding type |
 | occupation | Required | Occupation type <br> For allowed values see [Addendum A](#addendum-a---enums) |
 | employer | Required when occupation is one of following:<br>EMPLOYED_INDEFINITE_PERIOD<br>EMPLOYED_SPECIFIED_PERIOD<br> WRITTEN_CONTRACT_OR_ORDER<br> | Employer |
 | employer_phone |Must be valid phone number<br> Required when occupation is one of following: <br>EMPLOYED_INDEFINITE_PERIOD<br>EMPLOYED_SPECIFIED_PERIOD<br> WRITTEN_CONTRACT_OR_ORDER | Employers phone number |
 | employed_since |Must be valid date<br> Required when occupation is one of following: <br>EMPLOYED_INDEFINITE_PERIOD<br>EMPLOYED_SPECIFIED_PERIOD<br> WRITTEN_CONTRACT_OR_ORDER | Employed since date |
 | employment_place | Required when occupation is one of following: <br>EMPLOYED_INDEFINITE_PERIOD<br>EMPLOYED_SPECIFIED_PERIOD<br> WRITTEN_CONTRACT_OR_ORDER <br><br> For possible values see [Addendum A](#addendum-a---enums) | Employment place |
 | current_job_position | Required when occupation is one of following:<br>EMPLOYED_INDEFINITE_PERIOD<br>EMPLOYED_SPECIFIED_PERIOD<br> WRITTEN_CONTRACT_OR_ORDER<br> | Current job position |
+| remuneration_deadline| Requred<br>Format: yyyy-mm-dd | Remuneration deadline |
 | credit_card_verification | Optional <br> Must match regex: ` /^\d{4}$/ ` | Last 4 digits of credit card number, if customer has credit card number |
 | has_mortgage | Required<br>Boolean | Does customer have a mortgage loan |
 | has_carloan | Required<br>Boolean | Does customer have a car loan |
 | nationality | Required <br><br> For possible values see [Addendum A](#addendum-a---enums) | Customer nationality | 
+| dependant_count | Requried<br>Integer | Customer dependant count |
 | signature | Required <br> Object | request signature |
 | signature[timestamp] | Required <br> unix timestamp<br> must be UTC +/- 60 seconds | unix timestamp, must be UTC +/- 60 seconds |
 | signature[api_key] | Required | api key |
@@ -99,7 +109,12 @@ Body:
    "bank_account":"141807225454240832",
    "phone":"01 449 329 1020",
    "phone2":"01 449 581 5915",
+   "phone_plan":"PREPAID",
+   "birth_date":"1970-03-05",
+   "gender":"MALE",
+   "marital_status":"SINGLE",
    "neto_income":960,
+   "monthly_expenses": 250,
    "address":{
       "city":"Doe Doestad",
       "street":"Escarlata Haven",
@@ -108,8 +123,10 @@ Body:
       "postal_code":91648,
       "region":"Quintana Roo",
       "county":"test",
-      "district":"test"
+      "district":"test",
+      "colony":"test"
    },
+   "housing_type": "OWN_HOUSE_OR_APARTMENT",
    "occupation":"WRITTEN_CONTRACT_OR_ORDER",
    "employer_phone":"687 493 9638",
    "tax_id_number":"AAMC160222CNX",
@@ -118,8 +135,10 @@ Body:
    "credit_card_verification":3368,
    "employer":"Doe Doe-Doe Doe",
    "current_job_position":"Gas Plant Operator",
+   "remuneration_deadline": "2019-11-11",
    "employment_place":"HOME",
    "nationality":"Afganistán",
+   "dependant_count":1,
    "signature":{
       "timestamp":1491466495,
       "api_key":"mexico",
@@ -143,9 +162,15 @@ Response:
    "personal_id":"AEDK661027HNEGLLT9",
    "phone":"+524493291020",
    "phone2":"+524493291020",
+   "phone_plan":"PREPAID",
+   "birth_date":"1970-03-05",
+   "gender":"MALE",
+   "marital_status":"SINGLE",
    "employer_phone":"+526874939638",
    "neto_income":"960",
+   "monthly_expenses": "250",
    "lives_at_registered_address":1,
+   "housing_type": "OWN_HOUSE_OR_APARTMENT",
    "occupation":"WRITTEN_CONTRACT_OR_ORDER",
    "bank_account":"141807225454240832",
    "employed_since": "2017-01-08",
@@ -156,8 +181,10 @@ Response:
    "has_carloan":"1",
    "has_mortgage":"1",
    "credit_card_verification":3368,
+   "remuneration_deadline": "2019-11-11",
    "employment_place":"HOME",
    "nationality":"Afganistán",
+   "dependant_count":"1",
    "address":{
       "region":"Quintana Roo",
       "county":"test",
@@ -166,7 +193,8 @@ Response:
       "street":"Escarlata Haven",
       "house_number":"5052",
       "flat_number":"3",
-      "postal_code":"91648"
+      "postal_code":"91648",
+      "colony":"test"
    }
 }
 ```
@@ -211,7 +239,12 @@ Body:
     <bank_account>141807225454240832</bank_account>
     <phone>01 449 329 1020</phone>
     <phone2>01 449 581 5915</phone>
+    <phone_plan>PREPAID</phone_plan>
+    <birth_date>1970-03-05</birth_date>
+    <marital_status>SINGLE</marital_status>
+    <gender>MALE</gender>
     <neto_income>60</neto_income>
+    <monthly_expenses>250</monthly_expenses>
     <employed_since>2017-01-08</employed_since>
     <address>
         <city>Doe Doestad</city>
@@ -222,7 +255,9 @@ Body:
         <region>Quintana Roo</region>
         <county>test</county>
         <district>test</district>
+        <colony>test</colony>
     </address>
+    <housing_type>OWN_HOUSE_OR_APARTMENT</housing_type>
     <occupation>WRITTEN_CONTRACT_OR_ORDER</occupation>
     <employer_phone>687 493 9638</employer_phone>
     <tax_id_number>AAMC160222CNX</tax_id_number>
@@ -231,8 +266,10 @@ Body:
     <credit_card_verification>6368</credit_card_verification>
     <employer>Doe Doe-Doe Doe</employer>
     <current_job_position>Gas Plant Operator</current_job_position>
+    <remuneration_deadline>2019-11-11</remuneration_deadline>
     <employment_place>HOME</employment_place>
     <nationality>Afganistán</nationality>
+    <dependant_count>1</dependant_count>
     <signature>
         <timestamp>491466495</timestamp>
         <api_key>mexico</api_key>
@@ -252,34 +289,44 @@ Response:
     <uuid>7b1be1e9-3c5f-578c-8e44-20af1a6de4b8</uuid>
     <product>PAYDAY</product>
     <first_name>Aureliano</first_name>
+    <second_first_name>Gandharva</second_first_name>
     <last_name>Orozco</last_name>
     <email>miranda.doedoe@mailinator.com</email>
     <personal_id>AEDK661027HNEGLLT9</personal_id>
-    <phone>+524493291020</phone>
-    <phone2>+524493291020</phone2>
-    <employer_phone>+526874939638</employer_phone>
-    <neto_income>60</neto_income>
-    <employed_since>2017-01-08</employed_since>
-    <occupation>WRITTEN_CONTRACT_OR_ORDER</occupation>
     <bank_account>141807225454240832</bank_account>
-    <employer>Doe Doe-Doe Doe</employer>
-    <current_job_position>Gas Plant Operator</current_job_position>
-    <second_last_name>Pacana</second_last_name>
-    <tax_id_number>AAMC160222CNX</tax_id_number>
-    <has_carloan>1</has_carloan>
-    <has_mortgage>1</has_mortgage>
-    <credit_card_verification>6368</credit_card_verification>
-    <nationality>Afganistán</nationality>
+    <phone>01 449 329 1020</phone>
+    <phone2>01 449 581 5915</phone>
+    <phone_plan>PREPAID</phone_plan>
+    <birth_date>1970-03-05</birth_date>
+    <marital_status>SINGLE</marital_status>
+    <gender>MALE</gender>
+    <neto_income>60</neto_income>
+    <monthly_expenses>250</monthly_expenses>
+    <employed_since>2017-01-08</employed_since>
     <address>
-        <region>Quintana Roo</region>
-        <county>test</county>
-        <district>test</district>
         <city>Doe Doestad</city>
         <street>Escarlata Haven</street>
         <house_number>5052</house_number>
         <flat_number>3</flat_number>
         <postal_code>16485</postal_code>
+        <region>Quintana Roo</region>
+        <county>test</county>
+        <district>test</district>
+        <colony>test</colony>
     </address>
+    <housing_type>OWN_HOUSE_OR_APARTMENT</housing_type>
+    <occupation>WRITTEN_CONTRACT_OR_ORDER</occupation>
+    <employer_phone>687 493 9638</employer_phone>
+    <tax_id_number>AAMC160222CNX</tax_id_number>
+    <has_carloan>1</has_carloan>
+    <has_mortgage>1</has_mortgage>
+    <credit_card_verification>6368</credit_card_verification>
+    <employer>Doe Doe-Doe Doe</employer>
+    <current_job_position>Gas Plant Operator</current_job_position>
+    <remuneration_deadline>2019-11-11</remuneration_deadline>
+    <employment_place>HOME</employment_place>
+    <nationality>Afganistán</nationality>
+    <dependant_count>1</dependant_count>
 </response>
 ```
 
@@ -436,6 +483,22 @@ Response:
 ```
 
 # Addendum A - ENUMs
+
+| marital status             |
+|----------------------------|
+|SINGLE                      |
+|MARRIED                     |
+|DIVORCED                    |
+|WITH_PARTNER                |
+|WIDOW                       |
+
+| housing type               |
+|----------------------------|
+|RENTED_ROOM                 |
+|RENTED_APARTMENT_OR_HOUSE   |
+|OWN_HOUSE_OR_APARTMENT      |
+|WITH_PARENTS                |
+
 
 | occupation                 |                                   |                                 |
 |----------------------------|-----------------------------------|---------------------------------|
