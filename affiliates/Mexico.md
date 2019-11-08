@@ -45,30 +45,39 @@ This method will create or update customer and return customer uuid.
 | Field | Validations | Description |
 | ----- | ----------- | ----------- |
 | first_name | Required | First name of customer |
+| second_first_name | Optional | Second first name of customer |
 | last_name | Required | Faternal last name of customer |
 | second_last_name | Required | Maternal last name of customer |
 | personal_id | Required<br> Must match regex listed in: [Addendum B](#addendum-b---regexps) | Personal ID of customer |
 | tax_id_number | Required<br> Must match regex listed in: [Addendum B](#addendum-b---regexps) | Customer RFC number |
-| bank_account | Required<br> Must be valid CLABE | Bank account number of customer |
+| bank_account | Must be valid CLABE | Bank account number of customer |
 | email | Required | Email address |
 | phone | Required<br>Must be valid phone number | Customer mobile phone number |
+| phone_plan | Required<br>PREPAID or CONTRACT | Customer phone plan |
 | phone2 | Required<br>Must be valid phone number | Customer landline phone number |
+| birth_date | Required<br>Format: yyyy-mm-dd | Customer birth date |
+| gender  | Required<br>MALE or FEMALE | Customer gender |
+| marital_status | Required<br> Must match regex listed in: [Addendum B](#addendum-b---regexps) | Customer Marital status | 
 | address | Required<br> Object | Contains registered address data |
 | address[postal_code] | Required<br> Must match regex: ` /^\d{5}$/ `  | Postal code |
 | address[region] | Required | State |
 | address[county] | Required | County/Municipality |
 | address[city] | Required | City |
-| address[district] | Required | District/Colony |
+| address[district] | Required | District |
+| address[colony] | Required | Colony |
 | address[street] | Required | Street |
-| address[house_number] | Required | House number |
+| address[house_number] | Required when product is CAR | House number |
 | address[flat_number] | Optional | Flat number |
 | neto_income | Required | Neto income in MXN |
+| monthly_expenses | Required | Monthly expenses in MXN |
+| housing_type | Requred<br>Must match regex listed in: [Addendum B](#addendum-b---regexps) | Customer houding type |
 | occupation | Required | Occupation type <br> For allowed values see [Addendum A](#addendum-a---enums) |
 | employer | Required when occupation is one of following:<br>EMPLOYED_INDEFINITE_PERIOD<br>EMPLOYED_SPECIFIED_PERIOD<br> WRITTEN_CONTRACT_OR_ORDER<br> | Employer |
 | employer_phone |Must be valid phone number<br> Required when occupation is one of following: <br>EMPLOYED_INDEFINITE_PERIOD<br>EMPLOYED_SPECIFIED_PERIOD<br> WRITTEN_CONTRACT_OR_ORDER | Employers phone number |
 | employed_since |Must be valid date<br> Required when occupation is one of following: <br>EMPLOYED_INDEFINITE_PERIOD<br>EMPLOYED_SPECIFIED_PERIOD<br> WRITTEN_CONTRACT_OR_ORDER | Employed since date |
 | employment_place | Required when occupation is one of following: <br>EMPLOYED_INDEFINITE_PERIOD<br>EMPLOYED_SPECIFIED_PERIOD<br> WRITTEN_CONTRACT_OR_ORDER <br><br> For possible values see [Addendum A](#addendum-a---enums) | Employment place |
 | current_job_position | Required when occupation is one of following:<br>EMPLOYED_INDEFINITE_PERIOD<br>EMPLOYED_SPECIFIED_PERIOD<br> WRITTEN_CONTRACT_OR_ORDER<br> | Current job position |
+| remuneration_deadline| Requred<br>Format: yyyy-mm-dd | Remuneration deadline |
 | credit_card_verification | Optional <br> Must match regex: ` /^\d{4}$/ ` | Last 4 digits of credit card number, if customer has credit card number |
 | has_mortgage | Required<br>Boolean | Does customer have a mortgage loan |
 | has_carloan | Required<br>Boolean | Does customer have a car loan |
@@ -99,7 +108,12 @@ Body:
    "bank_account":"141807225454240832",
    "phone":"01 449 329 1020",
    "phone2":"01 449 581 5915",
+   "phone_plan":"PREPAID",
+   "birth_date":"1970-03-05",
+   "gender":"MALE",
+   "marital_status":"SINGLE",
    "neto_income":960,
+   "monthly_expenses": 250,
    "address":{
       "city":"Doe Doestad",
       "street":"Escarlata Haven",
@@ -108,8 +122,10 @@ Body:
       "postal_code":91648,
       "region":"Quintana Roo",
       "county":"test",
-      "district":"test"
+      "district":"test",
+      "colony":"test"
    },
+   "housing_type": "OWN_HOUSE_OR_APARTMENT",
    "occupation":"WRITTEN_CONTRACT_OR_ORDER",
    "employer_phone":"687 493 9638",
    "tax_id_number":"AAMC160222CNX",
@@ -118,8 +134,9 @@ Body:
    "credit_card_verification":3368,
    "employer":"Doe Doe-Doe Doe",
    "current_job_position":"Gas Plant Operator",
+   "remuneration_deadline": "2019-11-11",
    "employment_place":"HOME",
-   "nationality":"Afganistán",
+   "nationality":"MX",
    "signature":{
       "timestamp":1491466495,
       "api_key":"mexico",
@@ -143,9 +160,15 @@ Response:
    "personal_id":"AEDK661027HNEGLLT9",
    "phone":"+524493291020",
    "phone2":"+524493291020",
+   "phone_plan":"PREPAID",
+   "birth_date":"1970-03-05",
+   "gender":"MALE",
+   "marital_status":"SINGLE",
    "employer_phone":"+526874939638",
    "neto_income":"960",
+   "monthly_expenses": "250",
    "lives_at_registered_address":1,
+   "housing_type": "OWN_HOUSE_OR_APARTMENT",
    "occupation":"WRITTEN_CONTRACT_OR_ORDER",
    "bank_account":"141807225454240832",
    "employed_since": "2017-01-08",
@@ -156,8 +179,9 @@ Response:
    "has_carloan":"1",
    "has_mortgage":"1",
    "credit_card_verification":3368,
+   "remuneration_deadline": "2019-11-11",
    "employment_place":"HOME",
-   "nationality":"Afganistán",
+   "nationality":"MX",
    "address":{
       "region":"Quintana Roo",
       "county":"test",
@@ -166,7 +190,8 @@ Response:
       "street":"Escarlata Haven",
       "house_number":"5052",
       "flat_number":"3",
-      "postal_code":"91648"
+      "postal_code":"91648",
+      "colony":"test"
    }
 }
 ```
@@ -211,7 +236,12 @@ Body:
     <bank_account>141807225454240832</bank_account>
     <phone>01 449 329 1020</phone>
     <phone2>01 449 581 5915</phone>
+    <phone_plan>PREPAID</phone_plan>
+    <birth_date>1970-03-05</birth_date>
+    <marital_status>SINGLE</marital_status>
+    <gender>MALE</gender>
     <neto_income>60</neto_income>
+    <monthly_expenses>250</monthly_expenses>
     <employed_since>2017-01-08</employed_since>
     <address>
         <city>Doe Doestad</city>
@@ -222,7 +252,9 @@ Body:
         <region>Quintana Roo</region>
         <county>test</county>
         <district>test</district>
+        <colony>test</colony>
     </address>
+    <housing_type>OWN_HOUSE_OR_APARTMENT</housing_type>
     <occupation>WRITTEN_CONTRACT_OR_ORDER</occupation>
     <employer_phone>687 493 9638</employer_phone>
     <tax_id_number>AAMC160222CNX</tax_id_number>
@@ -231,8 +263,9 @@ Body:
     <credit_card_verification>6368</credit_card_verification>
     <employer>Doe Doe-Doe Doe</employer>
     <current_job_position>Gas Plant Operator</current_job_position>
+    <remuneration_deadline>2019-11-11</remuneration_deadline>
     <employment_place>HOME</employment_place>
-    <nationality>Afganistán</nationality>
+    <nationality>MX</nationality>
     <signature>
         <timestamp>491466495</timestamp>
         <api_key>mexico</api_key>
@@ -252,13 +285,19 @@ Response:
     <uuid>7b1be1e9-3c5f-578c-8e44-20af1a6de4b8</uuid>
     <product>PAYDAY</product>
     <first_name>Aureliano</first_name>
+    <second_first_name>Gandharva</second_first_name>
     <last_name>Orozco</last_name>
     <email>miranda.doedoe@mailinator.com</email>
     <personal_id>AEDK661027HNEGLLT9</personal_id>
-    <phone>+524493291020</phone>
-    <phone2>+524493291020</phone2>
-    <employer_phone>+526874939638</employer_phone>
+    <bank_account>141807225454240832</bank_account>
+    <phone>01 449 329 1020</phone>
+    <phone2>01 449 581 5915</phone>
+    <phone_plan>PREPAID</phone_plan>
+    <birth_date>1970-03-05</birth_date>
+    <marital_status>SINGLE</marital_status>
+    <gender>MALE</gender>
     <neto_income>60</neto_income>
+    <monthly_expenses>250</monthly_expenses>
     <employed_since>2017-01-08</employed_since>
     <occupation>WRITTEN_CONTRACT_OR_ORDER</occupation>
     <bank_account>141807225454240832</bank_account>
@@ -269,17 +308,29 @@ Response:
     <has_carloan>1</has_carloan>
     <has_mortgage>1</has_mortgage>
     <credit_card_verification>6368</credit_card_verification>
-    <nationality>Afganistán</nationality>
+    <nationality>MX</nationality>
     <address>
-        <region>Quintana Roo</region>
-        <county>test</county>
-        <district>test</district>
         <city>Doe Doestad</city>
         <street>Escarlata Haven</street>
         <house_number>5052</house_number>
         <flat_number>3</flat_number>
         <postal_code>16485</postal_code>
+        <region>Quintana Roo</region>
+        <county>test</county>
+        <district>test</district>
+        <colony>test</colony>
     </address>
+    <housing_type>OWN_HOUSE_OR_APARTMENT</housing_type>
+    <occupation>WRITTEN_CONTRACT_OR_ORDER</occupation>
+    <employer_phone>687 493 9638</employer_phone>
+    <tax_id_number>AAMC160222CNX</tax_id_number>
+    <has_carloan>1</has_carloan>
+    <has_mortgage>1</has_mortgage>
+    <credit_card_verification>6368</credit_card_verification>
+    <employer>Doe Doe-Doe Doe</employer>
+    <current_job_position>Gas Plant Operator</current_job_position>
+    <remuneration_deadline>2019-11-11</remuneration_deadline>
+    <employment_place>HOME</employment_place>
 </response>
 ```
 
@@ -437,6 +488,22 @@ Response:
 
 # Addendum A - ENUMs
 
+| marital status             |
+|----------------------------|
+|SINGLE                      |
+|MARRIED                     |
+|DIVORCED                    |
+|WITH_PARTNER                |
+|WIDOW                       |
+
+| housing type               |
+|----------------------------|
+|RENTED_ROOM                 |
+|RENTED_APARTMENT_OR_HOUSE   |
+|OWN_HOUSE_OR_APARTMENT      |
+|WITH_PARENTS                |
+
+
 | occupation                 |                                   |                                 |
 |----------------------------|-----------------------------------|---------------------------------|
 | value                      | English                           | Mexican                     |
@@ -480,207 +547,6 @@ FOR_MY_BUSINESS | For private busness | Para Negocio personal |
 TRAVEL | Travelling | Viajar |
 OTHER | Other | Otro |
 
-| nationality | | |
-|----------------------------------|-----------------------------------|----------------------------------|
-| value                            | English                           | Mexican                          |
-| Afganistán                       | Afghanistan                       | Afganistán                       |
-| Albania                          | Albania                           | Albania                          |
-| Alemania                         | Germany                           | Alemania                         |
-| Andorra                          | Andorra                           | Andorra                          |
-| Angola                           | Angola                            | Angola                           |
-| Anguila                          | Eel                               | Anguila                          |
-| Antigua y Barbuda                | Old and bearded                   | Antigua y Barbuda                |
-| Arabia Saudita                   | Saudi Arabia                      | Arabia Saudita                   |
-| Argelia                          | Algeria                           | Argelia                          |
-| Argentina                        | Argentina                         | Argentina                        |
-| Armenia                          | Armenia                           | Armenia                          |
-| Australia                        | Australia                         | Australia                        |
-| Austria                          | Austria                           | Austria                          |
-| Azerbaiyán                       | Azerbaijan                        | Azerbaiyán                       |
-| Bahamas                          | Bahamas                           | Bahamas                          |
-| Baréin                           | Bahrain                           | Baréin                           |
-| Bangladés                        | Bangladesh                        | Bangladés                        |
-| Barbados                         | Barbados                          | Barbados                         |
-| Bélgica                          | Belgium                           | Bélgica                          |
-| Belice                           | Belize                            | Belice                           |
-| Benín                            | Benin                             | Benín                            |
-| Bielorrusia                      | Belarus                           | Bielorrusia                      |
-| Birmania                         | Burma                             | Birmania                         |
-| Bolivia                          | Bolivia                           | Bolivia                          |
-| Bosnia y Herzegovina             | Bosnia and Herzegovina            | Bosnia y Herzegovina             |
-| Botsuana                         | Botswana                          | Botsuana                         |
-| Brasil                           | Brazil                            | Brasil                           |
-| Brunéi                           | Brunei                            | Brunéi                           |
-| Bulgaria                         | Bulgaria                          | Bulgaria                         |
-| Burkina Faso                     | Burkina Faso                      | Burkina Faso                     |
-| Burundi                          | Burundi                           | Burundi                          |
-| Bután                            | Bhutan                            | Bután                            |
-| Cabo Verde                       | Cape Verde                        | Cabo Verde                       |
-| Camboya                          | Cambodia                          | Camboya                          |
-| Camerún                          | Cameroon                          | Camerún                          |
-| Canadá                           | Glen                              | Canadá                           |
-| Catar                            | Taste                             | Catar                            |
-| Centroafricana, República        | Central African Republic          | Centroafricana, República        |
-| Chad                             | Chad                              | Chad                             |
-| Checa, República                 | Czech Republic                    | Checa, República                 |
-| Chile                            | Chile                             | Chile                            |
-| China                            | China                             | China                            |
-| Chipre                           | Cyprus                            | Chipre                           |
-| Colombia                         | Colombia                          | Colombia                         |
-| Comoras                          | Comoros                           | Comoras                          |
-| Congo, República del             | Congo, Republic of                | Congo, República del             |
-| Congo, República Democrática del | Congo, Democratic Republic of the | Congo, República Democrática del |
-| Corea del Norte                  | North Korea                       | Corea del Norte                  |
-| Corea del Sur                    | South Korea                       | Corea del Sur                    |
-| Costa de Marfil                  | Ivory Coast                       | Costa de Marfil                  |
-| Costa Rica                       | Costa Rica                        | Costa Rica                       |
-| Croacia                          | Croatia                           | Croacia                          |
-| Cuba                             | Cuba                              | Cuba                             |
-| Dinamarca                        | Denmark                           | Dinamarca                        |
-| Dominica                         | Dominica                          | Dominica                         |
-| Dominicana, República            | Dominican Republic                | Dominicana, República            |
-| Ecuador                          | Ecuador                           | Ecuador                          |
-| Egipto                           | Egypt                             | Egipto                           |
-| El Salvador                      | The Savior                        | El Salvador                      |
-| Emiratos Árabes Unidos           | United Arab Emirates              | Emiratos Árabes Unidos           |
-| Eritrea                          | Eritrea                           | Eritrea                          |
-| Eslovaquia                       | Slovakia                          | Eslovaquia                       |
-| Eslovenia                        | Slovenia                          | Eslovenia                        |
-| España                           | Spain                             | España                           |
-| Estados Unidos                   | U.S                               | Estados Unidos                   |
-| Estonia                          | Estonia                           | Estonia                          |
-| Etiopía                          | Ethiopia                          | Etiopía                          |
-| Filipinas                        | Philippines                       | Filipinas                        |
-| Finlandia                        | Finland                           | Finlandia                        |
-| Fiyi                             | Fiji                              | Fiyi                             |
-| Francia                          | France                            | Francia                          |
-| Gabón                            | Gabon                             | Gabón                            |
-| Gambia                           | Gambia                            | Gambia                           |
-| Georgia                          | Georgia                           | Georgia                          |
-| Ghana                            | Ghana                             | Ghana                            |
-| Granada                          | Pomegranate                       | Granada                          |
-| Grecia                           | Greece                            | Grecia                           |
-| Guatemala                        | Guatemala                         | Guatemala                        |
-| Guinea                           | Guinea                            | Guinea                           |
-| Guinea-Bisáu                     | Guinea-Bissau                     | Guinea-Bisáu                     |
-| Guinea Ecuatorial                | Equatorial Guinea                 | Guinea Ecuatorial                |
-| Guyana                           | Guyana                            | Guyana                           |
-| Haití                            | Haiti                             | Haití                            |
-| Honduras                         | Honduras                          | Honduras                         |
-| Hungría                          | Hungary                           | Hungría                          |
-| India                            | India                             | India                            |
-| Indonesia                        | Indonesia                         | Indonesia                        |
-| Irak                             | Iraq                              | Irak                             |
-| Irán                             | Iran                              | Irán                             |
-| Irlanda                          | Ireland                           | Irlanda                          |
-| Islandia                         | Iceland                           | Islandia                         |
-| Israel                           | Israel                            | Israel                           |
-| Italia                           | Italy                             | Italia                           |
-| Jamaica                          | Jamaica                           | Jamaica                          |
-| Japón                            | Japan                             | Japón                            |
-| Jordania                         | Jordan                            | Jordania                         |
-| Kazajistán                       | Kazakhstan                        | Kazajistán                       |
-| Kenia                            | Kenya                             | Kenia                            |
-| Kirguistán                       | Kyrgyzstan                        | Kirguistán                       |
-| Kiribati                         | Kiribati                          | Kiribati                         |
-| Kuwait                           | Kuwait                            | Kuwait                           |
-| Laos                             | Laos                              | Laos                             |
-| Lesoto                           | Lesotho                           | Lesoto                           |
-| Letonia                          | Latvia                            | Letonia                          |
-| Líbano                           | Lebanon                           | Líbano                           |
-| Liberia                          | Liberia                           | Liberia                          |
-| Libia                            | Libya                             | Libia                            |
-| Liechtenstein                    | Liechtenstein                     | Liechtenstein                    |
-| Lituania                         | Lithuania                         | Lituania                         |
-| Luxemburgo                       | Luxembourg                        | Luxemburgo                       |
-| Macedonia                        | Macedonia                         | Macedonia                        |
-| Madagascar                       | Madagascar                        | Madagascar                       |
-| Malasia                          | Malaysia                          | Malasia                          |
-| Malaui                           | Malawi                            | Malaui                           |
-| Maldivas                         | Maldives                          | Maldivas                         |
-| Malí                             | Mali                              | Malí                             |
-| Malta                            | malt                              | Malta                            |
-| Marruecos                        | Morocco                           | Marruecos                        |
-| Marshall, Islas                  | Marshall, Islands                 | Marshall, Islas                  |
-| Mauricio                         | Mauricio                          | Mauricio                         |
-| Mauritania                       | Mauritania                        | Mauritania                       |
-| México                           | Mexico                            | México                           |
-| Micronesia                       | Micronesia                        | Micronesia                       |
-| Moldavia                         | Moldova                           | Moldavia                         |
-| Mónaco                           | Monaco                            | Mónaco                           |
-| Mongolia                         | Mongolia                          | Mongolia                         |
-| Montenegro                       | Montenegro                        | Montenegro                       |
-| Mozambique                       | Mozambique                        | Mozambique                       |
-| Namibia                          | Namibia                           | Namibia                          |
-| Nauru                            | Nauru                             | Nauru                            |
-| Nepal                            | Nepal                             | Nepal                            |
-| Nicaragua                        | Nicaragua                         | Nicaragua                        |
-| Níger                            | Niger                             | Níger                            |
-| Nigeria                          | Nigeria                           | Nigeria                          |
-| Noruega                          | Norway                            | Noruega                          |
-| Nueva Zelanda                    | New Zealand                       | Nueva Zelanda                    |
-| Omán                             | Oman                              | Omán                             |
-| Países Bajos                     | Netherlands                       | Países Bajos                     |
-| Pakistán                         | Pakistan                          | Pakistán                         |
-| Palaos                           | Palau                             | Palaos                           |
-| Palestina                        | Palestine                         | Palestina                        |
-| Panamá                           | Panama                            | Panamá                           |
-| Papúa Nueva Guinea               | Papua New Guinea                  | Papúa Nueva Guinea               |
-| Paraguay                         | Paraguay                          | Paraguay                         |
-| Perú                             | Peru                              | Perú                             |
-| Polonia                          | Poland                            | Polonia                          |
-| Portugal                         | Portugal                          | Portugal                         |
-| Puerto Rico                      | Puerto Rico                       | Puerto Rico                      |
-| Reino Unido                      | United Kingdom                    | Reino Unido                      |
-| Ruanda                           | Rwanda                            | Ruanda                           |
-| Rumania                          | Romania                           | Rumania                          |
-| Rusia                            | Russia                            | Rusia                            |
-| Salomón, Islas                   | Solomon, Islands                  | Salomón, Islas                   |
-| Samoa                            | Samoa                             | Samoa                            |
-| San Cristóbal y Nieves           | Saint Kitts and Nevis             | San Cristóbal y Nieves           |
-| San Marino                       | San Marino                        | San Marino                       |
-| San Vicente y las Granadinas     | St. Vincent and the Grenadines    | San Vicente y las Granadinas     |
-| Santa Lucía                      | St. lucia                         | Santa Lucía                      |
-| Santo Tomé y Príncipe            | Sao Tome and Principe             | Santo Tomé y Príncipe            |
-| Senegal                          | Senegal                           | Senegal                          |
-| Serbia                           | Serbia                            | Serbia                           |
-| Seychelles                       | Seychelles                        | Seychelles                       |
-| Sierra Leona                     | Sierra Leone                      | Sierra Leona                     |
-| Singapur                         | Singapore                         | Singapur                         |
-| Siria                            | Syria                             | Siria                            |
-| Somalia                          | Somalia                           | Somalia                          |
-| Sri Lanka                        | Sri Lanka                         | Sri Lanka                        |
-| Suazilandia                      | Swaziland                         | Suazilandia                      |
-| Sudáfrica                        | South Africa                      | Sudáfrica                        |
-| Sudán                            | Sudan                             | Sudán                            |
-| Sudán del Sur                    | South Sudan                       | Sudán del Sur                    |
-| Suecia                           | Sweden                            | Suecia                           |
-| Suiza                            | Switzerland                       | Suiza                            |
-| Surinam                          | Surinam                           | Surinam                          |
-| Tailandia                        | Thailand                          | Tailandia                        |
-| Taiwán                           | Taiwan                            | Taiwán                           |
-| Tanzania                         | Tanzania                          | Tanzania                         |
-| Tayikistán                       | Tajikistan                        | Tayikistán                       |
-| Timor Oriental                   | East Timor                        | Timor Oriental                   |
-| Togo                             | Togo                              | Togo                             |
-| Tonga                            | Tonga                             | Tonga                            |
-| Trinidad y Tobago                | Trinidad and Tobago               | Trinidad y Tobago                |
-| Túnez                            | Tunisia                           | Túnez                            |
-| Turkmenistán                     | Turkmenistan                      | Turkmenistán                     |
-| Turquía                          | Turkey                            | Turquía                          |
-| Tuvalu                           | Tuvalu                            | Tuvalu                           |
-| Ucrania                          | Ukraine                           | Ucrania                          |
-| Uganda                           | Uganda                            | Uganda                           |
-| Uruguay                          | Uruguay                           | Uruguay                          |
-| Uzbekistán                       | Uzbekistan                        | Uzbekistán                       |
-| Vanuatu                          | Vanuatu                           | Vanuatu                          |
-| Vaticano, Ciudad del             | Vatican, City of                  | Vaticano, Ciudad del             |
-| Venezuela                        | Venezuela                         | Venezuela                        |
-| Vietnam                          | Vietnam                           | Vietnam                          |
-| Yemen                            | Yemen                             | Yemen                            |
-| Yibuti                           | Djibouti                          | Yibuti                           |
-| Zambia                           | Zambia                            | Zambia                           |
-| Zimbabue                         | Zimbabwe                          | Zimbabue                         |
 
 # Addendum B - Regexps
 
@@ -699,3 +565,6 @@ Tax ID number:
 # Versions
 
 - 1.0 (2018-05-14): first publish
+- 1.1 (2018-06-21): add `nationality` field
+- 1.2 (2018-11-19): nationality field expects ISO-3 code
+- 1.3 (2018-11-20): nationality is ISO 3166-1 alpha-2
