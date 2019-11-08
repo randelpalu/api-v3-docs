@@ -10,21 +10,21 @@ Should you have any questions, please do not hesitate to contact the IT manager 
 
 Production URL: [https://api.credy.eu/v3/](https://api.credy.eu/v3/)
 
+Production token URL: [https://api.credy.eu/v3/token](https://api.credy.eu/v3/token)
+
 Staging URL: [http://api.staging.credy.eu/v3/](http://api.staging.credy.eu/v3/)
+
+Staging token URL: [http://api.staging.credy.eu/v3/token](http://api.staging.credy.eu/v3/token)
 
 API supports post fields, XML and JSON.
 
 To get response error messages in spain, "Accept-Language" header’s value must be set to according ISO code. Ex: “es” or “es-MX“.
 
-## Signing requests
+## Authorization
 
-Each request must be signed. Signature consists of api_key, timestamp and hash.
-
-Hash is a SHA1 hash of the concatenation of timestamp, api_key and secret_key.
-
-Allowed deviation for timestamp is UTC +/- 60 seconds.
-
-*ex. sha1(timestamp + apiKey + secretKey)*
+Authorization is performed with OAuth 2.0 Client Credentials Grant. When requesting token, the client key and secret key must be sent in request body. 
+Client key and secret key will be assigned to you by Credy. 
+The requests to api must be authenticated with [bearer token](https://tools.ietf.org/html/rfc6749#section-7.1)
 
 Api key and secret key will be assigned to you by Credy.
 
@@ -82,10 +82,6 @@ This method will create or update customer and return customer uuid.
 | has_mortgage | Required<br>Boolean | Does customer have a mortgage loan |
 | has_carloan | Required<br>Boolean | Does customer have a car loan |
 | nationality | Required <br><br> For possible values see [Addendum A](#addendum-a---enums) | Customer nationality | 
-| signature | Required <br> Object | request signature |
-| signature[timestamp] | Required <br> unix timestamp<br> must be UTC +/- 60 seconds | unix timestamp, must be UTC +/- 60 seconds |
-| signature[api_key] | Required | api key |
-| signature[hash] | Required | sha1 concatenation of timestamp, api key and secret key |
 
 ### JSON examples for /v3/customers
 
@@ -136,12 +132,7 @@ Body:
    "current_job_position":"Gas Plant Operator",
    "remuneration_deadline": "2019-11-11",
    "employment_place":"HOME",
-   "nationality":"MX",
-   "signature":{
-      "timestamp":1491466495,
-      "api_key":"mexico",
-      "hash":"8a77fcd5f495b6d3a9c01fb11a4e9ce10078442e"
-   }
+   "nationality":"MX"
 }
 ```
 
@@ -266,11 +257,6 @@ Body:
     <remuneration_deadline>2019-11-11</remuneration_deadline>
     <employment_place>HOME</employment_place>
     <nationality>MX</nationality>
-    <signature>
-        <timestamp>491466495</timestamp>
-        <api_key>mexico</api_key>
-        <hash>8a77fcd5f495b6d3a9c01fb11a4e9ce10078442e</hash>
-    </signature>
 </request>
 ```
 
@@ -366,11 +352,6 @@ Creates lead for existing customer.
 | ip_address           | Must be valid IP address                   | IP address of customer                                  |
 | notes                | Required, for possible values see [Addendum A](#addendum-a---enums)                   | Reason for the loan                                  |
 | aff_lead_id          |                                            | Your lead ID                                            |
-| signature            | Required, object contains signature fields | request signature                                       |
-| signature[timestamp] | Required                                   | unix timestamp, must be UTC +/- 60 seconds              |
-| signature[api_key]   | Required                                   | api key                                                 |
-| signature[hash]      | Required                                   | sha1 concatenation of timestamp, api key and secret key |
-
 
 ### JSON examples for /v3/leads
 
@@ -389,12 +370,7 @@ Body:
     "loan_sum": "50",
     "loan_period": "1",
     "ip_address": "127.0.0.1",
-    "notes":"SCHOOL_EXPENSES",
-    "signature": {
-        "api_key": "6acc49b6-540c-512f-b1b8-7e1a9eb7d7a5",
-        "timestamp": 1465310979,
-        "hash": "051d1de34995444d44ab344e62e5775727f10f36"
-    }
+    "notes":"SCHOOL_EXPENSES"
 }
 ```
 
@@ -447,11 +423,6 @@ Body:
 	<loan_period>1</loan_period>
 	<ip_address>127.0.0.1</ip_address>
 	<notes>SCHOOL_EXPENSES</notes>
-	<signature>
-		<api_key>6acc49b6-540c-512f-b1b8-7e1a9eb7d7a5</api_key>
-		<timestamp>1465310979</timestamp>
-		<hash>051d1de34995444d44ab344e62e5775727f10f36</hash>
-	</signature>
 </request>
 ```
 
