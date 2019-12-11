@@ -1,0 +1,592 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "Ukraine Affiliate Documentation",
+    "description" : "# Introduction \n\nCredy is a company that specializes on the quality lead generation. \\\nThis document further describes how to integrate API to send leads to Credy.\\\nIf you have any questions, please do not hesitate to contact the IT manager at [it@credy.eu](mailto:it@credy.eu).\n\n## General information\n\nProduction URL: [https://api.credy.eu/v3/](https://api.credy.eu/v3/)\n\nStaging URL: [http://api.staging.credy.eu/v3/](http://api.staging.credy.eu/v3/)\n\nAPI supports post fields, XML and JSON.\n\nTo get response error messages in Ukranian, \"Accept-Language\" header’s value must be set to according ISO code. Ex: `uk` or `uk-UA`.\n## Authorization\nAuthorization is performed with OAuth 2.0 Client Credentials Grant.\nClient key and secret key will be assigned to you by Credy.\n## Lead registration flow\n\n1. Request is sent to /v3/customers\n\n2. If request is successful, customer uuid must be stored\n\n3. Request is sent to /v3/leads with previously stored customer uuid in query parameter \"customer\" *ex. /v3/leads?customer=a3ff7c20-e9e8-43a0-bfb7-71a5cf43b8d3* \n",
+    "version" : "1.0.3"
+  },
+  "servers" : [ {
+    "url" : "http://api.staging.credy.eu/v3",
+    "description" : "Staging server"
+  }, {
+    "url" : "https://api.credy.eu/v3",
+    "description" : "Production server"
+  } ],
+  "paths" : {
+    "/customers" : {
+      "post" : {
+        "description" : "Register customer",
+        "parameters" : [ {
+          "name" : "Accept-Language",
+          "in" : "header",
+          "description" : "To get response error messages in Ukranian, header’s value must be set to according ISO code. Ex: `uk` or `uk-UA`.",
+          "required" : false,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "format" : "string"
+          },
+          "example" : "uk-UA"
+        } ],
+        "requestBody" : {
+          "description" : "Customer info",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Customer"
+              }
+            },
+            "application/xml" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Customer"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Customer is registered",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CustomerResponse"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CustomerResponse"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/UnauthorizedResponse"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/UnauthorizedResponse"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Validation error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrors"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrors"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "oAuth" : [ ]
+        } ]
+      }
+    },
+    "/leads" : {
+      "post" : {
+        "description" : "Register lead",
+        "parameters" : [ {
+          "name" : "Accept-Language",
+          "in" : "header",
+          "description" : "To get response error messages in Ukranian, header’s value must be set to according ISO code. Ex: `uk` or `uk-UA`.",
+          "required" : false,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "format" : "string"
+          },
+          "example" : "uk-UA"
+        }, {
+          "name" : "customer",
+          "in" : "query",
+          "description" : "Customer uuid from `/customers` response",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "format" : "string"
+          },
+          "example" : "df0f997b-72ae-480a-88a8-4bd73ee89dae"
+        } ],
+        "requestBody" : {
+          "description" : "Lead info",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Lead"
+              }
+            },
+            "application/xml" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Lead"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LeadResponse"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LeadResponse"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/UnauthorizedResponse"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/UnauthorizedResponse"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Validation error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrors"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrors"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "oAuth" : [ "allow_custom_pingtree" ]
+        } ]
+      }
+    },
+    "/country/price-list" : {
+      "get" : {
+        "description" : "Get lenders prices",
+        "responses" : {
+          "200" : {
+            "description" : "Lenders prices",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CountryPricesResponse"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CountryPricesResponse"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Lenders prices",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CountryPricesResponse"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CountryPricesResponse"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "oAuth" : [ "get_country_price_list" ]
+        } ]
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "PrimaryAddress" : {
+        "required" : [ "city" ],
+        "type" : "object",
+        "properties" : {
+          "city" : {
+            "type" : "string",
+            "example" : "Чернігів"
+          }
+        }
+      },
+      "Agreements" : {
+        "required" : [ "data_proccessing_policy", "terms_of_service" ],
+        "type" : "object",
+        "properties" : {
+          "data_proccessing_policy" : {
+            "type" : "boolean"
+          },
+          "terms_of_service" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "Customer" : {
+        "required" : [ "address", "agreements", "email", "first_name", "last_name", "occupation", "personal_id", "phone", "second_first_name" ],
+        "type" : "object",
+        "properties" : {
+          "first_name" : {
+            "type" : "string",
+            "example" : "Володимир"
+          },
+          "second_first_name" : {
+            "type" : "string",
+            "example" : "Валентинович"
+          },
+          "last_name" : {
+            "type" : "string",
+            "example" : "Петренко"
+          },
+          "personal_id" : {
+            "type" : "string",
+            "description" : "Format: /^\\d{10}$/",
+            "example" : "2198802570"
+          },
+          "email" : {
+            "type" : "string",
+            "example" : "miguel.ceballos@mailinator.com"
+          },
+          "phone" : {
+            "type" : "string",
+            "example" : "+38 044 555 1234"
+          },
+          "occupation" : {
+            "type" : "string",
+            "example" : "EMPLOYED_INDEFINITE_PERIOD",
+            "enum" : [ "EMPLOYED_INDEFINITE_PERIOD", "SELF_EMPLOYED", "PENSIONER1", "UNEMPLOYED" ]
+          },
+          "id_card_number" : {
+            "type" : "string",
+            "description" : "Format: /^[A-Z]{2}[0-9]{6}$|^[0-9]{9}$/",
+            "example" : "AB123456"
+          },
+          "address" : {
+            "$ref" : "#/components/schemas/PrimaryAddress"
+          },
+          "agreements" : {
+            "$ref" : "#/components/schemas/Agreements"
+          }
+        },
+        "xml" : {
+          "name" : "request"
+        }
+      },
+      "Lead" : {
+        "required" : [ "ip_address", "loan_period", "loan_purpose", "loan_sum", "signature" ],
+        "type" : "object",
+        "properties" : {
+          "loan_sum" : {
+            "type" : "integer",
+            "description" : "Amount of credit requested by customer",
+            "format" : "int32",
+            "example" : 2000
+          },
+          "loan_period" : {
+            "type" : "integer",
+            "description" : "Term for credit requested",
+            "format" : "int32",
+            "example" : 30
+          },
+          "ip_address" : {
+            "type" : "string",
+            "description" : "IP address of customer",
+            "example" : "192.168.0.255"
+          },
+          "loan_purpose" : {
+            "type" : "string",
+            "example" : "Wedding"
+          },
+          "pingtree" : {
+            "type" : "array",
+            "description" : "Custom lenders order. Requires `allow_custom_pingtree` oAuth scope",
+            "items" : {
+              "type" : "string",
+              "example" : "b3345507-8298-4bd1-843a-6a968e593f00"
+            }
+          }
+        },
+        "xml" : {
+          "name" : "request"
+        }
+      },
+      "ValidationErrors" : {
+        "type" : "array",
+        "xml" : {
+          "name" : "response"
+        },
+        "items" : {
+          "$ref" : "#/components/schemas/ValidationErrors_inner"
+        }
+      },
+      "CustomerResponse" : {
+        "xml" : {
+          "name" : "response"
+        },
+        "allOf" : [ {
+          "type" : "object",
+          "properties" : {
+            "uuid" : {
+              "type" : "string",
+              "example" : "b3345507-8298-4bd1-843a-6a968e593f00"
+            }
+          }
+        }, {
+          "$ref" : "#/components/schemas/Customer"
+        } ]
+      },
+      "LeadResponse" : {
+        "type" : "object",
+        "properties" : {
+          "uuid" : {
+            "type" : "string",
+            "example" : "b3345507-8298-4bd1-843a-6a968e593f00"
+          },
+          "loan_sum" : {
+            "type" : "string",
+            "example" : "250.00"
+          },
+          "loan_period" : {
+            "type" : "string",
+            "example" : "30"
+          },
+          "status" : {
+            "type" : "string",
+            "example" : "UNDER_INVESTIGATION"
+          },
+          "date_created" : {
+            "type" : "string",
+            "example" : "2017-01-04 08:33:09"
+          },
+          "product" : {
+            "type" : "string",
+            "example" : "PAYDAY"
+          }
+        },
+        "xml" : {
+          "name" : "response"
+        }
+      },
+      "CountryPricesResponse" : {
+        "type" : "array",
+        "xml" : {
+          "name" : "response"
+        },
+        "items" : {
+          "$ref" : "#/components/schemas/CountryPricesResponse_inner"
+        }
+      },
+      "UnauthorizedResponse" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "example" : "Unauthorized"
+          },
+          "message" : {
+            "type" : "string",
+            "example" : "Your request was made with invalid credentials."
+          },
+          "code" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 0
+          },
+          "status" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 401
+          }
+        },
+        "xml" : {
+          "name" : "response"
+        }
+      },
+      "ValidationErrors_inner" : {
+        "type" : "object",
+        "properties" : {
+          "field" : {
+            "type" : "string",
+            "example" : "email"
+          },
+          "message" : {
+            "type" : "string",
+            "example" : "Email address is invalid"
+          }
+        }
+      },
+      "CountryPricesResponse_inner" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "example" : "Lender 1"
+          },
+          "uiid" : {
+            "type" : "string",
+            "example" : "b3345507-8298-4bd1-843a-6a968e593f00"
+          },
+          "prices" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "additionalProperties" : {
+                "type" : "object",
+                "properties" : {
+                  "price" : {
+                    "type" : "string",
+                    "example" : "12.40"
+                  },
+                  "currency" : {
+                    "type" : "string",
+                    "example" : "EUR"
+                  }
+                }
+              },
+              "example" : {
+                "accepted" : {
+                  "price" : "12.40",
+                  "currency" : "EUR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses" : {
+      "CustomerSuccess" : {
+        "description" : "Customer is registered",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/CustomerResponse"
+            }
+          },
+          "application/xml" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/CustomerResponse"
+            }
+          }
+        }
+      },
+      "LeadSuccess" : {
+        "description" : "Lead is under investigation",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/LeadResponse"
+            }
+          },
+          "application/xml" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/LeadResponse"
+            }
+          }
+        }
+      },
+      "CountryPricesResponse" : {
+        "description" : "Lenders prices",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/CountryPricesResponse"
+            }
+          },
+          "application/xml" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/CountryPricesResponse"
+            }
+          }
+        }
+      },
+      "ValidationError" : {
+        "description" : "Validation error",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/ValidationErrors"
+            }
+          },
+          "application/xml" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/ValidationErrors"
+            }
+          }
+        }
+      },
+      "Unauthorized" : {
+        "description" : "Unauthorized",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/UnauthorizedResponse"
+            }
+          },
+          "application/xml" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/UnauthorizedResponse"
+            }
+          }
+        }
+      }
+    },
+    "parameters" : {
+      "AcceptLanguageHeader" : {
+        "name" : "Accept-Language",
+        "in" : "header",
+        "description" : "To get response error messages in Ukranian, header’s value must be set to according ISO code. Ex: `uk` or `uk-UA`.",
+        "required" : false,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "format" : "string"
+        },
+        "example" : "uk-UA"
+      },
+      "CustomerUuid" : {
+        "name" : "customer",
+        "in" : "query",
+        "description" : "Customer uuid from `/customers` response",
+        "required" : true,
+        "style" : "form",
+        "explode" : true,
+        "schema" : {
+          "format" : "string"
+        },
+        "example" : "df0f997b-72ae-480a-88a8-4bd73ee89dae"
+      }
+    }
+  }
+}
