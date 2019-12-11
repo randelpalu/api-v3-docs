@@ -280,7 +280,7 @@
           },
           "phone" : {
             "type" : "string",
-            "example" : "621 549 278"
+            "example" : "+38 044 555 1234"
           },
           "occupation" : {
             "type" : "string",
