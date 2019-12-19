@@ -153,7 +153,7 @@
     "schemas" : {
       "PrimaryAddress" : {
         "type" : "object",
-        "required" : [ "postal_code", "city", "street", "house_number", "flat_number" ],
+        "required" : [ "postal_code", "city", "street", "house_number"],
         "properties" : {
           "postal_code" : {
             "type" : "string",
@@ -184,7 +184,7 @@
       },
       "ContactAddress" : {
         "type" : "object",
-        "required" : [ "postal_code", "city", "street", "house_number", "flat_number" ],
+        "required" : [ "postal_code", "city", "street", "house_number"],
         "properties" : {
           "postal_code" : {
             "type" : "string",
@@ -394,7 +394,7 @@
       },
       "Lead" : {
         "type" : "object",
-        "required" : [ "loan_sum", "loan_period", "ip_address", "loan_purpose", "signature" ],
+        "required" : [ "loan_sum", "loan_period", "ip_address", "signature" ],
         "properties" : {
           "loan_sum" : {
             "type" : "integer",
