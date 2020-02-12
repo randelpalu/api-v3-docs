@@ -251,7 +251,7 @@
       },
       "Customer" : {
         "type" : "object",
-        "required" : [ "first_name", "last_name", "password", "personal_id", "id_card_number", "marital_status", "bank_account", "education", "car", "email", "phone", "address", "lives_at_registered_address", "contact_person_address", "housing_type", "occupation", "neto_income", "monthly_expenses", "employer_address", "agreements", "signature" ],
+        "required" : [ "first_name", "last_name", "personal_id", "id_card_number", "marital_status", "bank_account", "education", "car", "email", "phone", "address", "lives_at_registered_address", "contact_person_address", "housing_type", "occupation", "neto_income", "monthly_expenses", "employer_address", "agreements", "signature" ],
         "properties" : {
           "first_name" : {
             "type" : "string",
@@ -262,10 +262,6 @@
             "type" : "string",
             "example" : "Cieślak",
             "description" : "Format: /^([A-Za-zĄĆĘŁŃÓŚŹŻąćęłńóśźż]+[\\s-]?)+$/u"
-          },
-          "password" : {
-            "type" : "string",
-            "example" : "bn3culio"
           },
           "personal_id" : {
             "type" : "string",
