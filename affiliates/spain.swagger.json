@@ -405,6 +405,11 @@
               "type" : "string",
               "example" : "b3345507-8298-4bd1-843a-6a968e593f00"
             }
+          },
+          "aff_lead_id": {
+            "type": "string",
+            "description": "Affiliate's application identifier. (can be used for tracking purposes for example)",
+            "example": "Jfds45jijgfds46t"
           }
         },
         "xml" : {
