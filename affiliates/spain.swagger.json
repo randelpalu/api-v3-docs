@@ -363,7 +363,8 @@
           },
           "employed_since" : {
             "type" : "string",
-            "example" : "yyyy-mm-dd"
+            "example" : "yyyy-mm-dd",
+            "description": "required when `occupation` is in EMPLOYED_INDEFINITE_PERIOD, ECONOMIC_ACTIVITY, OTHER"
           },
           "agreements" : {
             "$ref" : "#/components/schemas/Agreements"
