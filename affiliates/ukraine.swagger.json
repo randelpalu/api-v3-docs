@@ -254,7 +254,7 @@
         }
       },
       "Customer" : {
-        "required" : [ "address", "agreements", "email", "first_name", "last_name", "occupation", "personal_id", "phone", "second_first_name" ],
+        "required" : [ "address", "agreements", "email", "first_name", "last_name", "personal_id", "phone", "second_first_name" ],
         "type" : "object",
         "properties" : {
           "first_name" : {
@@ -281,11 +281,6 @@
           "phone" : {
             "type" : "string",
             "example" : "+38 044 555 1234"
-          },
-          "occupation" : {
-            "type" : "string",
-            "example" : "EMPLOYED_INDEFINITE_PERIOD",
-            "enum" : [ "EMPLOYED_INDEFINITE_PERIOD", "SELF_EMPLOYED", "PENSIONER1", "UNEMPLOYED" ]
           },
           "id_card_number" : {
             "type" : "string",
