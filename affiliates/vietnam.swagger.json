@@ -324,15 +324,6 @@
           "name" : "response"
         }
       },
-      "CountryPricesResponse" : {
-        "type" : "array",
-        "xml" : {
-          "name" : "response"
-        },
-        "items" : {
-          "$ref" : "#/components/schemas/CountryPricesResponse_inner"
-        }
-      },
       "UnauthorizedResponse" : {
         "type" : "object",
         "properties" : {
@@ -369,44 +360,6 @@
           "message" : {
             "type" : "string",
             "example" : "Email address is invalid"
-          }
-        }
-      },
-      "CountryPricesResponse_inner" : {
-        "type" : "object",
-        "properties" : {
-          "name" : {
-            "type" : "string",
-            "example" : "Lender 1"
-          },
-          "uiid" : {
-            "type" : "string",
-            "example" : "b3345507-8298-4bd1-843a-6a968e593f00"
-          },
-          "prices" : {
-            "type" : "array",
-            "items" : {
-              "type" : "object",
-              "additionalProperties" : {
-                "type" : "object",
-                "properties" : {
-                  "price" : {
-                    "type" : "string",
-                    "example" : "12.40"
-                  },
-                  "currency" : {
-                    "type" : "string",
-                    "example" : "EUR"
-                  }
-                }
-              },
-              "example" : {
-                "accepted" : {
-                  "price" : "12.40",
-                  "currency" : "EUR"
-                }
-              }
-            }
           }
         }
       }
