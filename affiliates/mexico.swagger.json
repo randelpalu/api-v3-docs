@@ -335,8 +335,8 @@
           },
           "nationality" : {
             "type" : "string",
-            "example" : "MEXICO",
-            "enum" : [ "SPAIN", "MEXICO", "GERMANY", "ARGENTINA", "BRAZIL", "BULGARIA", "RUSSIA", "CHILE", "CHINA", "COLOMBIA", "ECUADOR", "PHILIPPINES", "FRANCE", "ITALY", "INDIA", "MOROCCO", "PARAGUAY", "PERU", "PORTUGAL", "POLAND", "OTHER" ]
+            "example" : "México",
+            "enum" : [ "España", "México", "Alemania", "Argentina", "Brasil", "Bulgaria", "Rusia", "Chile", "China", "Colombia", "Ecuador", "Filipinas", "Francia", "Italia", "India", "Marruecos", "Paraguay", "Perú", "Portugal", "Polonia", "Other" ]
           },
           "dependant_count" : {
             "type" : "integer",
@@ -397,6 +397,11 @@
           "employer_phone" : {
             "type" : "string",
             "example" : "+52 661 529 9433"
+          },
+          "credit_score": {
+            "type" : "string",
+            "example" : "EXCELLENT_700_TO_850",
+            "enum": [ "EXCELLENT_700_TO_850", "GOOD_650_TO_700", "STABLE_550_TO_650", "LOW_300_TO_550", "DONT_KNOW", "NO_CREDIT_HISTORY"]
           },
           "agreements" : {
             "$ref" : "#/components/schemas/Agreements"
