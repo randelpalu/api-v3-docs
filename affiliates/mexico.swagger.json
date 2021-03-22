@@ -282,7 +282,7 @@
         }
       },
       "Customer" : {
-        "required" : [ "first_name", "last_name", "second_last_name", "email", "personal_id", "tax_id_number", "phone", "phone_plan", "address", "birth_date", "gender", "marital_status", "bank_account", "nationality", "occupation", "neto_income", "remuneration_deadline", "monthly_expenses", "housing_type", "employed_since", "dependant_count", "employer", "employer_phone", "agreements" ],
+        "required" : [ "first_name", "last_name", "second_last_name", "email", "personal_id", "tax_id_number", "phone", "phone_plan", "address", "birth_date", "gender", "marital_status", "bank_account", "nationality", "occupation", "neto_income", "remuneration_deadline", "monthly_expenses", "housing_type", "employed_since", "dependant_count", "employer", "employer_phone", "agreements", "credit_score", "has_loan" ],
         "type" : "object",
         "properties" : {
           "first_name" : {
@@ -335,8 +335,8 @@
           },
           "nationality" : {
             "type" : "string",
-            "example" : "MEXICO",
-            "enum" : [ "SPAIN", "MEXICO", "GERMANY", "ARGENTINA", "BRAZIL", "BULGARIA", "RUSSIA", "CHILE", "CHINA", "COLOMBIA", "ECUADOR", "PHILIPPINES", "FRANCE", "ITALY", "INDIA", "MOROCCO", "PARAGUAY", "PERU", "PORTUGAL", "POLAND", "OTHER" ]
+            "example" : "MX",
+            "enum" : [ "ES", "MX", "AL", "AR", "BR", "BU", "RU" ]
           },
           "dependant_count" : {
             "type" : "integer",
@@ -369,8 +369,8 @@
           },
           "occupation" : {
             "type" : "string",
-            "example" : "WRITTEN_CONTRACT_OR_ORDER",
-            "enum" : [ "EMPLOYED_SPECIFIED_PERIOD,", "EMPLOYED_INDEFINITE_PERIOD,", "WRITTEN_CONTRACT_OR_ORDER,", "SELF_EMPLOYED,", "PENSIONER1,", "STUDENT,", "UNEMPLOYED,", "FREELANCER,", "OWN_BUSINESS,", "MATERNITY_LEAVE" ]
+            "example" : "EMPLOYED_INDEFINITE_PERIOD",
+            "enum" : [ "EMPLOYED_INDEFINITE_PERIOD,", "SELF_EMPLOYED", "PENSIONER1", "STUDENT", "UNEMPLOYED", "FREELANCER", "OWN_BUSINESS", "MATERNITY_LEAVE" ]
           },
           "neto_income" : {
             "type" : "integer",
@@ -397,6 +397,20 @@
           "employer_phone" : {
             "type" : "string",
             "example" : "+52 661 529 9433"
+          },
+          "credit_score": {
+            "type" : "string",
+            "example" : "EXCELLENT_700_TO_850",
+            "enum": [ "EXCELLENT_700_TO_850", "GOOD_650_TO_700", "STABLE_550_TO_650", "LOW_300_TO_550", "DONT_KNOW", "NO_CREDIT_HISTORY"]
+          },
+          "has_loan": {
+            "type": "boolean",
+            "example": true
+          },
+          "debt_amount": {
+            "type": "integer",
+            "example": 1000,
+            "description": "Required when `has_loan` = true"
           },
           "agreements" : {
             "$ref" : "#/components/schemas/Agreements"
