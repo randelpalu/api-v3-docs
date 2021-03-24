@@ -443,7 +443,8 @@
           },
           "loan_purpose" : {
             "type" : "string",
-            "example" : "Wedding"
+            "example" : "TRAVEL",
+            "enum": [ "PURCHASE_OF_FOOD", "BUYING_ELECTRONICS", "CREATE_CREDIT_HISTORY", "SCHOOL_EXPENSES", "UNFORESEEN_EXPENSE", "MEDICAL_EXPENSES", "MAINTENANCE_OR_REPAIR_OF_HOUSE", "PAY_ANOTHER_LOAN", "PAYMENT_OF_SERVICES", "FOR_MY_BUSINESS", "TRAVEL", "OTHER" ]
           },
           "pingtree" : {
             "type" : "array",
