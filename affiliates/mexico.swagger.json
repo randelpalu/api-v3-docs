@@ -433,6 +433,11 @@
             "example": 1000,
             "description": "Required when `has_loan` = true"
           },
+          "has_credit_card" : {
+            "type": "boolean",
+            "description": "Required when `credit_score` = DONT_KNOW",
+            "example": true
+          },
           "agreements" : {
             "$ref" : "#/components/schemas/Agreements"
           }
