@@ -1,0 +1,491 @@
+{
+  "openapi" : "3.0.0",
+  "servers" : [],
+  "info" : {
+    "description" : "\n![Logo](https://raw.githubusercontent.com/credy/api-v3-docs/master/assets/img/logo.png)\n\n# Introduction \n\nCredy is a company that specializes on the quality lead generation. \n\nThis document further describes how to integrate API to receive leads from Credy.\n\nShould you have any questions, please do not hesitate to contact the IT manager at [it@credy.eu](mailto:it@credy.eu).\n\n## General information\n\nEach api request is signed. Signature consists of api_key, timestamp and hash.\n\nHash is a SHA1 hash of the concatenation of timestamp, api_key and secret_key. \n\n*ex. sha1(timestamp + apiKey + secretKey)*\n\nAPI key and secret key will be assigned to you by Credy. \n\nAPI supports post fields and JSON. \n\n## Lead registration flow\n\n1. Request is sent to https://www.your-site.com/your-url/receiveLead\n\n2. API expects instant response: \n* If response status is ‘pin_verify’ (optional), customer will be asked for pin code\n* If response status is ‘accepted’, lead will be marked as accepted. Customer will be redirected to your provided url if ‘landing_page_uri’ field exists in response\n\n![](https://raw.githubusercontent.com/credy/api-v3-docs/master/lenders/assets/img/flow.png)\n\n# Expected responses for receiveLead & checkPin methods\n\nExpected responses have following fields.\n\n<table>\n  <thead>\n    <tr>\n      <td>Field<td>\n      <td>Validations<td>\n      <td>Description<td>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>status<td>\n      <td>Required For possible values please see Addendum B<td>\n      <td>application status<td>\n    </tr>\n    <tr>\n      <td>reason<td>\n      <td>Required when status == invalid_params Free text<td>\n      <td>additional explanation to status field<td>\n    </tr>\n    <tr>\n      <td>external_lead_id<td>\n      <td>Optional<td>\n      <td>application identifier in your system<td>\n    </tr>\n    <tr>\n      <td>landing_page_uri<td>\n      <td>Optional<td>\n      <td>landing page url, should be filled when redirection to your page is necessary<td>\n    </tr>\n    <tr>\n      <td>password<td>\n      <td>Optional<td>\n      <td>  if password is generated in your system and TC needs to show it to customer<td>\n    </tr>\n  </tbody>\n</table>\n\n# Addendum B - Response ENUMs\n\n<table>\n  <thead>\n    <tr>\n      <td>value<td>\n      <td>description<td>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>accepted<td>\n      <td>loan application is accepted by api<td>\n    </tr>\n    <tr>\n      <td>duplicate<td>\n      <td>customer already exists in the system<td>\n    </tr>\n    <tr>\n      <td>invalid_params<td>\n      <td>request contains ivalid parameters<td>\n    </tr>\n    <tr>\n      <td>rejected<td>\n      <td>application rejected<td>\n    </tr>\n    <tr>\n      <td>pin_verify<td>\n      <td>pin code is sent to customer, TC system should verify pin with /checkPin method<td>\n    </tr>\n    <tr>\n      <td>pin_invalid (only for /checkPin method)<td>\n      <td>indicates that pin code is invalid and customer must be asked to try again<td>\n    </tr>\n  </tbody>\n</table>\n",
+    "version" : "1.0.0",
+    "title" : "Mexico lenders API",
+    "contact" : {
+      "email" : "it@credy.eu"
+    }
+  },
+  "paths" : {
+    "/receiveLead" : {
+      "post" : {
+        "summary" : "https://your-domain.com/your-url/receiveLead",
+        "operationId" : "receiveLead",
+        "description" : "Lead info",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/AcceptLanguageHeader"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ReceiveLeadBody"
+              }
+            },
+            "application/xml" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ReceiveLeadBody"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "$ref" : "#/components/responses/CustomerSuccessResponse"
+          },
+          "422" : {
+            "$ref" : "#/components/responses/CustomerRejectedResponse"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/checkPin" : {
+      "post" : {
+        "summary" : "https://your-domain.com/your-url/checkPin",
+        "operationId" : "checkPin",
+        "description" : "Pin code info",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/AcceptLanguageHeader"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CheckPinBody"
+              }
+            },
+            "application/xml" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CheckPinBody"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "$ref" : "#/components/responses/CheckPinSuccessResponse"
+          },
+          "422" : {
+            "$ref" : "#/components/responses/CheckPinRejectedesponse"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "responses" : {
+      "CustomerSuccessResponse" : {
+        "description" : "Successful response",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/CustomerAccepted"
+            }
+          },
+          "application/xml" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/CustomerAccepted"
+            }
+          }
+        }
+      },
+      "CustomerRejectedResponse" : {
+        "description" : "Invalid params response",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/CustomerRejected"
+            }
+          },
+          "application/xml" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/CustomerRejected"
+            }
+          }
+        }
+      },
+      "CheckPinSuccessResponse" : {
+        "description" : "Pin confirmed response",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/CheckPinAccepted"
+            }
+          },
+          "application/xml" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/CheckPinAccepted"
+            }
+          }
+        }
+      },
+      "CheckPinRejectedesponse" : {
+        "description" : "Invalid pin code response",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/CheckPinRejected"
+            }
+          },
+          "application/xml" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/CheckPinRejected"
+            }
+          }
+        }
+      },
+      "Unauthorized" : {
+        "description" : "Unauthorized",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/UnauthorizedResponse"
+            }
+          },
+          "application/xml" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/UnauthorizedResponse"
+            }
+          }
+        }
+      }
+    },
+    "schemas" : {
+      "CheckPinBody" : {
+        "type" : "object",
+        "required" : [ "pin", "phone", "uuid", "external_lead_id", "signature" ],
+        "properties" : {
+          "pin" : {
+            "type" : "string",
+            "example" : 1234
+          },
+          "phone" : {
+            "type" : "string",
+            "example" : "+524497602059"
+          },
+          "uuid" : {
+            "type" : "string",
+            "example" : "94dd50f3-08ee-41c4-8dd2-3b83d0ebd3ef"
+          },
+          "external_lead_id" : {
+            "type" : "string",
+            "example" : "cb5c7696-1233-11e8-b217-8b15c630db00"
+          },
+          "signature" : {
+            "$ref" : "#/components/schemas/Signature"
+          }
+        }
+      },
+      "ReceiveLeadBody" : {
+        "type" : "object",
+        "properties" : {
+          "customer" : {
+            "$ref" : "#/components/schemas/Customer"
+          },
+          "lead" : {
+            "$ref" : "#/components/schemas/Lead"
+          },
+          "agreements" : {
+            "$ref" : "#/components/schemas/Agreements"
+          },
+          "signature" : {
+            "$ref" : "#/components/schemas/Signature"
+          }
+        }
+      },
+      "Customer" : {
+        "type" : "object",
+        "required" : [ "first_name", "last_name", "second_last_name", "nationality", "password", "email", "personal_id", "bank_account", "phone", "address", "occupation", "neto_income", "tax_id_number", "has_carloan", "has_mortgage", "agreements", "signature", "employer", "employed_since", "has_loan" ],
+        "properties" : {
+          "first_name" : {
+            "type" : "string",
+            "example" : "Olinta"
+          },
+          "last_name" : {
+            "type" : "string",
+            "example" : "Junious",
+            "description" : "Father's last name"
+          },
+          "second_last_name" : {
+            "type" : "string",
+            "example" : "Pantoja",
+            "description" : "Mother's last name"
+          },
+          "nationality" : {
+            "type" : "string",
+            "example" : "MX",
+            "description" : "max length: 2"
+          },
+          "password" : {
+            "type" : "string",
+            "example" : "bn3culio",
+            "description" : "randomly generated string"
+          },
+          "email" : {
+            "type" : "string",
+            "example" : "junious.pantoja@mailinator.com"
+          },
+          "personal_id" : {
+            "type" : "string",
+            "example" : "MACU910628HNELRR82",
+            "description" : "CURP"
+          },
+          "bank_account" : {
+            "type" : "string",
+            "example" : "901796146512874842"
+          },
+          "phone" : {
+            "type" : "string",
+            "example" : "+524497602059"
+          },
+          "address" : {
+            "$ref" : "#/components/schemas/PrimaryAddress"
+          },
+          "occupation" : {
+            "type" : "string",
+            "enum" : [  "EMPLOYED_INDEFINITE_PERIOD","SELF_EMPLOYED","PENSIONER1","STUDENT","UNEMPLOYED","FREELANCER","OWN_BUSINESS","MATERNITY_LEAVE" ],
+            "example" : "SELF_EMPLOYED"
+          },
+          "neto_income" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 1500
+          },
+          "remuneration_deadline" : {
+            "type" : "string",
+            "example" : "2025-12-01",
+            "description" : "format: YYYY-MM-DD"
+          },
+          "employer" : {
+            "type" : "string",
+            "description" : "required when `occupation` is in:\n- OWN_BUSINESS\n- SELF_EMPLOYED\n"
+          },
+          "employed_since" : {
+            "type" : "string",
+            "example" : "2015-12-01",
+            "description" : "format: YYYY-MM-DD, required when `occupation` is in:\n- OWN_BUSINESS\n- SELF_EMPLOYED\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- WRITTEN_CONTRACT_OR_ORDER\n"
+          },
+          "tax_id_number" : {
+            "type" : "string",
+            "example" : "BEAB081206JPE",
+            "description" : "Must match regex: /^[A-Z]{1}[AEIOUX]{1}[A-Z]{2}[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Za-z0-9]{3}$/'\n"
+          },
+          "has_beneficiary" : {
+            "type" : "boolean",
+            "example" : false
+          },
+          "has_carloan" : {
+            "type" : "boolean",
+            "example" : false
+          },
+          "has_mortgage" : {
+            "type" : "boolean",
+            "example" : false
+          },
+          "has_loan" : {
+            "type" : "boolean",
+            "example" : false
+          },
+          "debt_amount" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 35000
+          }
+        },
+        "xml" : {
+          "name" : "request"
+        }
+      },
+      "Lead" : {
+        "type" : "object",
+        "required" : [ "loan_sum", "loan_period", "ip_address", "uuid", "product", "loan_purpose" ],
+        "properties" : {
+          "loan_sum" : {
+            "type" : "number",
+            "example" : 330.0
+          },
+          "loan_period" : {
+            "type" : "integer",
+            "example" : 15
+          },
+          "ip_address" : {
+            "type" : "string",
+            "example" : "10.46.194.171"
+          },
+          "uuid" : {
+            "type" : "string",
+            "example" : "e3059d69-ca20-4e0b-864c-72838488b473"
+          },
+          "loan_purpose" : {
+            "type" : "string",
+            "example" : "PURCHASE_OF_FOOD",
+            "enum" : [ "PURCHASE_OF_FOOD", "BUYING_ELECTRONICS", "CREATE_CREDIT_HISTORY", "SCHOOL_EXPENSES", "UNFORESEEN_EXPENSE", "MEDICAL_EXPENSES", "MAINTENANCE_OR_REPAIR_OF_HOUSE", "PAY_ANOTHER_LOAN", "PAYMENT_OF_SERVICES", "FOR_MY_BUSINESS", "TRAVEL", "OTHER" ]
+          }
+        }
+      },
+      "Signature" : {
+        "type" : "object",
+        "required" : [ "timestamp", "api_key", "hash" ],
+        "properties" : {
+          "timestamp" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "unix timestamp, must be UTC +/- 60 seconds",
+            "example" : 1529480561
+          },
+          "api_key" : {
+            "type" : "string",
+            "description" : "API key",
+            "example" : "22194038-bbf6-4be2-a5d5-d54e617e1297"
+          },
+          "hash" : {
+            "type" : "string",
+            "description" : "sha1 concatenation of timestamp, api key and secret key",
+            "example" : "051d1de34995444d44ab344e62e5775727f10f36"
+          }
+        }
+      },
+      "Agreements" : {
+        "type" : "object",
+        "required" : [ "data_proccessing_policy", "terms_of_service" ],
+        "properties" : {
+          "data_proccessing_policy" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "terms_of_service" : {
+            "type" : "boolean",
+            "example" : true
+          }
+        }
+      },
+      "PrimaryAddress" : {
+        "type" : "object",
+        "required" : [ "postal_code", "city", "street", "house_number", "flat_number", "region", "county", "district" ],
+        "properties" : {
+          "postal_code" : {
+            "type" : "string",
+            "example" : "63068",
+            "description" : "Format: /^[0-9]{5}$/"
+          },
+          "city" : {
+            "type" : "string",
+            "example" : "Estradaland"
+          },
+          "street" : {
+            "type" : "string",
+            "example" : "4670 Cárave Forge"
+          },
+          "house_number" : {
+            "type" : "string",
+            "example" : "11"
+          },
+          "flat_number" : {
+            "type" : "string",
+            "example" : "4"
+          },
+          "region" : {
+            "type" : "string",
+            "example" : "Region"
+          },
+          "county" : {
+            "type" : "string",
+            "example" : "County"
+          },
+          "district" : {
+            "type" : "string",
+            "example" : "District"
+          }
+        }
+      },
+      "CustomerAccepted" : {
+        "type" : "object",
+        "properties" : {
+          "external_lead_id" : {
+            "type" : "integer",
+            "example" : 12345
+          },
+          "status" : {
+            "type" : "string",
+            "example" : "accepted"
+          }
+        }
+      },
+      "CustomerRejected" : {
+        "type" : "object",
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "example" : "invalid_params"
+          },
+          "reason" : {
+            "type" : "string",
+            "example" : "housing type is invalid, phone number is invalid"
+          }
+        }
+      },
+      "CheckPinAccepted" : {
+        "type" : "object",
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "example" : "accepted"
+          }
+        }
+      },
+      "CheckPinRejected" : {
+        "type" : "object",
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "example" : "pin_invalid"
+          }
+        }
+      },
+      "UnauthorizedResponse" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "example" : "Unauthorized"
+          },
+          "message" : {
+            "type" : "string",
+            "example" : "Your request was made with invalid credentials."
+          },
+          "code" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 0
+          },
+          "status" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 401
+          }
+        }
+      }
+    },
+    "parameters" : {
+      "AcceptLanguageHeader" : {
+        "name" : "Accept-Language",
+        "in" : "header",
+        "schema" : {
+          "format" : "string"
+        },
+        "required" : false,
+        "description" : "To get response error messages in Mexican language, header’s value must be set to according ISO code. Ex: `es` or `es-MX`.",
+        "example" : "es-MX"
+      }
+    }
+  }
+}
