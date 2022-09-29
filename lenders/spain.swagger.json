@@ -165,7 +165,7 @@
     "schemas" : {
       "CheckPinBody" : {
         "type" : "object",
-        "required" : [ "pin", "phone", "uuid", "external_lead_id", "signature" ],
+        "required" : [ "pin", "phone", "uuid", "external_lead_id" ],
         "properties" : {
           "pin" : {
             "type" : "string",
@@ -182,9 +182,6 @@
           "external_lead_id" : {
             "type" : "string",
             "example" : "cb5c7696-1233-11e8-b217-8b15c630db00"
-          },
-          "signature" : {
-            "$ref" : "#/components/schemas/Signature"
           }
         }
       },
@@ -199,15 +196,12 @@
           },
           "agreements" : {
             "$ref" : "#/components/schemas/Agreements"
-          },
-          "signature" : {
-            "$ref" : "#/components/schemas/Signature"
           }
         }
       },
       "Customer" : {
         "type" : "object",
-        "required" : [ "first_name", "last_name", "gender", "password", "birth_date", "personal_id", "bank_account", "marital_status", "nationality", "dependant_count", "email", "phone", "phone_plan", "address", "lives_at_registered_address", "housing_type", "neto_income", "monthly_expenses", "education", "occupation", "agreements", "signature" ],
+        "required" : [ "first_name", "last_name", "gender", "password", "birth_date", "personal_id", "bank_account", "marital_status", "nationality", "dependant_count", "email", "phone", "phone_plan", "address", "lives_at_registered_address", "housing_type", "neto_income", "monthly_expenses", "education", "occupation", "agreements" ],
         "properties" : {
           "first_name" : {
             "type" : "string",
@@ -429,28 +423,6 @@
           "product" : {
             "type" : "string",
             "example" : "INSTALMENT"
-          }
-        }
-      },
-      "Signature" : {
-        "type" : "object",
-        "required" : [ "timestamp", "api_key", "hash" ],
-        "properties" : {
-          "timestamp" : {
-            "type" : "integer",
-            "format" : "int32",
-            "description" : "unix timestamp, must be UTC +/- 60 seconds",
-            "example" : 1529480561
-          },
-          "api_key" : {
-            "type" : "string",
-            "description" : "API key",
-            "example" : "22194038-bbf6-4be2-a5d5-d54e617e1297"
-          },
-          "hash" : {
-            "type" : "string",
-            "description" : "sha1 concatenation of timestamp, api key and secret key",
-            "example" : "051d1de34995444d44ab344e62e5775727f10f36"
           }
         }
       },

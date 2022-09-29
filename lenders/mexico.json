@@ -162,7 +162,7 @@
     "schemas" : {
       "CheckPinBody" : {
         "type" : "object",
-        "required" : [ "pin", "phone", "uuid", "external_lead_id", "signature" ],
+        "required" : [ "pin", "phone", "uuid", "external_lead_id" ],
         "properties" : {
           "pin" : {
             "type" : "string",
@@ -179,9 +179,6 @@
           "external_lead_id" : {
             "type" : "string",
             "example" : "cb5c7696-1233-11e8-b217-8b15c630db00"
-          },
-          "signature" : {
-            "$ref" : "#/components/schemas/Signature"
           }
         }
       },
@@ -196,15 +193,12 @@
           },
           "agreements" : {
             "$ref" : "#/components/schemas/Agreements"
-          },
-          "signature" : {
-            "$ref" : "#/components/schemas/Signature"
           }
         }
       },
       "Customer" : {
         "type" : "object",
-        "required" : [ "first_name", "last_name", "second_last_name", "nationality", "password", "email", "personal_id", "bank_account", "phone", "address", "occupation", "neto_income", "tax_id_number", "has_carloan", "has_mortgage", "agreements", "signature", "employer", "employed_since", "has_loan" ],
+        "required" : [ "first_name", "last_name", "second_last_name", "nationality", "password", "email", "personal_id", "bank_account", "phone", "address", "occupation", "neto_income", "tax_id_number", "has_carloan", "has_mortgage", "agreements", "employer", "employed_since", "has_loan" ],
         "properties" : {
           "first_name" : {
             "type" : "string",
@@ -329,28 +323,6 @@
             "type" : "string",
             "example" : "PURCHASE_OF_FOOD",
             "enum" : [ "PURCHASE_OF_FOOD", "BUYING_ELECTRONICS", "CREATE_CREDIT_HISTORY", "SCHOOL_EXPENSES", "UNFORESEEN_EXPENSE", "MEDICAL_EXPENSES", "MAINTENANCE_OR_REPAIR_OF_HOUSE", "PAY_ANOTHER_LOAN", "PAYMENT_OF_SERVICES", "FOR_MY_BUSINESS", "TRAVEL", "OTHER" ]
-          }
-        }
-      },
-      "Signature" : {
-        "type" : "object",
-        "required" : [ "timestamp", "api_key", "hash" ],
-        "properties" : {
-          "timestamp" : {
-            "type" : "integer",
-            "format" : "int32",
-            "description" : "unix timestamp, must be UTC +/- 60 seconds",
-            "example" : 1529480561
-          },
-          "api_key" : {
-            "type" : "string",
-            "description" : "API key",
-            "example" : "22194038-bbf6-4be2-a5d5-d54e617e1297"
-          },
-          "hash" : {
-            "type" : "string",
-            "description" : "sha1 concatenation of timestamp, api key and secret key",
-            "example" : "051d1de34995444d44ab344e62e5775727f10f36"
           }
         }
       },
