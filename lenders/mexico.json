@@ -2,7 +2,7 @@
   "openapi" : "3.0.0",
   "servers" : [],
   "info" : {
-    "description" : "\n![Logo](https://raw.githubusercontent.com/credy/api-v3-docs/master/assets/img/logo.png)\n\n# Introduction \n\nCredy is a company that specializes on the quality lead generation. \n\nThis document further describes how to integrate API to receive leads from Credy.\n\nShould you have any questions, please do not hesitate to contact the IT manager at [it@credy.eu](mailto:it@credy.eu).\n\n## General information\n\nAPI supports post fields and JSON. \n\n## Lead registration flow\n\n1. Request is sent to https://www.your-site.com/your-url/receiveLead\n\n2. API expects instant response: \n* If response status is ‘pin_verify’ (optional), customer will be asked for pin code\n* If response status is ‘accepted’, lead will be marked as accepted. Customer will be redirected to your provided url if ‘landing_page_uri’ field exists in response\n\n![](https://raw.githubusercontent.com/credy/api-v3-docs/master/lenders/assets/img/flow.png)\n\n# Expected responses for receiveLead & checkPin methods\n\nExpected responses have following fields.\n\n<table>\n  <thead>\n    <tr>\n      <td>Field<td>\n      <td>Validations<td>\n      <td>Description<td>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>status<td>\n      <td>Required For possible values please see Addendum B<td>\n      <td>application status<td>\n    </tr>\n    <tr>\n      <td>reason<td>\n      <td>Required when status == invalid_params Free text<td>\n      <td>additional explanation to status field<td>\n    </tr>\n    <tr>\n      <td>external_lead_id<td>\n      <td>Optional<td>\n      <td>application identifier in your system<td>\n    </tr>\n    <tr>\n      <td>landing_page_uri<td>\n      <td>Optional<td>\n      <td>landing page url, should be filled when redirection to your page is necessary<td>\n    </tr>\n    <tr>\n      <td>password<td>\n      <td>Optional<td>\n      <td>  if password is generated in your system and TC needs to show it to customer<td>\n    </tr>\n  </tbody>\n</table>\n\n# Addendum B - Response ENUMs\n\n<table>\n  <thead>\n    <tr>\n      <td>value<td>\n      <td>description<td>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>accepted<td>\n      <td>loan application is accepted by api<td>\n    </tr>\n    <tr>\n      <td>duplicate<td>\n      <td>customer already exists in the system<td>\n    </tr>\n    <tr>\n      <td>invalid_params<td>\n      <td>request contains ivalid parameters<td>\n    </tr>\n    <tr>\n      <td>rejected<td>\n      <td>application rejected<td>\n    </tr>\n    <tr>\n      <td>pin_verify<td>\n      <td>pin code is sent to customer, TC system should verify pin with /checkPin method<td>\n    </tr>\n    <tr>\n      <td>pin_invalid (only for /checkPin method)<td>\n      <td>indicates that pin code is invalid and customer must be asked to try again<td>\n    </tr>\n  </tbody>\n</table>\n",
+    "description" : "\n![Logo](https://raw.githubusercontent.com/credy/api-v3-docs/master/assets/img/logo.png)\n\n# Introduction \n\nCredy is a company that specializes on the quality lead generation. \n\nThis document further describes how to integrate API to receive leads from Credy.\n\nShould you have any questions, please do not hesitate to contact the IT manager at [it@credy.eu](mailto:it@credy.eu).\n\n## General information\n\nEach api request is signed. Signature consists of api_key, timestamp and hash.\n\nHash is a SHA1 hash of the concatenation of timestamp, api_key and secret_key. \n\n*ex. sha1(timestamp + apiKey + secretKey)*\n\nAPI key and secret key will be assigned to you by Credy. \n\nAPI supports post fields and JSON. \n\n## Lead registration flow\n\n1. Request is sent to https://www.your-site.com/your-url/receiveLead\n\n2. API expects instant response: \n* If response status is ‘pin_verify’ (optional), customer will be asked for pin code\n* If response status is ‘accepted’, lead will be marked as accepted. Customer will be redirected to your provided url if ‘landing_page_uri’ field exists in response\n\n![](https://raw.githubusercontent.com/credy/api-v3-docs/master/lenders/assets/img/flow.png)\n\n# Expected responses for receiveLead & checkPin methods\n\nExpected responses have following fields.\n\n<table>\n  <thead>\n    <tr>\n      <td>Field<td>\n      <td>Validations<td>\n      <td>Description<td>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>status<td>\n      <td>Required For possible values please see Addendum B<td>\n      <td>application status<td>\n    </tr>\n    <tr>\n      <td>reason<td>\n      <td>Required when status == invalid_params Free text<td>\n      <td>additional explanation to status field<td>\n    </tr>\n    <tr>\n      <td>external_lead_id<td>\n      <td>Optional<td>\n      <td>application identifier in your system<td>\n    </tr>\n    <tr>\n      <td>landing_page_uri<td>\n      <td>Optional<td>\n      <td>landing page url, should be filled when redirection to your page is necessary<td>\n    </tr>\n    <tr>\n      <td>password<td>\n      <td>Optional<td>\n      <td>  if password is generated in your system and TC needs to show it to customer<td>\n    </tr>\n  </tbody>\n</table>\n\n# Addendum B - Response ENUMs\n\n<table>\n  <thead>\n    <tr>\n      <td>value<td>\n      <td>description<td>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>accepted<td>\n      <td>loan application is accepted by api<td>\n    </tr>\n    <tr>\n      <td>duplicate<td>\n      <td>customer already exists in the system<td>\n    </tr>\n    <tr>\n      <td>invalid_params<td>\n      <td>request contains ivalid parameters<td>\n    </tr>\n    <tr>\n      <td>rejected<td>\n      <td>application rejected<td>\n    </tr>\n    <tr>\n      <td>pin_verify<td>\n      <td>pin code is sent to customer, TC system should verify pin with /checkPin method<td>\n    </tr>\n    <tr>\n      <td>pin_invalid (only for /checkPin method)<td>\n      <td>indicates that pin code is invalid and customer must be asked to try again<td>\n    </tr>\n  </tbody>\n</table>\n",
     "version" : "1.0.0",
     "title" : "Mexico lenders API",
     "contact" : {
@@ -162,7 +162,7 @@
     "schemas" : {
       "CheckPinBody" : {
         "type" : "object",
-        "required" : [ "pin", "phone", "uuid", "external_lead_id" ],
+        "required" : [ "pin", "phone", "uuid", "external_lead_id", "signature" ],
         "properties" : {
           "pin" : {
             "type" : "string",
@@ -179,6 +179,9 @@
           "external_lead_id" : {
             "type" : "string",
             "example" : "cb5c7696-1233-11e8-b217-8b15c630db00"
+          },
+          "signature" : {
+            "$ref" : "#/components/schemas/Signature"
           }
         }
       },
@@ -193,12 +196,15 @@
           },
           "agreements" : {
             "$ref" : "#/components/schemas/Agreements"
+          },
+          "signature" : {
+            "$ref" : "#/components/schemas/Signature"
           }
         }
       },
       "Customer" : {
         "type" : "object",
-        "required" : [ "first_name", "last_name", "second_last_name", "nationality", "password", "email", "personal_id", "bank_account", "phone", "address", "occupation", "neto_income", "tax_id_number", "has_carloan", "has_mortgage", "agreements", "employer", "employed_since", "has_loan" ],
+        "required" : [ "first_name", "last_name", "second_last_name", "nationality", "password", "email", "personal_id", "bank_account", "phone", "address", "occupation", "neto_income", "tax_id_number", "has_carloan", "has_mortgage", "agreements", "employer", "employed_since", "has_loan", "signature" ],
         "properties" : {
           "first_name" : {
             "type" : "string",
@@ -323,6 +329,28 @@
             "type" : "string",
             "example" : "PURCHASE_OF_FOOD",
             "enum" : [ "PURCHASE_OF_FOOD", "BUYING_ELECTRONICS", "CREATE_CREDIT_HISTORY", "SCHOOL_EXPENSES", "UNFORESEEN_EXPENSE", "MEDICAL_EXPENSES", "MAINTENANCE_OR_REPAIR_OF_HOUSE", "PAY_ANOTHER_LOAN", "PAYMENT_OF_SERVICES", "FOR_MY_BUSINESS", "TRAVEL", "OTHER" ]
+          }
+        }
+      },
+      "Signature" : {
+        "type" : "object",
+        "required" : [ "timestamp", "api_key", "hash" ],
+        "properties" : {
+          "timestamp" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "unix timestamp, must be UTC +/- 60 seconds",
+            "example" : 1529480561
+          },
+          "api_key" : {
+            "type" : "string",
+            "description" : "API key",
+            "example" : "22194038-bbf6-4be2-a5d5-d54e617e1297"
+          },
+          "hash" : {
+            "type" : "string",
+            "description" : "sha1 concatenation of timestamp, api key and secret key",
+            "example" : "051d1de34995444d44ab344e62e5775727f10f36"
           }
         }
       },
