@@ -255,7 +255,7 @@
         }
       },
       "Lead" : {
-        "required" : [ "ip_address", "loan_period", "loan_sum", "signature" ],
+        "required" : [ "ip_address", "loan_period", "loan_sum" ],
         "type" : "object",
         "properties" : {
           "loan_sum" : {
