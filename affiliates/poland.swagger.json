@@ -234,28 +234,6 @@
           }
         }
       },
-      "Signature" : {
-        "type" : "object",
-        "required" : [ "timestamp", "api_key", "hash" ],
-        "properties" : {
-          "timestamp" : {
-            "type" : "integer",
-            "format" : "int32",
-            "description" : "unix timestamp, must be UTC +/- 60 seconds",
-            "example" : 1529480561
-          },
-          "api_key" : {
-            "type" : "string",
-            "description" : "API key",
-            "example" : "22194038-bbf6-4be2-a5d5-d54e617e1297"
-          },
-          "hash" : {
-            "type" : "string",
-            "description" : "sha1 concatenation of timestamp, api key and secret key",
-            "example" : "051d1de34995444d44ab344e62e5775727f10f36"
-          }
-        }
-      },
       "Agreements" : {
         "type" : "object",
         "required" : [ "data_proccessing_policy", "terms_of_service" ],
@@ -272,7 +250,7 @@
       },
       "Customer" : {
         "type" : "object",
-        "required" : [ "first_name", "last_name", "personal_id", "id_card_number", "marital_status", "bank_account", "education", "car", "email", "phone", "address", "lives_at_registered_address", "contact_person_address", "housing_type", "occupation", "neto_income", "monthly_expenses", "employer_address", "agreements", "signature" ],
+        "required" : [ "first_name", "last_name", "personal_id", "id_card_number", "marital_status", "bank_account", "education", "car", "email", "phone", "address", "lives_at_registered_address", "contact_person_address", "housing_type", "occupation", "neto_income", "monthly_expenses", "employer_address", "agreements" ],
         "properties" : {
           "first_name" : {
             "type" : "string",
@@ -400,9 +378,6 @@
           },
           "agreements" : {
             "$ref" : "#/components/schemas/Agreements"
-          },
-          "signature" : {
-            "$ref" : "#/components/schemas/Signature"
           }
         },
         "xml" : {
@@ -411,7 +386,7 @@
       },
       "Lead" : {
         "type" : "object",
-        "required" : [ "loan_sum", "loan_period", "ip_address", "signature" ],
+        "required" : [ "loan_sum", "loan_period", "ip_address" ],
         "properties" : {
           "loan_sum" : {
             "type" : "integer",
@@ -438,9 +413,6 @@
             "type": "string",
             "description": "Affiliate's application identifier. (can be used for tracking purposes for example)",
             "example": "Jfds45jijgfds46t"
-          },
-          "signature" : {
-            "$ref" : "#/components/schemas/Signature"
           }
         },
         "xml" : {

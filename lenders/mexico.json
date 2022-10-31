@@ -204,7 +204,7 @@
       },
       "Customer" : {
         "type" : "object",
-        "required" : [ "first_name", "last_name", "second_last_name", "nationality", "password", "email", "personal_id", "bank_account", "phone", "address", "occupation", "neto_income", "tax_id_number", "has_carloan", "has_mortgage", "agreements", "signature", "employer", "employed_since", "has_loan" ],
+        "required" : [ "first_name", "last_name", "second_last_name", "nationality", "password", "email", "personal_id", "bank_account", "phone", "address", "occupation", "neto_income", "tax_id_number", "has_carloan", "has_mortgage", "agreements", "employer", "employed_since", "has_loan", "signature" ],
         "properties" : {
           "first_name" : {
             "type" : "string",

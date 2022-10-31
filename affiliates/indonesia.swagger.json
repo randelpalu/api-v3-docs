@@ -6,7 +6,7 @@
     "contact" : {
       "email" : "it@credy.eu"
     },
-    "description" : "# Introduction \n\nCredy is a company that specializes on the quality lead generation. \\\nThis document further describes how to integrate API to send leads to Credy.\\\nIf you have any questions, please do not hesitate to contact the IT manager at [it@credy.eu](mailto:it@credy.eu).\n\n## General information\n\nProduction URL: [https://api.credy.eu/v3/](https://api.credy.eu/v3/)\n\nStaging URL: [http://api.staging.credy.eu/v3/](http://api.staging.credy.eu/v3/)\n\nAPI supports post fields, XML and JSON.\n\nTo get response error messages in Indonesian, \"Accept-Language\" header’s value must be set to according ISO code. Ex: `id` or `id-ID`.\n\n## Signing requests\nEach request must be signed. Signature consists of api_key, timestamp and hash.\n\nHash is a SHA1 hash of the concatenation of timestamp, api_key and secret_key.\n\nAllowed deviation for timestamp is UTC +/- 60 seconds.\n\n*ex. sha1(timestamp + apiKey + secretKey)*\n\nApi key and secret key will be assigned to you by Credy.\n\n## Lead registration flow\n\n1. Request is sent to /v3/customers\n\n2. If request is successful, customer uuid must be stored\n\n3. Request is sent to /v3/leads with previously stored customer uuid in query parameter \"customer\" *ex. /v3/leads?customer=a3ff7c20-e9e8-43a0-bfb7-71a5cf43b8d3* \n4. When the lead is accepted by api (under_investigation is received from POST lead), please redirect the customer to [https://www.credy.co.id/loading/?lead={UUID}](https://www.credy.co.id/loading/?lead={UUID}) (where {UUID} is replaced by the uuid that you receive from POST lead)\n"
+    "description" : "# Introduction \n\nCredy is a company that specializes on the quality lead generation. \\\nThis document further describes how to integrate API to send leads to Credy.\\\nIf you have any questions, please do not hesitate to contact the IT manager at [it@credy.eu](mailto:it@credy.eu).\n\n## General information\n\nProduction URL: [https://api.credy.eu/v3/](https://api.credy.eu/v3/)\n\nStaging URL: [http://api.staging.credy.eu/v3/](http://api.staging.credy.eu/v3/)\n\nAPI supports post fields, XML and JSON.\n\nTo get response error messages in Indonesian, \"Accept-Language\" header’s value must be set to according ISO code. Ex: `id` or `id-ID`.\n\n## Authorization\nAuthorization is performed with OAuth 2.0 Client Credentials Grant.\nWhen requesting token, the client key and secret key must be sent in request body.\nClient key and secret key will be assigned to you by Credy.\nThe requests to api must be authenticated with [bearer token](https://tools.ietf.org/html/rfc6749#section-7.1).\n\n## Lead registration flow\n\n1. Request is sent to /v3/customers\n\n2. If request is successful, customer uuid must be stored\n\n3. Request is sent to /v3/leads with previously stored customer uuid in query parameter \"customer\" *ex. /v3/leads?customer=a3ff7c20-e9e8-43a0-bfb7-71a5cf43b8d3* \n4. When the lead is accepted by api (under_investigation is received from POST lead), please redirect the customer to [https://www.credy.co.id/loading/?lead={UUID}](https://www.credy.co.id/loading/?lead={UUID}) (where {UUID} is replaced by the uuid that you receive from POST lead)\n"
   },
   "servers" : [ {
     "url" : "http://api.staging.credy.eu/v3",
@@ -238,31 +238,9 @@
           }
         }
       },
-      "Signature" : {
-        "type" : "object",
-        "required" : [ "timestamp", "api_key", "hash" ],
-        "properties" : {
-          "timestamp" : {
-            "type" : "integer",
-            "format" : "int32",
-            "description" : "unix timestamp, must be UTC +/- 60 seconds",
-            "example" : 1529480561
-          },
-          "api_key" : {
-            "type" : "string",
-            "description" : "API key",
-            "example" : "22194038-bbf6-4be2-a5d5-d54e617e1297"
-          },
-          "hash" : {
-            "type" : "string",
-            "description" : "sha1 concatenation of timestamp, api key and secret key",
-            "example" : "051d1de34995444d44ab344e62e5775727f10f36"
-          }
-        }
-      },
       "Customer" : {
         "type" : "object",
-        "required" : [ "first_name", "last_name", "email", "phone", "personal_id", "mother_first_name", "mother_last_name", "religion", "nationality", "marital_status", "dependant_count", "education", "housing_type", "monthly_expenses", "monthly_utility_expenses", "address", "lives_at_registered_address", "tax_id_number", "contact_person_address", "contact_person_first_name", "contact_person_last_name", "contact_person_phone", "occupation", "neto_income", "bank_name", "bank_account", "signature" ],
+        "required" : [ "first_name", "last_name", "email", "phone", "personal_id", "mother_first_name", "mother_last_name", "religion", "nationality", "marital_status", "dependant_count", "education", "housing_type", "monthly_expenses", "monthly_utility_expenses", "address", "lives_at_registered_address", "tax_id_number", "contact_person_address", "contact_person_first_name", "contact_person_last_name", "contact_person_phone", "occupation", "neto_income", "bank_name", "bank_account" ],
         "properties" : {
           "first_name" : {
             "type" : "string",
@@ -416,9 +394,6 @@
           "bank_account" : {
             "type" : "string",
             "example" : "713628383809668961473395297260"
-          },
-          "signature" : {
-            "$ref" : "#/components/schemas/Signature"
           }
         },
         "xml" : {
@@ -427,7 +402,7 @@
       },
       "Lead" : {
         "type" : "object",
-        "required" : [ "loan_sum", "loan_period", "ip_address", "loan_purpose", "signature" ],
+        "required" : [ "loan_sum", "loan_period", "ip_address", "loan_purpose" ],
         "properties" : {
           "loan_sum" : {
             "type" : "integer",
@@ -454,9 +429,6 @@
             "type": "string",
             "description": "Affiliate's application identifier. (can be used for tracking purposes for example)",
             "example": "Jfds45jijgfds46t"
-          },
-          "signature" : {
-            "$ref" : "#/components/schemas/Signature"
           }
         },
         "xml" : {
