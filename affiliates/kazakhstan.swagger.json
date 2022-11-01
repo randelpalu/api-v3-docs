@@ -448,8 +448,8 @@
           "format" : "string"
         },
         "required" : false,
-        "description" : "To get response error messages in Kazakhstan, header’s value must be set to according ISO code. Ex: `ka`.",
-        "example" : "ka"
+        "description" : "To get response error messages in Kazakhstan, header’s value must be set to according ISO code. Ex: `kz`.",
+        "example" : "kz"
       },
       "CustomerUuid" : {
         "name" : "customer",
