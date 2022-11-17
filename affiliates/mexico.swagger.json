@@ -267,7 +267,7 @@
             "example" : "1"
           },
           "flat_number" : {
-            "type" : "string",
+            "type" : "integer",
             "description" : "",
             "example" : "4"
           },
