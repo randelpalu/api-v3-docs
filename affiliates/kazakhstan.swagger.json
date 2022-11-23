@@ -276,7 +276,7 @@
     "schemas" : {
       "Customer" : {
         "type" : "object",
-        "required" : [ "first_name", "second_first_name", "last_name", "email", "phone", "personal_id" ],
+        "required" : [ "agreements", "first_name", "second_first_name", "last_name", "email", "phone", "personal_id" ],
         "properties" : {
           "first_name" : {
             "type" : "string",
@@ -301,10 +301,25 @@
           "personal_id" : {
             "type" : "string",
             "example" : "600409317975"
+          },
+          "agreements" : {
+            "$ref" : "#/components/schemas/Agreements"
           }
         },
         "xml" : {
           "name" : "request"
+        }
+      },
+      "Agreements" : {
+        "required" : [ "data_proccessing_policy", "terms_of_service" ],
+        "type" : "object",
+        "properties" : {
+          "data_proccessing_policy" : {
+            "type" : "boolean"
+          },
+          "terms_of_service" : {
+            "type" : "boolean"
+          }
         }
       },
       "Lead" : {
