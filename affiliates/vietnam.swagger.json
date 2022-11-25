@@ -213,6 +213,12 @@
     },
     "schemas" : {
       "Agreements" : {
+        "type" : "object",
+        "additionalProperties" : {
+          "$ref" : "#/components/schemas/Agreement"
+        }
+      },
+      "Agreement" : {
         "required" : [ "terms_of_service" ],
         "type" : "object",
         "properties" : {

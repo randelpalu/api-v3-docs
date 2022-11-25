@@ -311,6 +311,12 @@
         }
       },
       "Agreements" : {
+        "type" : "object",
+        "additionalProperties" : {
+          "$ref" : "#/components/schemas/Agreement"
+        }
+      },
+      "Agreement" : {
         "required" : [ "data_proccessing_policy", "terms_of_service" ],
         "type" : "object",
         "properties" : {
