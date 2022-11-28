@@ -245,6 +245,7 @@
       },
       "Agreements" : {
         "type" : "object",
+        "required" : true,
         "additionalProperties" : {
           "$ref" : "#/components/schemas/Agreement"
         },
