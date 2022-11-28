@@ -278,21 +278,13 @@
       },
       "Agreements" : {
         "type" : "object",
+        "required" : true,
         "additionalProperties" : {
           "$ref" : "#/components/schemas/Agreement"
         }
       },
       "Agreement" : {
-        "required" : [ "data_proccessing_policy", "terms_of_service" ],
-        "type" : "object",
-        "properties" : {
-          "data_proccessing_policy" : {
-            "type" : "boolean"
-          },
-          "terms_of_service" : {
-            "type" : "boolean"
-          }
-        }
+        "type" : "boolean"
       },
       "Customer" : {
         "required" : [ "first_name", "last_name", "email", "personal_id", "phone", "phone_plan", "second_last_name", "address", "birth_date", "gender", "marital_status", "bank_account", "nationality", "occupation", "neto_income", "remuneration_deadline", "monthly_expenses", "housing_type", "dependant_count", "agreements" ],

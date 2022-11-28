@@ -263,21 +263,13 @@
       },
       "Agreements" : {
         "type" : "object",
+        "required" : true,
         "additionalProperties" : {
           "$ref" : "#/components/schemas/Agreement"
         }
       },
       "Agreement" : {
-        "required" : [ "data_proccessing_policy", "terms_of_service" ],
-        "type" : "object",
-        "properties" : {
-          "data_proccessing_policy" : {
-            "type" : "boolean"
-          },
-          "terms_of_service" : {
-            "type" : "boolean"
-          }
-        }
+        "type" : "boolean"
       },
       "Customer" : {
         "required" : [ "address", "agreements", "email", "first_name", "last_name", "personal_id", "phone", "second_first_name" ],
