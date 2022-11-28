@@ -281,6 +281,10 @@
         "required" : true,
         "additionalProperties" : {
           "$ref" : "#/components/schemas/Agreement"
+        },
+        "example" : {
+          "terms_of_service" : true,
+          "data_proccessing_policy" : true
         }
       },
       "Agreement" : {
