@@ -214,7 +214,7 @@
     "schemas" : {
       "Agreements" : {
         "type" : "object",
-        "required" : true,
+        "required" : [ "terms_of_service" ],
         "additionalProperties" : {
           "$ref" : "#/components/schemas/Agreement"
         },

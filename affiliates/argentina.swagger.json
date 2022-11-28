@@ -271,7 +271,7 @@
         },
         "Agreements" : {
           "type" : "object",
-          "required" : true,
+          "required" : [ "terms_of_service", "data_proccessing_policy" ],
           "additionalProperties" : {
             "$ref" : "#/components/schemas/Agreement"
           },
