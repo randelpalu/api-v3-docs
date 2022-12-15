@@ -236,17 +236,16 @@
       },
       "Agreements" : {
         "type" : "object",
-        "required" : [ "data_proccessing_policy", "terms_of_service" ],
-        "properties" : {
-          "data_proccessing_policy" : {
-            "type" : "boolean",
-            "example" : true
-          },
-          "terms_of_service" : {
-            "type" : "boolean",
-            "example" : true
-          }
+        "additionalProperties" : {
+          "$ref" : "#/components/schemas/Agreement"
+        },
+        "example" : {
+          "terms_of_service" : true,
+          "data_proccessing_policy" : true
         }
+      },
+      "Agreement" : {
+        "type" : "boolean"
       },
       "Customer" : {
         "type" : "object",
