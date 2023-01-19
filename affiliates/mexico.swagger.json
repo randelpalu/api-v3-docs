@@ -440,6 +440,7 @@
           },
           "car" : {
             "type" : "string",
+            "description" : "Required if product === PAYDAY",
             "example" : "YES",
             "enum" : [ "YES", "NO" ]
           },
