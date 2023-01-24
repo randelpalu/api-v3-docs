@@ -304,7 +304,7 @@
         "type" : "boolean"
       },
       "Customer" : {
-        "required" : [ "first_name", "last_name", "second_last_name", "email", "personal_id", "tax_id_number", "phone", "phone_plan", "address", "birth_date", "gender", "marital_status", "bank_account", "nationality", "occupation", "neto_income", "remuneration_deadline", "monthly_expenses", "housing_type", "employed_since", "dependant_count", "employer", "employer_phone", "agreements", "credit_score", "has_loan" ],
+        "required" : [ "first_name", "last_name", "second_last_name", "email", "personal_id", "tax_id_number", "phone", "phone_plan", "address", "birth_date", "gender", "marital_status", "bank_account", "nationality", "occupation", "neto_income", "remuneration_deadline", "monthly_expenses", "housing_type", "employed_since", "dependant_count", "employer", "employer_phone", "agreements", "credit_score", "has_loan", "car" ],
         "type" : "object",
         "properties" : {
           "first_name" : {
@@ -438,6 +438,12 @@
             "type": "boolean",
             "description": "Required when `credit_score` = DONT_KNOW",
             "example": true
+          },
+          "car" : {
+            "type" : "string",
+            "description" : "Required if product === PAYDAY",
+            "example" : "YES",
+            "enum" : [ "YES", "NO" ]
           },
           "agreements" : {
             "$ref" : "#/components/schemas/Agreements"
