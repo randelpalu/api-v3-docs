@@ -211,11 +211,13 @@
         "properties" : {
           "first_name" : {
             "type" : "string",
-            "example" : "Cristian"
+            "example" : "Cristian",
+            "maxLength": 255
           },
           "last_name" : {
             "type" : "string",
-            "example" : "Posada"
+            "example" : "Posada",
+            "maxLength": 255
           },
           "second_last_name" : {
             "type" : "string",
@@ -475,23 +477,28 @@
           "postal_code" : {
             "type" : "string",
             "example" : "63068",
-            "description" : "Format: /^[0-9]{5}$/"
+            "description" : "Format: /^[0-9]{5}$/",
+            "maxLength": 45
           },
           "city" : {
             "type" : "string",
-            "example" : "Estradaland"
+            "example" : "Estradaland",
+            "maxLength": 45
           },
           "street" : {
             "type" : "string",
-            "example" : "4670 Cárave Forge"
+            "example" : "4670 Cárave Forge",
+            "maxLength": 45
           },
           "house_number" : {
             "type" : "string",
-            "example" : "11"
+            "example" : "11",
+            "maxLength": 45
           },
           "flat_number" : {
             "type" : "string",
-            "example" : "4"
+            "example" : "4",
+            "maxLength": 255
           }
         }
       },

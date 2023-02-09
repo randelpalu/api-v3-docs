@@ -280,7 +280,8 @@
         "properties" : {
           "first_name" : {
             "type" : "string",
-            "example" : "Үрия"
+            "example" : "Үрия",
+            "maxLength": 255
           },
           "second_first_name" : {
             "type" : "string",
@@ -288,7 +289,8 @@
           },
           "last_name" : {
             "type" : "string",
-            "example" : "Ділдабек"
+            "example" : "Ділдабек",
+            "maxLength": 255
           },
           "email" : {
             "type" : "string",

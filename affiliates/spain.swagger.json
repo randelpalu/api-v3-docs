@@ -252,27 +252,32 @@
           "postal_code" : {
             "type" : "string",
             "description" : "Format: /^(0[1-9]|[1-4][0-9]|5[0-2])[\\-]{0,1}\\d{3}$/",
-            "example" : 38627
+            "example" : 38627,
+            "maxLength": 45
           },
           "city" : {
             "type" : "string",
             "description" : "Format: /^[a-záéèíñóúüç[:space:]-']+$/ui",
-            "example" : "La Camella"
+            "example" : "La Camella",
+            "maxLength": 45
           },
           "street" : {
             "type" : "string",
             "description" : "Format: /^[a-záéèíñóúüç[:space:]-']+$/ui",
-            "example" : "Ruela Armenta"
+            "example" : "Ruela Armenta",
+            "maxLength": 45
           },
           "house_number" : {
             "type" : "string",
             "description" : "Format: /^\\d+[a-záéèíñóúüç]?$/ui",
-            "example" : "1"
+            "example" : "1",
+            "maxLength": 45
           },
           "flat_number" : {
             "type" : "string",
             "description" : "",
-            "example" : "4"
+            "example" : "4",
+            "maxLength": 255
           }
         }
       },
@@ -295,12 +300,14 @@
           "first_name" : {
             "type" : "string",
             "description" : "Format: /^[a-záéèíñóúüç[:space:]-']+$/ui",
-            "example" : "Erik"
+            "example" : "Erik",
+            "maxLength": 255
           },
           "last_name" : {
             "type" : "string",
             "description" : "Format: /^[a-záéèíñóúüç[:space:]-']+$/ui",
-            "example" : "Armenta"
+            "example" : "Armenta",
+            "maxLength": 255
           },
           "second_last_name" : {
             "type" : "string",

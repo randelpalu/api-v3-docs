@@ -257,7 +257,9 @@
         "properties" : {
           "city" : {
             "type" : "string",
-            "example" : "Чернігів"
+            "description" : "Format: /^[a-zбгґджзклмнпрстфхцчшщаеєиіїоуюяйвь\\s\\-]+$/u",
+            "example" : "Чернігів",
+            "maxLength": 45
           }
         }
       },
@@ -279,7 +281,8 @@
         "properties" : {
           "first_name" : {
             "type" : "string",
-            "example" : "Володимир"
+            "example" : "Володимир",
+            "maxLength": 255
           },
           "second_first_name" : {
             "type" : "string",
@@ -287,7 +290,8 @@
           },
           "last_name" : {
             "type" : "string",
-            "example" : "Петренко"
+            "example" : "Петренко",
+            "maxLength": 255
           },
           "personal_id" : {
             "type" : "string",

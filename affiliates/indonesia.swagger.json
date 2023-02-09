@@ -178,20 +178,24 @@
         "properties" : {
           "city" : {
             "type" : "string",
-            "example" : "Sukabumi"
+            "example" : "Sukabumi",
+            "maxLength": 45
           },
           "street" : {
             "type" : "string",
-            "example" : "Halim"
+            "example" : "Halim",
+            "maxLength": 45
           },
           "house_number" : {
             "type" : "string",
-            "example" : "11"
+            "example" : "11",
+            "maxLength": 45
           },
           "postal_code" : {
             "type" : "string",
             "description" : "Format: /^[0-9]{5}$/",
-            "example" : "67008"
+            "example" : "67008",
+            "maxLength": 45
           },
           "village" : {
             "type" : "string",
@@ -221,11 +225,13 @@
         "properties" : {
           "city" : {
             "type" : "string",
-            "example" : "Sukabumi"
+            "example" : "Sukabumi",
+            "maxLength": 45
           },
           "street" : {
             "type" : "string",
-            "example" : "Halim"
+            "example" : "Halim",
+            "maxLength": 255
           },
           "house_number" : {
             "type" : "string",
@@ -234,7 +240,8 @@
           "postal_code" : {
             "type" : "string",
             "description" : "Format: /^[0-9]{5}$/",
-            "example" : "67008"
+            "example" : "67008",
+            "maxLength": 255
           }
         }
       },
@@ -244,11 +251,13 @@
         "properties" : {
           "first_name" : {
             "type" : "string",
-            "example" : "Maman"
+            "example" : "Maman",
+            "maxLength": 255
           },
           "last_name" : {
             "type" : "string",
-            "example" : "Hardiansyah"
+            "example" : "Hardiansyah",
+            "maxLength": 255
           },
           "email" : {
             "type" : "string",
@@ -301,7 +310,8 @@
           },
           "nationality" : {
             "type" : "string",
-            "example" : "Taiwan"
+            "example" : "Taiwan",
+            "maxLength": 45
           },
           "marital_status" : {
             "type" : "string",
@@ -348,20 +358,24 @@
             "description" : "required when `occupation` is in:\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- WRITTEN_CONTRACT_OR_ORDER\n- MILITARY_POLICE\n"
           },
           "tax_id_number" : {
-            "type" : "string"
+            "type" : "string",
+            "description" : "Format: /^\\d{15}$/"
           },
           "employee_id" : {
             "type" : "string",
-            "description" : "required when `occupation` is in:\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- WRITTEN_CONTRACT_OR_ORDER\n- MILITARY_POLICE\n"
+            "description" : "required when `occupation` is in:\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- WRITTEN_CONTRACT_OR_ORDER\n- MILITARY_POLICE\n",
+            "maxLength": 20
           },
           "employer" : {
             "type" : "string",
-            "description" : "required when `occupation` is in:\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- WRITTEN_CONTRACT_OR_ORDER\n- MILITARY_POLICE\n"
+            "description" : "required when `occupation` is in:\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- WRITTEN_CONTRACT_OR_ORDER\n- MILITARY_POLICE\n",
+            "maxLength": 45
           },
           "current_job_position" : {
             "type" : "string",
             "description" : "required when `occupation` is in:\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- WRITTEN_CONTRACT_OR_ORDER\n- MILITARY_POLICE        \n",
-            "enum" : [ "CONTRACT", "STAFF", "SUPERVISOR", "JUNIOR_MANAGEMENT", "MIDDLE_MANAGEMENT", "SENIOR_MANAGEMENT" ]
+            "enum" : [ "CONTRACT", "STAFF", "SUPERVISOR", "JUNIOR_MANAGEMENT", "MIDDLE_MANAGEMENT", "SENIOR_MANAGEMENT" ],
+            "maxLength": 45
           },
           "contact_person_address" : {
             "$ref" : "#/components/schemas/ContactAddress"

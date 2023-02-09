@@ -179,27 +179,32 @@
           "postal_code" : {
             "type" : "string",
             "description" : "Format: /^[0-9]{2}[-\\s]*[0-9]{3}$/u",
-            "example" : "67-008"
+            "example" : "67-008",
+            "maxLength": 45
           },
           "city" : {
             "type" : "string",
             "example" : "Katowice",
-            "description" : "Format: /^[\\wĄĆĘŁŃÓŚŹŻąćęłńóśźż\\s-]+$/u"
+            "description" : "Format: /^[\\wĄĆĘŁŃÓŚŹŻąćęłńóśźż\\s-]+$/u",
+            "maxLength": 45
           },
           "street" : {
             "type" : "string",
             "example" : "Szarych Szeregów",
-            "description" : "Format: /^[\\wĄĆĘŁŃÓŚŹŻąćęłńóśźż\\s-\\/.]+$/u"
+            "description" : "Format: /^[\\wĄĆĘŁŃÓŚŹŻąćęłńóśźż\\s-\\/.]+$/u",
+            "maxLength": 45
           },
           "house_number" : {
             "type" : "string",
             "example" : "11",
-            "description" : "Format: /^[0-9]+[A-ZĄĆĘŁŃÓŚŹŻ]?$/u"
+            "description" : "Format: /^[0-9]+[A-ZĄĆĘŁŃÓŚŹŻ]?$/u",
+            "maxLength": 45
           },
           "flat_number" : {
             "type" : "string",
             "example" : "4",
-            "description" : "Format: /^[0-9]+[A-ZĄĆĘŁŃÓŚŹŻ]?$/u"
+            "description" : "Format: /^[0-9]+[A-ZĄĆĘŁŃÓŚŹŻ]?$/u",
+            "maxLength": 255
           }
         }
       },
@@ -210,17 +215,20 @@
           "postal_code" : {
             "type" : "string",
             "description" : "Format: /^[0-9]{2}[-\\s]*[0-9]{3}$/u",
-            "example" : "67-008"
+            "example" : "67-008",
+            "maxLength": 255
           },
           "city" : {
             "type" : "string",
             "example" : "Katowice",
-            "description" : "Format: /^[\\wĄĆĘŁŃÓŚŹŻąćęłńóśźż\\s-]+$/u"
+            "description" : "Format: /^[\\wĄĆĘŁŃÓŚŹŻąćęłńóśźż\\s-]+$/u",
+            "maxLength": 45
           },
           "street" : {
             "type" : "string",
             "example" : "Szarych Szeregów",
-            "description" : "Format: /^[\\wĄĆĘŁŃÓŚŹŻąćęłńóśźż\\s-\\/.]+$/u"
+            "description" : "Format: /^[\\wĄĆĘŁŃÓŚŹŻąćęłńóśźż\\s-\\/.]+$/u",
+            "maxLength": 255
           },
           "house_number" : {
             "type" : "string",
@@ -230,7 +238,8 @@
           "flat_number" : {
             "type" : "string",
             "example" : "4",
-            "description" : "Format: /^[0-9]+[A-ZĄĆĘŁŃÓŚŹŻ]?$/u"
+            "description" : "Format: /^[0-9]+[A-ZĄĆĘŁŃÓŚŹŻ]?$/u",
+            "maxLength": 255
           }
         }
       },
@@ -255,12 +264,14 @@
           "first_name" : {
             "type" : "string",
             "example" : "Klara",
-            "description" : "Format: /^([A-Za-zĄĆĘŁŃÓŚŹŻąćęłńóśźż]+[\\s-]?)+$/u"
+            "description" : "Format: /^([A-Za-zĄĆĘŁŃÓŚŹŻąćęłńóśźż]+[\\s-]?)+$/u",
+            "maxLength": 255
           },
           "last_name" : {
             "type" : "string",
             "example" : "Cieślak",
-            "description" : "Format: /^([A-Za-zĄĆĘŁŃÓŚŹŻąćęłńóśźż]+[\\s-]?)+$/u"
+            "description" : "Format: /^([A-Za-zĄĆĘŁŃÓŚŹŻąćęłńóśźż]+[\\s-]?)+$/u",
+            "maxLength": 255
           },
           "personal_id" : {
             "type" : "string",
@@ -342,11 +353,13 @@
           },
           "employer" : {
             "type" : "string",
-            "description" : "required when `occupation` is in:\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- WRITTEN_CONTRACT_OR_ORDER\n"
+            "description" : "required when `occupation` is in:\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- WRITTEN_CONTRACT_OR_ORDER\n",
+            "maxLength": 45
           },
           "current_job_position" : {
             "type" : "string",
-            "description" : "required when `occupation` is in:\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- WRITTEN_CONTRACT_OR_ORDER\n"
+            "description" : "required when `occupation` is in:\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- WRITTEN_CONTRACT_OR_ORDER\n",
+            "maxLength": 45
           },
           "employer_phone" : {
             "type" : "string",
@@ -370,11 +383,12 @@
           },
           "university_name" : {
             "type" : "string",
-            "description" : "required when `occupation` is in:\n- OCCUPATION_STUDENT\n"
+            "description" : "required when `occupation` is in:\n- OCCUPATION_STUDENT\n",
+            "maxLength": 255
           },
           "university_city" : {
             "type" : "string",
-            "description" : "required when `occupation` is in:\n- OCCUPATION_STUDENT\n"
+            "description" : "Format: /^[0-9]{10}$/, required when `occupation` is in:\n- OCCUPATION_STUDENT\n"
           },
           "agreements" : {
             "$ref" : "#/components/schemas/Agreements"

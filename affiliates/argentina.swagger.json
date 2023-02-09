@@ -259,11 +259,13 @@
             "postal_code" : {
               "type" : "string",
               "description" : "Format: /^[A-Z]{1}[0-9]{4}$/",
-              "example" : "A1234"
+              "example" : "A1234",
+              "maxLength": 45
             },
             "city" : {
               "type" : "string",
-              "example" : "La Camella"
+              "example" : "La Camella",
+              "maxLength": 45
             }
           }
         },
@@ -285,11 +287,13 @@
           "properties" : {
             "first_name" : {
               "type" : "string",
-              "example" : "Cristian"
+              "example" : "Cristian",
+              "maxLength": 255
             },
             "last_name" : {
               "type" : "string",
-              "example" : "Posada"
+              "example" : "Posada",
+              "maxLength": 255
             },
             "second_last_name" : {
               "type" : "string",

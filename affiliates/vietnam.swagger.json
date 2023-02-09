@@ -227,11 +227,13 @@
         "properties" : {
           "first_name" : {
             "type" : "string",
-            "example" : "fhoa"
+            "example" : "fhoa",
+            "maxLength": 255
           },
           "last_name" : {
             "type" : "string",
-            "example" : "Lô"
+            "example" : "Lô",
+            "maxLength": 255
           },
           "personal_id" : {
             "type" : "string",

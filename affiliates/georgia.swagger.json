@@ -182,27 +182,32 @@
           "postal_code" : {
             "type" : "string",
             "example" : "6089",
-            "description" : "Postal code \\\nMust match regex: `/^\\d{4}$/` \n"
+            "description" : "Postal code \\\nMust match regex: `/^\\d{4}$/` \n",
+            "maxLength": 45
           },
           "city" : {
             "type" : "string",
             "example" : "ქალაქი ბოლნისი",
-            "description" : "City"
+            "description" : "City",
+            "maxLength": 45
           },
           "street" : {
             "type" : "string",
             "example" : "მაჭარაშვილი აღმართი",
-            "description" : "Street"
+            "description" : "Street",
+            "maxLength": 45
           },
           "house_number" : {
             "type" : "string",
             "example" : "11",
-            "description" : "House number \\\nMust match regex: `/^\\d+[\\p{Georgian}]{0,1}$/u` \n"
+            "description" : "House number \\\nMust match regex: `/^\\d+[\\p{Georgian}]{0,1}$/u` \n",
+            "maxLength": 45
           },
           "flat_number" : {
             "type" : "string",
             "description" : "Flat number \\\nMust be integer \n",
-            "example" : "68"
+            "example" : "68",
+            "maxLength": 255
           }
         }
       },
@@ -213,12 +218,14 @@
           "first_name" : {
             "type" : "string",
             "example" : "ნორა",
-            "description" : "First name of customer \\\nMust match regex: `/^[\\p{Georgian}[:space:]-]+$/u`\n"
+            "description" : "First name of customer \\\nMust match regex: `/^[\\p{Georgian}[:space:]-]+$/u`\n",
+            "maxLength": 255
           },
           "last_name" : {
             "type" : "string",
             "example" : "ახმედოვი",
-            "description" : "Last name of customer \\\nMust match regex: `/^[\\p{Georgian}[:space:]-]+$/u`\n"
+            "description" : "Last name of customer \\\nMust match regex: `/^[\\p{Georgian}[:space:]-]+$/u`\n",
+            "maxLength": 255
           },
           "email" : {
             "type" : "string",
