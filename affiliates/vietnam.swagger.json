@@ -213,13 +213,16 @@
     },
     "schemas" : {
       "Agreements" : {
-        "required" : [ "terms_of_service" ],
         "type" : "object",
-        "properties" : {
-          "terms_of_service" : {
-            "type" : "boolean"
-          }
+        "additionalProperties" : {
+          "$ref" : "#/components/schemas/Agreement"
+        },
+        "example" : {
+          "terms_of_service" : true
         }
+      },
+      "Agreement" : {
+        "type" : "boolean"
       },
       "Customer" : {
         "required" : [ "agreements", "email", "first_name", "last_name", "personal_id", "phone" ],

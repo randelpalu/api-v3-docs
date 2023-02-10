@@ -270,16 +270,17 @@
           }
         },
         "Agreements" : {
-          "required" : [ "data_proccessing_policy", "terms_of_service" ],
           "type" : "object",
-          "properties" : {
-            "data_proccessing_policy" : {
-              "type" : "boolean"
-            },
-            "terms_of_service" : {
-              "type" : "boolean"
-            }
+          "additionalProperties" : {
+            "$ref" : "#/components/schemas/Agreement"
+          },
+          "example" : {
+            "terms_of_service" : true,
+            "data_proccessing_policy" : true
           }
+        },
+        "Agreement" : {
+          "type" : "boolean"
         },
         "Customer" : {
           "required" : [ "address", "agreements", "birth_date", "credit_score", "email", "first_name", "gender", "has_loan", "last_name", "neto_income", "occupation", "personal_id", "phone", "second_last_name", "bank_account" ],

@@ -264,16 +264,17 @@
         }
       },
       "Agreements" : {
-        "required" : [ "data_proccessing_policy", "terms_of_service" ],
         "type" : "object",
-        "properties" : {
-          "data_proccessing_policy" : {
-            "type" : "boolean"
-          },
-          "terms_of_service" : {
-            "type" : "boolean"
-          }
+        "additionalProperties" : {
+          "$ref" : "#/components/schemas/Agreement"
+        },
+        "example" : {
+          "terms_of_service" : true,
+          "data_proccessing_policy" : true
         }
+      },
+      "Agreement" : {
+        "type" : "boolean"
       },
       "Customer" : {
         "required" : [ "address", "agreements", "email", "first_name", "last_name", "personal_id", "phone", "second_first_name" ],
