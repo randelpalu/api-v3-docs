@@ -179,11 +179,13 @@
           "city" : {
             "type" : "string",
             "example" : "San Santiagodel Penedès",
-            "description" : "Format: /^[a-záéèíñóúüç[:space:]\\-\\']+$/ui"
+            "description" : "Format: /^[a-záéèíñóúüç[:space:]\\-\\']+$/ui",
+            "maxLength": 45
           },
           "street" : {
             "type" : "string",
-            "example" : "Calle Díaz"
+            "example" : "Calle Díaz",
+            "maxLength": 45
           }
         }
       },
@@ -208,12 +210,14 @@
           "first_name" : {
             "type" : "string",
             "example" : "Emmanuel",
-            "description" : "Format: /^([a-záéèíñóúüç]+[\\s\\-\\']?)+$/ui"
+            "description" : "Format: /^([a-záéèíñóúüç]+[\\s\\-\\']?)+$/ui",
+            "maxLength": 255
           },
           "last_name" : {
             "type" : "string",
             "example" : "Sánchez",
-            "description" : "Format: /^([a-záéèíñóúüç]+[\\s\\-\\']?)+$/ui"
+            "description" : "Format: /^([a-záéèíñóúüç]+[\\s\\-\\']?)+$/ui",
+            "maxLength": 255
           },
           "second_last_name" : {
             "type" : "string",

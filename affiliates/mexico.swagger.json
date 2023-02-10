@@ -252,24 +252,29 @@
           "postal_code" : {
             "type" : "string",
             "description" : "Format: /^[0-9]{5}$/",
-            "example" : 38627
+            "example" : 38627,
+            "maxLength": 45
           },
           "city" : {
             "type" : "string",
-            "example" : "La Camella"
+            "example" : "La Camella",
+            "maxLength": 45
           },
           "street" : {
             "type" : "string",
-            "example" : "Ruela Armenta"
+            "example" : "Ruela Armenta",
+            "maxLength": 45
           },
           "house_number" : {
             "type" : "string",
-            "example" : "1"
+            "example" : "1",
+            "maxLength": 45
           },
           "flat_number" : {
             "type" : "integer",
             "description" : "",
-            "example" : "4"
+            "example" : "4",
+            "maxLength": 255
           },
           "region" : {
             "type" : "string",
@@ -286,7 +291,8 @@
           "colony" : {
             "type" : "string",
             "description" : "Required if product === CAR",
-            "example" : "Customer colony"
+            "example" : "Customer colony",
+            "maxLength": 255
           }
         }
       },
@@ -310,7 +316,8 @@
           "first_name" : {
             "type" : "string",
             "example" : "Enós",
-            "description" : "Format: /^[a-záéèíñóúüç[:space:]-']+$/ui"
+            "description" : "Format: /^[a-záéèíñóúüç[:space:]-']+$/ui",
+            "maxLength": 255
           },
           "second_first_name" : {
             "type" : "string",
@@ -320,7 +327,8 @@
           "last_name" : {
             "type" : "string",
             "example" : "Leones",
-            "description" : "Format: /^[a-záéèíñóúüç[:space:]-']+$/ui"
+            "description" : "Format: /^[a-záéèíñóúüç[:space:]-']+$/ui",
+            "maxLength": 255
           },
           "second_last_name" : {
             "type" : "string",
@@ -353,7 +361,9 @@
           },
           "bank_account" : {
             "type" : "string",
-            "example" : 3.0350429344682184E16
+            "example" : 3.0350429344682184E16,
+            "minLength": 18,
+            "maxLength": 18
           },
           "nationality" : {
             "type" : "string",

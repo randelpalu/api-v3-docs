@@ -208,12 +208,14 @@
         "properties" : {
           "first_name" : {
             "type" : "string",
-            "example" : "Olinta"
+            "example" : "Olinta",
+            "maxLength": 255
           },
           "last_name" : {
             "type" : "string",
             "example" : "Junious",
-            "description" : "Father's last name"
+            "description" : "Father's last name",
+            "maxLength": 255
           },
           "second_last_name" : {
             "type" : "string",
@@ -241,7 +243,9 @@
           },
           "bank_account" : {
             "type" : "string",
-            "example" : "901796146512874842"
+            "example" : "901796146512874842",
+            "minLength": 18,
+            "maxLength": 18
           },
           "phone" : {
             "type" : "string",
@@ -375,23 +379,28 @@
           "postal_code" : {
             "type" : "string",
             "example" : "63068",
-            "description" : "Format: /^[0-9]{5}$/"
+            "description" : "Format: /^[0-9]{5}$/",
+            "maxLength": 45
           },
           "city" : {
             "type" : "string",
-            "example" : "Estradaland"
+            "example" : "Estradaland",
+            "maxLength": 45
           },
           "street" : {
             "type" : "string",
-            "example" : "4670 Cárave Forge"
+            "example" : "4670 Cárave Forge",
+            "maxLength": 45
           },
           "house_number" : {
             "type" : "string",
-            "example" : "11"
+            "example" : "11",
+            "maxLength": 45
           },
           "flat_number" : {
             "type" : "string",
-            "example" : "4"
+            "example" : "4",
+            "maxLength": 255
           },
           "region" : {
             "type" : "string",
