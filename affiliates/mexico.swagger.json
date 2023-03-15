@@ -342,7 +342,7 @@
           },
           "birth_date" : {
             "type" : "string",
-            "description" : "yyyy-mm-dd"
+            "description" : "1989-05-23"
           },
           "personal_id" : {
             "type" : "string",
@@ -416,11 +416,11 @@
           },
           "remuneration_deadline" : {
             "type" : "string",
-            "example" : "yyyy-mm-dd"
+            "example" : "2023-04-18"
           },
           "employed_since" : {
             "type" : "string",
-            "example" : "yyyy-mm-dd",
+            "example" : "2021-02-18",
             "description" : "required when `occupation` is in:\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- SELF_EMPLOYED\n- OWN_BUSINESS\n- WRITTEN_CONTRACT_OR_ORDER\n"
           },
           "employer" : {
