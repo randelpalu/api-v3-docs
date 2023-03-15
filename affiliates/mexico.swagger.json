@@ -343,7 +343,8 @@
           "birth_date" : {
             "type" : "string",
             "example" : "1989-05-23",
-            "description" : "Format: yyyy-mm-dd"
+            "format" : "date",
+            "pattern" : "^([12][0-9]{3}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]))$"
           },
           "personal_id" : {
             "type" : "string",
@@ -418,12 +419,15 @@
           "remuneration_deadline" : {
             "type" : "string",
             "example" : "2023-04-18",
-            "description" : "Format: yyyy-mm-dd"
+            "format" : "date",
+            "pattern" : "^([12][0-9]{3}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]))$"
           },
           "employed_since" : {
             "type" : "string",
             "example" : "2021-02-18",
-            "description" : "Format: yyyy-mm-dd\\\n required when `occupation` is in:\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- SELF_EMPLOYED\n- OWN_BUSINESS\n- WRITTEN_CONTRACT_OR_ORDER\n"
+            "format" : "date",
+            "pattern" : "^([12][0-9]{3}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]))$",
+            "description" : "required when `occupation` is in:\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- SELF_EMPLOYED\n- OWN_BUSINESS\n- WRITTEN_CONTRACT_OR_ORDER\n"
           },
           "employer" : {
             "type" : "string",
