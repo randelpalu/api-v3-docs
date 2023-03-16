@@ -310,7 +310,7 @@
         "type" : "boolean"
       },
       "Customer" : {
-        "required" : [ "first_name", "last_name", "second_last_name", "email", "personal_id", "tax_id_number", "phone", "phone_plan", "address", "birth_date", "gender", "marital_status", "bank_account", "nationality", "occupation", "neto_income", "remuneration_deadline", "monthly_expenses", "housing_type", "employed_since", "dependant_count", "employer", "agreements", "credit_score", "has_loan", "car" ],
+        "required" : [ "first_name", "last_name", "second_last_name", "email", "personal_id", "tax_id_number", "phone", "phone_plan", "address", "birth_date", "gender", "marital_status", "bank_account", "nationality", "occupation", "neto_income", "remuneration_deadline", "monthly_expenses", "housing_type", "dependant_count", "agreements", "credit_score", "has_loan", "car" ],
         "type" : "object",
         "properties" : {
           "first_name" : {
@@ -342,7 +342,9 @@
           },
           "birth_date" : {
             "type" : "string",
-            "description" : "yyyy-mm-dd"
+            "example" : "1989-05-23",
+            "format" : "date",
+            "pattern" : "^([12][0-9]{3}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]))$"
           },
           "personal_id" : {
             "type" : "string",
@@ -402,7 +404,7 @@
           "occupation" : {
             "type" : "string",
             "example" : "EMPLOYED_INDEFINITE_PERIOD",
-            "enum" : [ "EMPLOYED_INDEFINITE_PERIOD,", "SELF_EMPLOYED", "PENSIONER1", "STUDENT", "UNEMPLOYED", "FREELANCER", "OWN_BUSINESS", "MATERNITY_LEAVE" ]
+            "enum" : [ "EMPLOYED_INDEFINITE_PERIOD", "SELF_EMPLOYED", "PENSIONER1", "STUDENT", "UNEMPLOYED", "FREELANCER", "OWN_BUSINESS", "MATERNITY_LEAVE" ]
           },
           "neto_income" : {
             "type" : "integer",
@@ -416,15 +418,21 @@
           },
           "remuneration_deadline" : {
             "type" : "string",
-            "example" : "yyyy-mm-dd"
+            "example" : "2023-04-18",
+            "format" : "date",
+            "pattern" : "^([12][0-9]{3}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]))$"
           },
           "employed_since" : {
             "type" : "string",
-            "example" : "yyyy-mm-dd"
+            "example" : "2021-02-18",
+            "format" : "date",
+            "pattern" : "^([12][0-9]{3}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]))$",
+            "description" : "required when `occupation` is in:\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- SELF_EMPLOYED\n- OWN_BUSINESS\n- WRITTEN_CONTRACT_OR_ORDER\n"
           },
           "employer" : {
             "type" : "string",
-            "example" : "Carrera PLC"
+            "example" : "Carrera PLC",
+            "description" : "required when `occupation` is in:\n- EMPLOYED_INDEFINITE_PERIOD\n- EMPLOYED_SPECIFIED_PERIOD\n- SELF_EMPLOYED\n- OWN_BUSINESS\n- WRITTEN_CONTRACT_OR_ORDER\n"
           },
           "credit_score": {
             "type" : "string",
