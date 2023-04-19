@@ -276,7 +276,7 @@
           },
           "phone" : {
             "type" : "string",
-            "example" : "+52 871 253 7087"
+            "example" : "+370526467335"
           },
           "neto_income" : {
             "type" : "integer",
