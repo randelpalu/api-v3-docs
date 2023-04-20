@@ -276,7 +276,7 @@
           },
           "phone" : {
             "type" : "string",
-            "example" : "+370526467335"
+            "example" : "+37052646733"
           },
           "neto_income" : {
             "type" : "integer",
