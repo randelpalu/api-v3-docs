@@ -210,8 +210,8 @@
         "properties" : {
           "postal_code" : {
             "type" : "string",
-            "description" : "Format: /^LT-\\d{5}$/",
-            "example" : "LT-38627",
+            "description" : "Format: /^\\d{5}$/",
+            "example" : "38627",
             "maxLength": 45
           },
           "city" : {
