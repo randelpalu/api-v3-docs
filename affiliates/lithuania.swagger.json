@@ -291,6 +291,11 @@
             "example" : "EMPLOYED_INDEFINITE_PERIOD",
             "enum" : [ "EMPLOYED_INDEFINITE_PERIOD", "SELF_EMPLOYED", "PENSIONER1", "STUDENT", "UNEMPLOYED", "FREELANCER", "OWN_BUSINESS", "MATERNITY_LEAVE" ]
           },
+          "employed_since" : {
+            "type" : "string",
+            "example" : "yyyy-mm-dd",
+            "description": "required when `occupation` is in EMPLOYED_INDEFINITE_PERIOD, SELF_EMPLOYED, FREELANCER, OWN_BUSINESS, MATERNITY_LEAVE"
+          },
           "agreements" : {
             "$ref" : "#/components/schemas/Agreements"
           }
