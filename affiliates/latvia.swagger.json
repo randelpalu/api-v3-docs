@@ -293,7 +293,8 @@
           },
           "employer" : {
             "type" : "string",
-            "example" : "Vīgante, Sproģis and Kambala"
+            "example" : "Vīgante, Sproģis and Kambala",
+            "description": "required when `occupation` is in EMPLOYED_INDEFINITE_PERIOD, SELF_EMPLOYED, FREELANCER, OWN_BUSINESS, MATERNITY_LEAVE"
           },
           "agreements" : {
             "$ref" : "#/components/schemas/Agreements"
