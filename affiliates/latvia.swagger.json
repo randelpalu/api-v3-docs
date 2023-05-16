@@ -1,0 +1,527 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "Latvia Affiliate Documentation",
+    "description" : "# Introduction \n\nCredy is a company that specializes on the quality lead generation. \\\nThis document further describes fdfhow to integrate API to send leads to Credy.\\\nIf you have any questions, please do not hesitate to contact the IT manager at [it@credy.eu](mailto:it@credy.eu).\n\n## General information\n\nProduction URL: [https://api.credy.eu/v3/](https://api.credy.eu/v3/)\n\nStaging URL: [http://api.staging.credy.eu/v3/](http://api.staging.credy.eu/v3/)\n\nAPI supports post fields, XML and JSON.\n\nTo get response error messages in Latvian, \"Accept-Language\" header’s value must be set to according ISO code. Ex: `lv` or `lv-LV`.\n## Authorization\nAuthorization is performed with OAuth 2.0 Client Credentials Grant.\nWhen requesting token, the client key and secret key must be sent in request body.\nClient key and secret key will be assigned to you by Credy.\nThe requests to api must be authenticated with [bearer token](https://tools.ietf.org/html/rfc6749#section-7.1).\n## Lead registration flow\n\n1. Request is sent to /v3/customers\n\n2. If request is successful, customer uuid must be stored\n\n3. Request is sent to /v3/leads with previously stored customer uuid in query parameter \"customer\" *ex. /v3/leads?customer=a3ff7c20-e9e8-43a0-bfb7-71a5cf43b8d3* \n4. When the lead is accepted by api (under_investigation is received from POST lead), please redirect the customer to [https://www.credy.lv/loading/?lead={UUID}](https://www.credy.lv/loading/?lead={UUID}) (where {UUID} is replaced by the uuid that you receive from POST lead)\n",
+    "version" : "3.0.0"
+  },
+  "security": [{
+    "oAuth": []
+  }],
+  "paths" : {
+    "/customers" : {
+      "post" : {
+        "description" : "Register customer",
+        "parameters" : [ {
+          "name" : "Accept-Language",
+          "in" : "header",
+          "description" : "To get response error messages in Latvian, header’s value must be set to according ISO code. Ex: `lv` or `lv-LV`.",
+          "required" : false,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "format" : "string"
+          },
+          "example" : "lv-LV"
+        } ],
+        "requestBody" : {
+          "description" : "Customer info",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Customer"
+              }
+            },
+            "application/xml" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Customer"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Customer is registered",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CustomerResponse"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CustomerResponse"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/UnauthorizedResponse"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/UnauthorizedResponse"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Validation error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrors"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrors"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "oAuth" : [ ]
+        } ]
+      }
+    },
+    "/leads" : {
+      "post" : {
+        "description" : "Register lead",
+        "parameters" : [ {
+          "name" : "Accept-Language",
+          "in" : "header",
+          "description" : "To get response error messages in Latvian, header’s value must be set to according ISO code. Ex: `lv` or `lv-LV`.",
+          "required" : false,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "format" : "string"
+          },
+          "example" : "lv-LV"
+        }, {
+          "name" : "customer",
+          "in" : "query",
+          "description" : "Customer uuid from `/customers` response",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "format" : "string"
+          },
+          "example" : "df0f997b-72ae-480a-88a8-4bd73ee89dae"
+        } ],
+        "requestBody" : {
+          "description" : "Lead info",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Lead"
+              }
+            },
+            "application/xml" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Lead"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LeadResponse"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LeadResponse"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/UnauthorizedResponse"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/UnauthorizedResponse"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Validation error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrors"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrors"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "oAuth" : [ "allow_custom_pingtree" ]
+        } ]
+      }
+    }
+  },
+  "components" : {
+    "securitySchemes": {
+      "oAuth": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "/token",
+            "scopes": { 
+              "allow_custom_pingtree": ""
+            }
+          }
+        }
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "schemas" : {
+      "PrimaryAddress" : {
+        "required" : [ "city", "street", "postal_code" ],
+        "type" : "object",
+        "properties" : {
+          "postal_code" : {
+            "type" : "string",
+            "description" : "Format: /^\\d{4}$/",
+            "example" : "38627",
+            "maxLength": 45
+          },
+          "city" : {
+            "type" : "string",
+            "description" : "Format: /^([a-zA-ZĀČĒĢĪĶĻŅŠŪŽāčēģīķļņšūž]+[\\s\\-\\']?)+$/ui",
+            "example" : "Ludza",
+            "maxLength": 45
+          },
+          "street" : {
+            "type" : "string",
+            "example" : "Anglikāņu",
+            "maxLength": 45
+          }
+        }
+      },
+      "Agreements" : {
+        "type" : "object",
+        "additionalProperties" : {
+          "$ref" : "#/components/schemas/Agreement"
+        },
+        "example" : {
+          "terms_of_service" : true,
+          "data_proccessing_policy" : true
+        }
+      },
+      "Agreement" : {
+        "type" : "boolean"
+      },
+      "Customer" : {
+        "required" : [ "first_name", "last_name", "email", "personal_id", "phone", "neto_income", "address", "marital_status", "occupation", "agreements", "education", "employer" ],
+        "type" : "object",
+        "properties" : {
+          "first_name" : {
+            "type" : "string",
+            "example" : "Ingūns",
+            "description" : "Format: /^([a-zA-ZĀČĒĢĪĶĻŅŠŪŽāčēģīķļņšūž]+[\\s\\-\\']?)+$/ui",
+            "maxLength": 255
+          },
+          "last_name" : {
+            "type" : "string",
+            "example" : "Znotiņš",
+            "description" : "Format: /^([a-zA-ZĀČĒĢĪĶĻŅŠŪŽāčēģīķļņšūž]+[\\s\\-\\']?)+$/ui",
+            "maxLength": 255
+          },
+          "personal_id" : {
+            "type" : "string",
+            "example" : "270377-15481"
+          },
+          "marital_status" : {
+            "type" : "string",
+            "example" : "MARRIED",
+            "enum" : [ "SINGLE", "MARRIED", "DIVORCED", "WITH_PARTNER", "WIDOW" ]
+          },
+          "email" : {
+            "type" : "string",
+            "example" : "martelle.judit@mailinator.com"
+          },
+          "phone" : {
+            "type" : "string",
+            "example" : "+371 68982180"
+          },
+          "neto_income" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 1500
+          },
+          "address" : {
+            "$ref" : "#/components/schemas/PrimaryAddress"
+          },
+          "occupation" : {
+            "type" : "string",
+            "example" : "EMPLOYED_INDEFINITE_PERIOD",
+            "enum" : [ "EMPLOYED_INDEFINITE_PERIOD", "SELF_EMPLOYED", "PENSIONER1", "STUDENT", "UNEMPLOYED", "FREELANCER", "OWN_BUSINESS", "MATERNITY_LEAVE" ]
+          },
+          "education" : {
+            "type" : "string",
+            "example" : "BASIC_SCHOOL",
+            "enum" : [ "NO_EDUCATION", "BASIC_SCHOOL", "HIGH_SCHOOL", "BACHELOR", "MASTER", "PHD" ]
+          },
+          "employer" : {
+            "type" : "string",
+            "example" : "Vīgante, Sproģis and Kambala"
+          },
+          "agreements" : {
+            "$ref" : "#/components/schemas/Agreements"
+          }
+        },
+        "xml" : {
+          "name" : "request"
+        }
+      },
+      "Lead" : {
+        "type" : "object",
+        "required" : [ "loan_sum", "loan_period", "ip_address" ],
+        "properties" : {
+          "loan_sum" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "Amount of credit requested by customer",
+            "example" : 2000
+          },
+          "loan_period" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "Term for credit requested",
+            "example" : 30
+          },
+          "ip_address" : {
+            "type" : "string",
+            "description" : "IP address of customer",
+            "example" : "192.168.0.255"
+          },
+          "aff_lead_id": {
+            "type": "string",
+            "description": "Affiliate's application identifier. (can be used for tracking purposes for example)",
+            "example": "Jfds45jijgfds46t"
+          }
+        },
+        "xml" : {
+          "name" : "request"
+        }
+      },
+      "ValidationErrors" : {
+        "type" : "array",
+        "xml" : {
+          "name" : "response"
+        },
+        "items" : {
+          "$ref" : "#/components/schemas/ValidationErrors_inner"
+        }
+      },
+      "CustomerResponse" : {
+        "xml" : {
+          "name" : "response"
+        },
+        "allOf" : [ {
+          "type" : "object",
+          "properties" : {
+            "uuid" : {
+              "type" : "string",
+              "example" : "b3345507-8298-4bd1-843a-6a968e593f00"
+            }
+          }
+        }, {
+          "$ref" : "#/components/schemas/Customer"
+        } ]
+      },
+      "LeadResponse" : {
+        "type" : "object",
+        "properties" : {
+          "uuid" : {
+            "type" : "string",
+            "example" : "b3345507-8298-4bd1-843a-6a968e593f00"
+          },
+          "loan_sum" : {
+            "type" : "string",
+            "example" : "250.00"
+          },
+          "loan_period" : {
+            "type" : "string",
+            "example" : "30"
+          },
+          "status" : {
+            "type" : "string",
+            "example" : "UNDER_INVESTIGATION"
+          },
+          "date_created" : {
+            "type" : "string",
+            "example" : "2017-01-04 08:33:09"
+          },
+          "product" : {
+            "type" : "string",
+            "example" : "PAYDAY"
+          }
+        },
+        "xml" : {
+          "name" : "response"
+        }
+      },
+      "UnauthorizedResponse" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "example" : "Unauthorized"
+          },
+          "message" : {
+            "type" : "string",
+            "example" : "Your request was made with invalid credentials."
+          },
+          "code" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 0
+          },
+          "status" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 401
+          }
+        },
+        "xml" : {
+          "name" : "response"
+        }
+      },
+      "ValidationErrors_inner" : {
+        "type" : "object",
+        "properties" : {
+          "field" : {
+            "type" : "string",
+            "example" : "email"
+          },
+          "message" : {
+            "type" : "string",
+            "example" : "Email address is invalid"
+          }
+        }
+      }
+    },
+    "responses" : {
+      "CustomerSuccess" : {
+        "description" : "Customer is registered",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/CustomerResponse"
+            }
+          },
+          "application/xml" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/CustomerResponse"
+            }
+          }
+        }
+      },
+      "LeadSuccess" : {
+        "description" : "Lead is under investigation",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/LeadResponse"
+            }
+          },
+          "application/xml" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/LeadResponse"
+            }
+          }
+        }
+      },
+      "ValidationError" : {
+        "description" : "Validation error",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/ValidationErrors"
+            }
+          },
+          "application/xml" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/ValidationErrors"
+            }
+          }
+        }
+      },
+      "Unauthorized" : {
+        "description" : "Unauthorized",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/UnauthorizedResponse"
+            }
+          },
+          "application/xml" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/UnauthorizedResponse"
+            }
+          }
+        }
+      }
+    },
+    "parameters" : {
+      "AcceptLanguageHeader" : {
+        "name" : "Accept-Language",
+        "in" : "header",
+        "description" : "To get response error messages in Latvian, header’s value must be set to according ISO code. Ex: `lv` or `lv-LV`.",
+        "required" : false,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "format" : "string"
+        },
+        "example" : "lv-LV"
+      },
+      "CustomerUuid" : {
+        "name" : "customer",
+        "in" : "query",
+        "description" : "Customer uuid from `/customers` response",
+        "required" : true,
+        "style" : "form",
+        "explode" : true,
+        "schema" : {
+          "format" : "string"
+        },
+        "example" : "df0f997b-72ae-480a-88a8-4bd73ee89dae"
+      }
+    }
+  },
+  "servers" : [ {
+    "description" : "SwaggerHub API Auto Mocking",
+    "url" : "https://virtserver.swaggerhub.com/credy/latvia-affiliate-docs/3.0.0"
+  } ]
+}
