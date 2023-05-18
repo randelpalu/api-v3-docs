@@ -227,7 +227,14 @@
           "house_number" : {
             "type" : "string",
             "example" : "1",
+            "description" : "Format: /^[0-9]+[a-zA-ZąĄčČęĘėĖįĮšŠųŲūŪžŽ]?$/u",
             "maxLength": 45
+          },
+          "flat_number" : {
+            "type" : "string",
+            "example" : "4",
+            "description" : "Format: /^[0-9]+[a-zA-ZąĄčČęĘėĖįĮšŠųŲūŪžŽ]?$/u",
+            "maxLength": 255
           }
         }
       },
@@ -245,7 +252,7 @@
         "type" : "boolean"
       },
       "Customer" : {
-        "required" : [ "first_name", "last_name", "email", "personal_id", "phone", "neto_income", "address", "marital_status", "occupation", "agreements" ],
+        "required" : [ "first_name", "last_name", "email", "personal_id", "phone", "neto_income", "address", "marital_status", "occupation", "bank_account", "agreements" ],
         "type" : "object",
         "properties" : {
           "first_name" : {
@@ -264,6 +271,10 @@
             "type" : "string",
             "description" : "Format: /^[3-6]{1}\\d{10}$/",
             "example" : "32345678901"
+          },
+          "bank_account" : {
+            "type" : "string",
+            "example" : "LT186299430747599176"
           },
           "marital_status" : {
             "type" : "string",
