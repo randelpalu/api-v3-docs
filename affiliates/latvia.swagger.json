@@ -241,7 +241,7 @@
         "type" : "boolean"
       },
       "Customer" : {
-        "required" : [ "first_name", "last_name", "email", "personal_id", "phone", "neto_income", "address", "marital_status", "occupation", "agreements", "education", "employer" ],
+        "required" : [ "first_name", "last_name", "email", "personal_id", "phone", "neto_income", "address", "marital_status", "occupation", "agreements", "education", "birth_date" ],
         "type" : "object",
         "properties" : {
           "first_name" : {
@@ -259,6 +259,11 @@
           "personal_id" : {
             "type" : "string",
             "example" : "270377-15481"
+          },
+          "birth_date" : {
+            "type" : "string",
+            "example" : "1984-03-12",
+            "description" : "Customer birth date \\\nMust be valid date `YYYY-mm-dd` \n"
           },
           "marital_status" : {
             "type" : "string",
@@ -293,7 +298,7 @@
           },
           "employer" : {
             "type" : "string",
-            "example" : "Vīgante, Sproģis and Kambala",
+            "example" : "Kambala",
             "description": "required when `occupation` is in EMPLOYED_INDEFINITE_PERIOD, SELF_EMPLOYED, FREELANCER, OWN_BUSINESS, MATERNITY_LEAVE"
           },
           "agreements" : {
