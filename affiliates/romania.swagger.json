@@ -253,17 +253,19 @@
           "properties": {
             "first_name": {
               "type": "string",
+              "description": "Format: +$/uiA-Za-zĂÂÎŞŢăâîşţ]+[\\s\\-\\']?)+$/ui",
               "example": "Casian",
               "maxLength": 255
             },
             "last_name": {
               "type": "string",
+              "description": "Format: /^([A-Za-zĂÂÎŞŢăâîşţ]+[\\s\\-\\']?)+$/ui",
               "example": "Iancu",
               "maxLength": 255
             },
             "personal_id": {
               "type": "string",
-              "description": "Format: /^(\\d{9}|\\d{12})$/",
+              "description": "Format: /^([1-9]\\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\\d|3[01])(0[1-9]|[1-4]\\d|5[0-2]|99)(00[1-9]|0[1-9]\\d|[1-9]\\d\\d)\\d+$/ui",
               "example": "3940504051724"
             },
             "email": {
