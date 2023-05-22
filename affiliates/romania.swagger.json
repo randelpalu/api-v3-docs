@@ -253,7 +253,7 @@
           "properties": {
             "first_name": {
               "type": "string",
-              "description": "Format: +$/uiA-Za-zĂÂÎŞŢăâîşţ]+[\\s\\-\\']?)+$/ui",
+              "description": "Format: /^([A-Za-zĂÂÎŞŢăâîşţ]+[\\s\\-\\']?)+$/ui",
               "example": "Casian",
               "maxLength": 255
             },
