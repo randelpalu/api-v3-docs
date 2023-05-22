@@ -253,13 +253,13 @@
           "properties": {
             "first_name": {
               "type": "string",
-              "description": "Format: /^([A-Za-zĂÂÎŞŢăâîşţ]+[\\s\\-\\']?)+$/ui",
+              "description": "Format: /^([A-Za-zĂÂÎŞŢăâîşţ]+[\\s\\-\\']?)+[^-]$/ui",
               "example": "Casian",
               "maxLength": 255
             },
             "last_name": {
               "type": "string",
-              "description": "Format: /^([A-Za-zĂÂÎŞŢăâîşţ]+[\\s\\-\\']?)+$/ui",
+              "description": "Format: /^([A-Za-zĂÂÎŞŢăâîşţ]+[\\s\\-\\']?)+[^-]$/ui",
               "example": "Iancu",
               "maxLength": 255
             },
