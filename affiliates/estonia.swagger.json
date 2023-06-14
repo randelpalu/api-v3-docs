@@ -248,7 +248,7 @@
         "type" : "boolean"
       },
       "Customer" : {
-        "required" : [ "first_name", "last_name", "email", "personal_id", "phone", "occupation", "agreements" ],
+        "required" : [ "first_name", "last_name", "email", "personal_id", "phone", "tax_id_number", "employer_address", "agreements" ],
         "type" : "object",
         "properties" : {
           "first_name" : {
@@ -277,13 +277,12 @@
             "example" : "+3725101234"
           },
           "employer_address" : {
-            "$ref" : "#/components/schemas/EmployerAddress",
-            "description": "required when `occupation` is in EMPLOYED_INDEFINITE_PERIOD, SELF_EMPLOYED, FREELANCER, OWN_BUSINESS, MATERNITY_LEAVE"
+            "$ref" : "#/components/schemas/EmployerAddress"
           },
-          "occupation" : {
+          "tax_id_number" : {
             "type" : "string",
-            "example" : "EMPLOYED_INDEFINITE_PERIOD",
-            "enum" : [ "EMPLOYED_INDEFINITE_PERIOD", "SELF_EMPLOYED", "PENSIONER1", "STUDENT", "UNEMPLOYED", "FREELANCER", "OWN_BUSINESS", "MATERNITY_LEAVE" ]
+            "example" : "12345678",
+            "description" : "Format: /^\\d{8}$/"
           },
           "agreements" : {
             "$ref" : "#/components/schemas/Agreements"
