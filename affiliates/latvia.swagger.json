@@ -211,7 +211,7 @@
           "postal_code" : {
             "type" : "string",
             "description" : "Format: /^\\d{4}$/",
-            "example" : "38627",
+            "example" : "3862",
             "maxLength": 45
           },
           "city" : {
