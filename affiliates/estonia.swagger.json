@@ -205,25 +205,24 @@
     },
     "schemas" : {
       "EmployerAddress" : {
-        "required" : [ "city", "street", "house_number" ],
         "type" : "object",
         "properties" : {
           "city" : {
             "type" : "string",
             "example" : "Tartu",
-            "description" : "Format: /^([a-zA-ZÄÖÜÕŽŠäöüõžš]+[\\s\\-\\']?)+$/ui",
+            "description" : "Required if product === 'BUSINESS', Format: /^([a-zA-ZÄÖÜÕŽŠäöüõžš]+[\\s\\-\\']?)+$/ui",
             "maxLength": 45
           },
           "street" : {
             "type" : "string",
             "example" : "Riia",
-            "description" : "Format: /^([a-zA-ZÄÖÜÕŽŠäöüõžš]+[\\s\\-\\']?)+$/ui",
+            "description" : "Required if product === 'BUSINESS', Format: /^([a-zA-ZÄÖÜÕŽŠäöüõžš]+[\\s\\-\\']?)+$/ui",
             "maxLength": 45
           },
           "house_number" : {
             "type" : "string",
             "example" : "1",
-            "description" : "Format: /^[0-9]+[\\-]?[a-zA-Z]?$/u",
+            "description" : "Required if product === 'BUSINESS', Format: /^[0-9]+[\\-]?[a-zA-Z]?$/u",
             "maxLength": 45
           },
           "flat_number" : {
@@ -248,7 +247,7 @@
         "type" : "boolean"
       },
       "Customer" : {
-        "required" : [ "first_name", "last_name", "email", "personal_id", "phone", "tax_id_number", "employer_address", "agreements" ],
+        "required" : [ "first_name", "last_name", "email", "personal_id", "phone", "agreements" ],
         "type" : "object",
         "properties" : {
           "first_name" : {
@@ -282,7 +281,7 @@
           "tax_id_number" : {
             "type" : "string",
             "example" : "12345678",
-            "description" : "Format: /^\\d{8}$/"
+            "description" : "Required if product === 'BUSINESS', Format: /^\\d{8}$/"
           },
           "agreements" : {
             "$ref" : "#/components/schemas/Agreements"
