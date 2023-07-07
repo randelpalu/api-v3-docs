@@ -206,7 +206,7 @@
     "schemas" : {
       "EmployerAddress" : {
         "type" : "object",
-        "description" : "Your company address",
+        "description" : "If you need business loan, then Your company address, otherwise company address you work in.",
         "properties" : {
           "city" : {
             "type" : "string",
@@ -288,7 +288,7 @@
             "type" : "string",
             "example" : "BUSINESS",
             "description" : "For a business loan this value must be 'BUSINESS'.",
-            "enum": [ "PAYDAY", "INSTALMENT", "CAR", "TEMPORARY", "DEBT_MANAGEMENT", "BUSINESS" ]
+            "enum": [ "PAYDAY", "BUSINESS" ]
           },
           "agreements" : {
             "$ref" : "#/components/schemas/Agreements"
