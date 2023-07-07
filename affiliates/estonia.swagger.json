@@ -206,6 +206,7 @@
     "schemas" : {
       "EmployerAddress" : {
         "type" : "object",
+        "description" : "Your company address",
         "properties" : {
           "city" : {
             "type" : "string",
@@ -281,7 +282,13 @@
           "tax_id_number" : {
             "type" : "string",
             "example" : "12345678",
-            "description" : "Required if product === 'BUSINESS', Format: /^\\d{8}$/"
+            "description" : "Your company registration number. Required if product === 'BUSINESS', Format: /^\\d{8}$/"
+          },
+          "product" : {
+            "type" : "string",
+            "example" : "BUSINESS",
+            "description" : "For a business loan this value must be 'BUSINESS'.",
+            "enum": [ "PAYDAY", "INSTALMENT", "CAR", "TEMPORARY", "DEBT_MANAGEMENT", "BUSINESS" ]
           },
           "agreements" : {
             "$ref" : "#/components/schemas/Agreements"
