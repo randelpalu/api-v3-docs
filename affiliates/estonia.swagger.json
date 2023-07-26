@@ -323,6 +323,12 @@
             "type": "string",
             "description": "Affiliate's application identifier. (can be used for tracking purposes for example)",
             "example": "Jfds45jijgfds46t"
+          },
+          "product" : {
+            "type" : "string",
+            "example" : "BUSINESS",
+            "description" : "For a business loan this value must be 'BUSINESS'.",
+            "enum": [ "PAYDAY", "BUSINESS" ]
           }
         },
         "xml" : {
