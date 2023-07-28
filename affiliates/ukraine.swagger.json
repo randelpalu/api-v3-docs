@@ -335,7 +335,7 @@
           },
           "loan_period" : {
             "type" : "integer",
-            "description" : "Term for credit requested",
+            "description" : "Term for credit requested in days. If you need to pass it in months, please multiply the amount of months by 30 (months * 30)",
             "format" : "int32",
             "example" : 30
           },
