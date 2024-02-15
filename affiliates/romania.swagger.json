@@ -247,6 +247,7 @@
             "last_name",
             "personal_id",
             "phone",
+            "address",
             "agreements"
           ],
           "type": "object",
@@ -277,6 +278,13 @@
               "example": 40259108761
             },
             "address": {
+              "required": [
+                "city",
+                "street",
+                "last_name",
+                "house_number",
+                "postal_code"
+              ],
               "properties": {
                 "city": {
                   "type": "string",
