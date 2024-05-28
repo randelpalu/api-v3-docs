@@ -120,7 +120,7 @@
                 "summary": "Duplicate entry example",
                 "value": {
                   "status": "duplicate",
-                  "reason": "duplicate entry"
+                  "reason": "duplicate email"
                 }
               },
               "rejected": {
@@ -143,7 +143,7 @@
               },
               "duplicate_xml": {
                 "summary": "Duplicate entry example",
-                "value": "<CustomerRejected><status>duplicate</status><reason>duplicate entry</reason></CustomerRejected>"
+                "value": "<CustomerRejected><status>duplicate</status><reason>duplicate email</reason></CustomerRejected>"
               },
               "rejected_xml": {
                 "summary": "General rejection example",
@@ -193,7 +193,7 @@
                 "summary": "Duplicate entry example",
                 "value": {
                   "status": "duplicate",
-                  "reason": "duplicate entry"
+                  "reason": "duplicate email"
                 }
               },
               "rejected": {
@@ -220,7 +220,7 @@
               },
               "duplicate_xml": {
                 "summary": "Duplicate entry example",
-                "value": "<CheckPinRejected><status>duplicate</status><reason>duplicate entry</reason></CheckPinRejected>"
+                "value": "<CheckPinRejected><status>duplicate</status><reason>duplicate email</reason></CheckPinRejected>"
               },
               "rejected_xml": {
                 "summary": "General rejection example",
