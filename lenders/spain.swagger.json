@@ -102,7 +102,7 @@
         }
       },
       "CustomerRejectedResponse" : {
-        "description" : "Invalid params response",
+        "description" : "Customer rejected response",
         "content" : {
           "application/json" : {
             "schema" : {
@@ -574,6 +574,7 @@
         "properties" : {
           "status" : {
             "type" : "string",
+            "enum": ["invalid_params", "duplicate", "rejected"],
             "example" : "invalid_params"
           },
           "reason" : {
