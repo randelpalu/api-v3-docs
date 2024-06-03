@@ -99,16 +99,53 @@
         }
       },
       "CustomerRejectedResponse" : {
-        "description" : "Invalid params response",
+        "description" : "Customer rejected response",
         "content" : {
           "application/json" : {
             "schema" : {
               "$ref" : "#/components/schemas/CustomerRejected"
+            },
+            "examples": {
+              "invalid_params": {
+                "summary": "Invalid parameters example",
+                "value": {
+                  "status": "invalid_params",
+                  "reason": "housing type is invalid, phone number is invalid"
+                }
+              },
+              "duplicate": {
+                "summary": "Duplicate entry example",
+                "value": {
+                  "status": "duplicate",
+                  "reason": "duplicate email"
+                }
+              },
+              "rejected": {
+                "summary": "General rejection example",
+                "value": {
+                  "status": "rejected",
+                  "reason": "submission rejected"
+                }
+              }
             }
           },
           "application/xml" : {
             "schema" : {
               "$ref" : "#/components/schemas/CustomerRejected"
+            },
+            "examples": {
+              "invalid_params_xml": {
+                "summary": "Invalid parameters example",
+                "value": "<CustomerRejected><status>invalid_params</status><reason>housing type is invalid, phone number is invalid</reason></CustomerRejected>"
+              },
+              "duplicate_xml": {
+                "summary": "Duplicate entry example",
+                "value": "<CustomerRejected><status>duplicate</status><reason>duplicate email</reason></CustomerRejected>"
+              },
+              "rejected_xml": {
+                "summary": "General rejection example",
+                "value": "<CustomerRejected><status>rejected</status><reason>submission rejected </reason></CustomerRejected>"
+              }
             }
           }
         }
@@ -134,11 +171,58 @@
           "application/json" : {
             "schema" : {
               "$ref" : "#/components/schemas/CheckPinRejected"
+            },
+            "examples": {
+              "pin_invalid": {
+                "summary": "Invalid pin example",
+                "value": {
+                  "status": "pin_invalid"
+                }
+              },
+              "invalid_params": {
+                "summary": "Invalid parameters example",
+                "value": {
+                  "status": "invalid_params",
+                  "reason": "housing type is invalid, phone number is invalid"
+                }
+              },
+              "duplicate": {
+                "summary": "Duplicate entry example",
+                "value": {
+                  "status": "duplicate",
+                  "reason": "duplicate email"
+                }
+              },
+              "rejected": {
+                "summary": "General rejection example",
+                "value": {
+                  "status": "rejected",
+                  "reason": "submission rejected"
+                }
+              }
             }
           },
           "application/xml" : {
             "schema" : {
               "$ref" : "#/components/schemas/CheckPinRejected"
+            },
+            "examples": {
+              "pin_invalid_xml": {
+                "summary": "Invalid pin example",
+                "value": "<CheckPinRejected><status>pin_invalid</status></CheckPinRejected>"
+              },
+              "invalid_params_xml": {
+                "summary": "Invalid parameters example",
+                "value": "<CheckPinRejected><status>invalid_params</status><reason>housing type is invalid, phone number is invalid</reason></CheckPinRejected>"
+              },
+              "duplicate_xml": {
+                "summary": "Duplicate entry example",
+                "value": "<CheckPinRejected><status>duplicate</status><reason>duplicate email</reason></CheckPinRejected>"
+              },
+              "rejected_xml": {
+                "summary": "General rejection example",
+                "value": "<CheckPinRejected><status>rejected</status><reason>submission rejected</reason></CheckPinRejected>"
+              }
             }
           }
         }
@@ -530,9 +614,11 @@
       },
       "CustomerRejected" : {
         "type" : "object",
+        "required" : ["status"],
         "properties" : {
           "status" : {
             "type" : "string",
+            "enum": ["invalid_params", "duplicate", "rejected"],
             "example" : "invalid_params"
           },
           "reason" : {
@@ -552,10 +638,16 @@
       },
       "CheckPinRejected" : {
         "type" : "object",
+        "required" : ["status"],
         "properties" : {
           "status" : {
             "type" : "string",
+            "enum": ["invalid_params", "duplicate", "rejected", "pin_invalid"],
             "example" : "pin_invalid"
+          },
+          "reason" : {
+            "type" : "string",
+            "example" : ""
           }
         }
       },
