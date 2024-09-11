@@ -249,7 +249,7 @@
           },
           "phone" : {
             "type" : "string",
-            "example" : "+38 044 555 1234"
+            "example" : "+84771330890"
           },
           "agreements" : {
             "$ref" : "#/components/schemas/Agreements"
