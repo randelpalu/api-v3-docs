@@ -404,7 +404,7 @@
         }
       },
       "Lead" : {
-        "required" : [ "ip_address", "loan_period", "loan_purpose", "loan_sum" ],
+        "required" : [ "ip_address", "loan_period", "loan_sum" ],
         "type" : "object",
         "properties" : {
           "loan_sum" : {
@@ -423,10 +423,6 @@
             "type" : "string",
             "description" : "IP address of customer",
             "example" : "192.168.0.255"
-          },
-          "loan_purpose" : {
-            "type" : "string",
-            "example" : "Wedding"
           },
           "pingtree" : {
             "type" : "array",
